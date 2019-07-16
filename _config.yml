@@ -7,13 +7,13 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Li Zeng"
+title                    : "Jeremie Decoop"
 title_separator          : "-"
-name                     : "Li Zeng"
+name                     : "Jeremie Decoop"
 description              : "Powered by Jekyll and minimal-mistakes theme"
 url                      : #"https://zengliX.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "zengliX/zengliX.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "JeremieDec/JeremieDecoops.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -72,12 +72,12 @@ social:
 analytics:
   provider               : "google" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          : "UA-91561805-1"
+    tracking_id          : # "UA-91561805-1"
 
 
 # Site Author
 author:
-  name             : "Li Zeng"
+  name             : "Jeremie Decoop"
   avatar           : "/others/profile.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Biostatistics Ph.D at Yale"
   location         : "New Haven, CT"
@@ -89,12 +89,12 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "zengliX"
+  github           : #"zengliX"
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : "li-zeng-154a2551?trk=nav_responsive_tab_profile_pic"
+  linkedin         : #"li-zeng-154a2551?trk=nav_responsive_tab_profile_pic"
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. http://stackoverflow.com/users/123456/username)
