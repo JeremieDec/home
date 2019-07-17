@@ -12,7 +12,7 @@ comments: true
 
 **Préface**
 
-D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque l'idée lui est venue de lancer le service en 2008. Depuis, la plateforme eu l'inspiration de devenir bien plus qu'une plateforme de réservation de matelas gonflable.
+D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb eu l'inspiration de devenir bien plus qu'une plateforme de réservation de matelas gonflables.
 
 L'Hexagone est devenue le **premier marché d'Airbnb après les Etats-Unis**. En **France**, la plateforme compte plus de 300 000 logements et Paris se situe au rang de numéro 1 des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. (le Hilton Paris n'a plus les moyens de cirer les parquets)  
 
