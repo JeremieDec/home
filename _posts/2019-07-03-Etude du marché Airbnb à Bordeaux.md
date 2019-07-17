@@ -122,7 +122,7 @@ freq = listings['room_type'].value_counts().sort_values(ascending=True)
 freq.plot.barh(figsize=(15, 3), width=1, color = ["g","b","r"])
 ```
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Typesdelogement.png" width="55%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Typesdelogement.png" width="30%">
 
 
 ## <a name="TPP" ></a> Type de propriétés
