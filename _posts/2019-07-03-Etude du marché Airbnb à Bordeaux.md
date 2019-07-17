@@ -36,12 +36,12 @@ I- [Exploration des données](#DE)
   3. [Types de propriétés](#TPP)
   4. [Capacité totale des biens par nombre d'accommodés](#CP)
   5. [Prix moyen d'une location par quartier](#PM)
-  6. [La-Le 'Big Boss' des reviews, la personne qui gère le mieux l'expérience et sollicite ses hôtes ?](#REVIEWS+)
-  6. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
-  7. [Quels sont les quartiers les plus-moins disponibles ? - évolution moyenne sur 90, 60, 30 jours](#DI)
-  8. [Les hôtes déclarent-ils leurs activités ?](#NL)
-  9. [Combien les hôtes possèdent-ils de biens ?](#HL)  
-  10. [Quelles variables sont les plus corrélées ?](#HM)
+  6. [La meilleur expérience client, qui est l'Hôte le-la plus plesbicité au quotidien ?](#REVIEWS+)
+  7. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+  8. [Quels sont les quartiers les plus-moins disponibles ? - évolution moyenne sur 90, 60, 30 jours](#DI)
+  9. [Les hôtes déclarent-ils leurs activités ?](#NL)
+  10. [Combien les hôtes possèdent-ils de biens ?](#HL)  
+  11. [Quelles variables sont les plus corrélées ?](#HM)
  
   
 II- [Nettoyage des données](#ND) 
@@ -269,7 +269,7 @@ max        15.000000
 ```
 ## <a name="PM" ></a> La meilleur expérience client, l'Hôte le plus plesbicité au quotidien](#REVIEWS+)
 
-La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il n'y a qu'une hôte qui remplit cette condition exceptionelle, voyons..
+La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle, voyons..
 
 
 
