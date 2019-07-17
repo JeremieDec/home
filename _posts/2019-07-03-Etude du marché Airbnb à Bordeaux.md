@@ -312,7 +312,8 @@ amerig = listings_raw[listings_raw.neighbourhood_group_cleansed=='Merignac']
 
 ## <a name="PM" ></a> Conseils décoration aux futurs hôtes
 
-Naurellement, l'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: Ces biens sont trois. Cependant, une information pertinente est donnée sur la visibilité du logement: le nombre total de fois ou le bien a été visualisé.
+L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens concernés. Cependant, une information pertinente est donnée sur la visibilité du logement: le nombre total de fois ou le bien a été visualisé.
+Ces données sont récupérables dans le but de prédire le poids des variables liées aux scoring des annonces.
 
 - [Pour aller plus loin](#PAL)
 
