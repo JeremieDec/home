@@ -76,9 +76,10 @@ V-[Références](#REF)
 
 **36 %**, c'est le pourcentage réaliste moyen des frais financés (loyer+charges) grâce à la [location d'une chambre à Bordeaux sur  Airbnb](#PAY).
 
-**104 %** est la rentabilité en proportion de l'ensemble des charges en louant un appartement sur Bordeaux, selon cette [configuration](#PAY).
+**104 %** est la rentabilité en proportion de l'investissement total en louant un appartement entier sur Bordeaux, selon cette [configuration](#PAY).
 
-**73 €** correspond le prix moyen d'une location pour deux personnes, située au coeur du Centre-Ville de Bordeaux (exemple en couverture)
+**73 €** correspond le prix moyen d'une location pour deux personnes, située au coeur du Centre-Ville de Bordeaux (exemple d'un appartement en deuxième photo de couverture)
+
 
 **
 
