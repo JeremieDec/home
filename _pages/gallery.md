@@ -27,5 +27,5 @@ gallery3:
  
 ---
 
-{% include gallery caption="**Trips**" %} 
+{% include gallery caption="**Travels**" %} 
 {% include gallery id="gallery3" caption="**Miscellaneous**" %}
