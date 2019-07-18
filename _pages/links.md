@@ -12,3 +12,7 @@ author_profile: true
 Data Visualisations 
 
 [Raconteur](https://www.raconteur.net/infographics-archive)
+
+Where to get news from the tech world 
+[Ycombinator newsfeed](https://news.ycombinator.com/news)
+
