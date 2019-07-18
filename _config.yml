@@ -16,7 +16,7 @@ baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "JeremieDec/JeremieDecoops.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 250
 comments:
   provider               : "facebook" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
@@ -80,8 +80,8 @@ author:
   name             : "Jeremie Decoop"
   avatar           : "/others/photoprof.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Allumeur de réverbères"
-  location         : "New Haven, CT"
-  email            : "li.zeng@yale.edu"
+  location         : "France"
+  email            : "jeremie.dec@outlook.fr"
   uri              :
   bitbucket        :
   codepen          :
@@ -94,7 +94,7 @@ author:
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         : #"li-zeng-154a2551?trk=nav_responsive_tab_profile_pic"
+  linkedin         : "https://www.linkedin.com/in/jeremiedecoop/"
   pinterest        :
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. http://stackoverflow.com/users/123456/username)
