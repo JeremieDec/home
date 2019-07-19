@@ -40,16 +40,16 @@ I - [Enseignements clés de l'enquête](#INS)
 I- [Exploration des données](#DE)
   1. [Répartition des biens par quartier](#NE)
   2. [Types de logements](#TP)
-  3. [Payer ses charges grâce à Airbnb, en quelles mesures ?](#PAY)
   3. [Types de propriétés](#TPP)
-  4. [Capacité totale des biens par nombre d'accommodés](#CP)
-  5. [Prix moyen d'une location par quartier](#PM)
-  6. [La meilleur expérience client, qui est l'Hôte le-la plus plesbicité au quotidien ?](#REVIEWS)
-  7. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
-  8. [Quels sont les quartiers les plus-moins disponibles ? - évolution moyenne sur 90, 60, 30 jours](#DI)
-  9. [Les hôtes déclarent-ils leurs activités ?](#NL)
-  10. [Combien les hôtes possèdent-ils de biens ?](#HL)  
-  11. [Quelles variables sont les plus corrélées ?](#HM)
+  4. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
+  5. [Capacité totale des biens par nombre d'accommodés](#CP)
+  6. [Prix moyen d'une location par quartier](#PM)
+  7. [La meilleur expérience client, qui est l'Hôte le-la plus plesbicité au quotidien ?](#REVIEWS)
+  8. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+  9. [Quels sont les quartiers les plus-moins disponibles ? - évolution moyenne sur 90, 60, 30 jours](#DI)
+  10. [Les hôtes déclarent-ils leurs activités ?](#NL)
+  11. [Combien les hôtes possèdent-ils de biens ?](#HL)  
+  12. [Quelles variables sont les plus corrélées ?](#HM)
  
   Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
 II- [Nettoyage des données](#ND) 
@@ -184,10 +184,9 @@ Il est très complexe d'obtenir une information exacte sur l'occupation des bien
 Les plateformes tel que Airdna et d'autres indiquent des taux très élevés (jusqu'à 80%). Ils se basent sur le calcul moyen des jours "occupés" (non disponibles) qu'ils considèrent par défault 
 "loués". Pour ce calcul, j'utilise une méthode différente et plus prudente :
 
-- Exemple : 75% des biens sont disponibles 18 jours sur 30, ce qui signifie qu'ils sont soupçonnés loués au minimum 12 jours (des biens sont loués 30 jours, d'autres 15...). 
-Ce qui comptabilise un taux d'occupation plancher de 40.00 % (12/30). 
+- Exemple : 75% des biens sont disponibles (au maximum) 7 jours sur 30. La plupart des biens sont disponibles moins de 8 jours. Ainsi, si l'on soupçonne qu'ils sont loués au minimum 22 jours, le taux d'occupation optimiste est de 73.00 %. 
 
-J'effectue le calcul sur 30, 60, 90, 365 jours: 
+J'effectue le calcul sur 30, 60, 90, 365 jours et je prends la moyenne: 
 
 ```
 # listings = pd.read_csv(r"/Users/jeyrm/Documents/Bordeaux/listings_detail.csv", low_memory = False)
@@ -210,7 +209,7 @@ Name: availability_30, dtype: float64
 
 araw.availability_60.describe()
 ...
-75%        43.000000                         # 28.3 % 
+75%        43.000000                         # 28.3 % d'occupation
 
 araw.availability_90.describe()
 ...
