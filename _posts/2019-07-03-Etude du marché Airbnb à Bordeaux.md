@@ -1310,20 +1310,22 @@ Plusieurs pistes sont à exploiter afin de gagner en informations  :
 
 ## <a name="REF" ></a> Sources
 
-Sources : 
+**Sources :** 
 
-[EFI](https://www.efl.fr/actualites/immobilier/details.html?ref=r-be87d41a-753e-4bec-802a-abbf7927231c) - [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+[EFI](https://www.efl.fr/actualites/immobilier/details.html?ref=r-be87d41a-753e-4bec-802a-abbf7927231c)
 
-[Airdna](https://www.airdna.co/vacation-rental-data/app/fr/new-aquitaine/bordeaux/overview), Taux d'occupation [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+[Airdna](https://www.airdna.co/vacation-rental-data/app/fr/new-aquitaine/bordeaux/overview)
 
-[Blog locservice](https://blog.locservice.fr/bordeaux-les-chiffres-cles-du-marche-locatif-prive-en-2013-1469.html) - [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
-[Taille d'un logement T3](https://www.fonction-publique.gouv.fr/archives/home20020121/bases/logement_index.htm) - [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+[Blog locservice](https://blog.locservice.fr/bordeaux-les-chiffres-cles-du-marche-locatif-prive-en-2013-1469.html) 
+
+[Taille d'un logement T3](https://www.fonction-publique.gouv.fr/archives/home20020121/bases/logement_index.htm)
 
 [Automated feature engineering ](https://towardsdatascience.com/why-automated-feature-engineering-will-change-the-way-you-do-machine-learning-5c15bf188b96)
 
 [xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b).
 
 [Comparaison de la distribution, Quartile-Quartile graph](https://www.youtube.com/watch?v=okjYjClSjOg)
+
 [État des techniques d'imputations](https://medium.com/ibm-data-science-experience/missing-data-conundrum-exploration-and-imputation-techniques-9f40abe0fd87)
 
 
