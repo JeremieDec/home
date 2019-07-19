@@ -13,24 +13,24 @@ comments: true
 
 D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian lui vint l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb vu en grand ... Regardons de plus près:
 
- Airbnb référence : - **3** millions de logements habitables répartis dans 
-                    - **65 000** villes à travers plus de 190 pays, pour un total de 
-                    - **150 millions d'utilisateurs**. 
+ Airbnb recence - **3** millions de logements habitables répartis dans
+                - **65 000** villes à travers plus de 190 pays, pour un total de
+                - **150 millions d'utilisateurs**. 
+                
+                                      
+Il n'est pas facile de mettre en location son logement en témoigne la proportion d’utilisateurs et de logements référencés. Néanmoins, le nombre de biens actifs est en croissance continue depuis 11 ans.
 
-Il n'est pas facile de mettre en location son logement, en prouve la différence d’utilisateurs et de logements référencés. Néanmoins, le nombre de biens actifs est en croissance continue depuis 11 ans.
-
-La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. Dans l'hexagone, la plateforme compte plus de 300 000 logements et Paris se situe au rang de numéro 1 des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
-
+En **France**, le service est devenue le **premier marché d'Airbnb après les Etats-Unis**. La plateforme compte plus de 300 000 logements dans l'hexagone et Paris se situe au rang de **numéro 1** des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
 Seul point de discorde : le bras de fer engagé contre plusieurs villes dans le monde, qui tentent toutes initiatives (jusqu'à interdire la plateforme) afin d'enrayer le mécontentement des acteurs de l'hôtellerie ainsi que la hausse des prix de l'immobilier. A New York, par exemple, la législation locale interdit le séjours de courte-durée (inférieurs à 30 jours) sauf si le propriétaire habite en même temps que les voyageurs. En France, la limite est établie à [120 nuits] (https://www.airbnb.fr/help/article/2108/limitation-du-nombre-de-nuit%C3%A9es-en-france%C2%A0-foire-aux-questions) par année dans les plus grandes villes
 
-Pour cette étude, on s’intéressera aux données Airbnb de la ville de Bordeaux, nous verrons : 
-- la répartition des biens et leurs charactéristiques
+Pour cette étude, on s’intéressera aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019. Nous verrons : 
+- la répartition des biens et leurs charactéristiques (types, tailles, prix, disponibilité)
 - les annonces des hôtes qui réussissent le mieux sur la plateforme, 
--  En quelles mesures il est possible de rentabiliser un bon investissement locatif, en prenant en compte le taux d’occupation
-- Combien de biens sont sous licences et comment ceux-ci se répartissent géographiquement
+- En quelles mesures il est possible de rentabiliser un investissement locatif dans la ville, en prévoyant le taux d’occupation
+- Combien de biens sont sous licences et comment sont-ils répartis géographiquement
 
-Ensuite, en deuxième, je nettoyerai les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithme afin de prédire ce prix journalier et nous verrons quelles variables sont les plus importantes.
+Ensuite, en deuxième partie, je nettoyerai les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithmes afin de prédire cette variable et nous verrons quelles variables sont les plus importantes pour cet objectif.
 
 
 **Contenus**
@@ -75,9 +75,8 @@ IV - [Conclusions et ouverture](#CC)
     
 V-[Références](#REF) 
  
-
-
-
+ 
+ 
 
 ## <a name="INS" ></a> Enseignements clés de l'enquête
 
