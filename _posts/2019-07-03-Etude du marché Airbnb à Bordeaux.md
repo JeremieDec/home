@@ -351,15 +351,12 @@ Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de
 
 
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2030j).png
-" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2030j).png" width="100%">
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2060j).png
-" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2060j).png" width="100%">
 
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png
-" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png" width="100%">
 
 
 ## <a name="NL" ></a> Nombre de licences par quartier
