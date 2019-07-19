@@ -25,8 +25,7 @@ Pour cette étude, on s’intéressera aux données recueuillis d'Airbnb Bordeau
 - La répartition des biens et leurs caractéristiques (types, tailles, prix, disponibilité)
 - Combien de biens sont sous licences et comment ils sont répartis géographiquement.
 A partir de la popularité (nombre de reviews), nous verrons les hôtes qui possèdent les biens les plus demandés sur la plateforme. Dans l'objectif de connaître d'avantage sur les raisons de l'attractivité de ceux-ci, on détermine les principales variables qui influent sur la demande.
-Ensuite, afin d'étudier la rentabilité de la plateforme, on étudiera 
-En quelles mesures il est possible de rentabiliser un investissement locatif dans la ville, en prévoyant le taux d’occupation
+Ensuite, afin d'étudier la rentabilité de la plateforme, on étudiera le cas précis d'un , le rendement d'un investissement locatif dans la ville, en prévoyant le taux d’occupation.
 
 
 Ensuite, en deuxième partie, je nettoyerai les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithmes afin de prédire cette variable et nous verrons quelles variables sont les plus importantes pour cet objectif.
@@ -44,13 +43,14 @@ I- [Exploration des données](#DE)
   5. [Capacité totale des biens par nombre d'accommodés](#CP)
   6. [Disponibilité des biens par quartiers - évolution moyenne sur 90, 60, 30 jours](#DI)
   7. [Quelles variables sont les plus corrélées ?](#HM)
+  8. [Des données supplémentaires à capturer](#PM)
   
 II- [Questionnements]
   1. [Combien les hôtes possèdent-ils de biens ?](#HL) 
   2. [Les hôtes déclarent-ils leurs activités ?](#NL) 
   3. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
   4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
-  5. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+    1.[Retour sur investissement de ce logement](#ROI)
   
   
 III- [Nettoyage des données](#ND) 
@@ -340,8 +340,7 @@ rev_excell.shape
 - L'appartement est localisé dans la périphérie de Bordeaux (Mérignac), bien que la surface soit réduite (20m2), la décoration et l'agencement en font une place de premier choix: - le taux de reviews s'élève à 15 par mois, ce qui signifie au minimum 15 hôtes différents, pour une durée minimale de 15 nuits.  
 - 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Egalement, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi supérieur à la moyenne.
 
-
-**Quel est le taux de rentabilité de ce logement ?**
+## <a name="ROI" ></a>  Quel est le taux de rentabilité de ce logement ?
 
 On prends en compte le prix au  m² de l'apartement à Mérignac (2.531 €) et la configuration de ce studio de luxe et on tente maintenant
 de connaître le retour sur investissement à l'année de ce type de bien.
@@ -354,7 +353,7 @@ Ce qui permet une rentabilité locative de **16%** pour ce studio.
     
 
 
-## <a name="PM" ></a> Des données supplémentaires à capter 
+## <a name="PM" ></a> Des données supplémentaires à capturer 
 
 L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens sont concernés.
 
