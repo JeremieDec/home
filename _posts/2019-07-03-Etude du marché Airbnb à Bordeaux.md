@@ -22,10 +22,12 @@ La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**.
 
 
 Pour cette étude, on s’intéressera aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019, nous verrons : 
-- La répartition des biens et leurs caractéristiques (types, tailles, prix, disponibilité)
+
+Après avoir étudié La répartition des biens et leurs caractéristiques (types, tailles, prix, disponibilité)
 - Combien de biens sont sous licences et comment sont-ils répartis géographiquement
-- Les annonces des hôtes qui réussissent le mieux sur la plateforme, 
-- En quelles mesures il est possible de rentabiliser un investissement locatif dans la ville, en prévoyant le taux d’occupation
+A partir de la popularité (nombre de reviews), nous verrons les hôtes qui possèdent les annonces les biens les plus demandés sur la plateforme. Dans l'objectif de connaître d'avantage sur les raisons de l'attractivité des biens, j'ai déterminé les variables les plus importantes. 
+
+En quelles mesures il est possible de rentabiliser un investissement locatif dans la ville, en prévoyant le taux d’occupation
 
 
 Ensuite, en deuxième partie, je nettoyerai les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithmes afin de prédire cette variable et nous verrons quelles variables sont les plus importantes pour cet objectif.
