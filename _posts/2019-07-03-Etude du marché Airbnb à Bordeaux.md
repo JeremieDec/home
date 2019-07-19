@@ -38,17 +38,24 @@ Ensuite, en deuxième partie, je nettoyerai les données afin de les préparer p
 I - [Enseignements clés de l'enquête](#INS)
 
 I- [Exploration des données](#DE)
-  1. [Répartition des biens par quartier](#NE)
-  2. [Types de logements](#TP)
-  3. [Types de propriétés](#TPP)
-  4. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
+  1. [Types de logements](#TP)
+  2. [Types de propriétés](#TPP)
+  3. [Répartition des biens par quartier](#NE)
+  4. [Prix moyen d'une location par quartier](#PM)
   5. [Capacité totale des biens par nombre d'accommodés](#CP)
-  6. [Prix moyen d'une location par quartier](#PM)
-  7. [La meilleur expérience client, qui est l'Hôte le-la plus plesbicité au quotidien ?](#REVIEWS)
-  8. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
-  9. [Quels sont les quartiers les plus-moins disponibles ? - évolution moyenne sur 90, 60, 30 jours](#DI)
-  10. [Les hôtes déclarent-ils leurs activités ?](#NL)
-  11. [Combien les hôtes possèdent-ils de biens ?](#HL)  
+  6. [Disponibilité des biens par quartiers - évolution moyenne sur 90, 60, 30 jours](#DI)
+  
+II- [Questionnements]
+  6. [Combien les hôtes possèdent-ils de biens ?](#HL) 
+  7. [Les hôtes déclarent-ils leurs activités ?](#NL) 
+  8. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
+  
+  10. [La meilleur expérience client, qui est l'Hôte le-la plus plesbicité au quotidien ?](#REVIEWS)
+  11. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+  
+  
+
+   
   12. [Quelles variables sont les plus corrélées ?](#HM)
  
   Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
@@ -70,6 +77,7 @@ III- [Prédiction](#PR)
   6. [Régression linéaire](#REL)
   7. [Xgboost- Régression linéaire](#XGB)
   8. [Imputation de 25% des données manquantes, effets sur le modèle] (#OPT)
+  9. [Variables les plus importantes à la prédiction du prix](#VARS)
 IV - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
     
