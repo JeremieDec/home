@@ -427,7 +427,7 @@ sns.heatmap(list_corr_filter, linewidths=0.1, vmax = 1.0, square = True, cmap = 
 ```
 On remarque que le prix est fortement corrélé avec le nombre de chambres (0.46). Ce qui montre que le prix suit linéairement la taille du bien 'au sens utile'. Par contraste, on pourrait observer, pour une plateforme positionnée sur les biens de luxe, un prix moins corrélé à l'équipement de la maison mais variant sur d’autres critères plus subjectifs tel que la surface totale en m2, l’agencement des pièces ou la décoration.
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="75%">
 
 ## <a name="ND" ></a> Nettoyage des données 
 
