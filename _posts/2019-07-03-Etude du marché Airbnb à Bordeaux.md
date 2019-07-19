@@ -184,6 +184,47 @@ min         0.000000
 max        15.000000
 ```
 
+## <a name="CP" ></a> Capacité totale des biens par nombre d'accommodés	
+
+
+**4112 biens pour 2 personnes** sont disponibles, ce qui fait une disponibilité totale de ces biens pour 8224 personnes.
+
+**2469 biens pour 4 personnes** sont disponibles, ce qui en font une disponibilité totale - supérieure de 1652 personnes.
+
+Ce qui signifie, en cas d'overbooking, que les familles seront les plus nombreuses à se promener en Centre-Ville.
+
+Légende : Le nombre de biens en verticale, le nombre total d'accomodés en légende au dessus de la barre et le nombre d'accomodés	en X.
+
+Biens disponibles par nombre d'accomodés.png
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Biens disponibles par nombre d'accomodés.png" width="100%">
+
+```
+ac = listings['accommodates'].value_counts().sort_index()
+ac.plot.bar(figsize=(10, 8), color='b', width=1, rot=0)
+plt.title("Nombre d'accomodés", fontsize=20)
+plt.ylabel('Biens', fontsize=12)
+plt.xlabel('Personnes', fontsize=12)
+plt.show()
+
+```
+
+## <a name="DI" ></a> Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
+
+On remarque que la disponibilité moyenne la plus faible se trouve au quartier Capucins-Victoire… Ainsi, le taux d'occupation le plus élevé se trouve Capucins-Victoire suivie par Hôtel de Ville. 
+
+Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de location des biens du quartier Capucins-Victoire seraient-ils sous-estimés ? Cette question complexe fera l'objet d'une prochaine étude.
+
+
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2030j).png" width="100%">
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2060j).png" width="100%">
+
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png" width="100%">
+
+
+
 ## <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
 
 
@@ -256,29 +297,6 @@ max       365.000000
 Plus la date est proche, plus le taux augmente, ce qui est caractéristique du comportement des consommateurs : la location a tendence à être prévue à des dates proches de la date choisie.   
 Par mesure de prudence, on prends la moyenne des 4 : 29,67% en tant que taux d'occupation de référence.
 
-## <a name="CP" ></a> Capacité totale des biens par nombre d'accommodés	
-
-
-**4112 biens pour 2 personnes** sont disponibles, ce qui fait une disponibilité totale de ces biens pour 8224 personnes.
-
-**2469 biens pour 4 personnes** sont disponibles, ce qui en font une disponibilité totale - supérieure de 1652 personnes.
-
-Ce qui signifie, en cas d'overbooking, que les familles seront les plus nombreuses à se promener en Centre-Ville.
-
-Légende : Le nombre de biens en verticale, le nombre total d'accomodés en légende au dessus de la barre et le nombre d'accomodés	en X.
-
-Biens disponibles par nombre d'accomodés.png
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Biens disponibles par nombre d'accomodés.png" width="100%">
-
-```
-ac = listings['accommodates'].value_counts().sort_index()
-ac.plot.bar(figsize=(10, 8), color='b', width=1, rot=0)
-plt.title("Nombre d'accomodés", fontsize=20)
-plt.ylabel('Biens', fontsize=12)
-plt.xlabel('Personnes', fontsize=12)
-plt.show()
-
-```
 
 ## <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte le plus plesbicité au quotidien
 
@@ -345,21 +363,6 @@ Alexandre's place is usually booked."
 ```
 rev_ehigh = listings_raw[listings_raw.reviews_per_month>13]
 ```
-
-## <a name="DI" ></a> Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
-
-On remarque que la disponibilité moyenne la plus faible se trouve au quartier Capucins-Victoire… Ainsi, le taux d'occupation le plus élevé se trouve Capucins-Victoire suivie par Hôtel de Ville. 
-
-Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de location des biens du quartier Capucins-Victoire seraient-ils sous-estimés ? Cette question complexe fera l'objet d'une prochaine étude.
-
-
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2030j).png" width="100%">
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2060j).png" width="100%">
-
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png" width="100%">
 
 
 ## <a name="NL" ></a> Nombre de licences par quartier
