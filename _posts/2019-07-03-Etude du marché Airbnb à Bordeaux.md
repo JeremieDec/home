@@ -1021,7 +1021,7 @@ plt.show()
 ```
 
 
-## <a name="REGL" ></a> Régression linéaire
+## <a name="REL" ></a> Régression linéaire
 
 ```
 Lin_Reg_Model = model_iterations(1000, X_train, y_train, Lin_Reg(fit_intercept=True), log_bool=False)
