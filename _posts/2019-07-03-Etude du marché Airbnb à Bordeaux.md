@@ -350,13 +350,15 @@ On remarque que la disponibilité moyenne la plus faible se trouve au quartier C
 Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de location des biens du quartier Capucins-Victoire seraient-ils sous-estimés ? Cette question complexe fera l'objet d'une prochaine étude.
 
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite moyenne des Biens par Quartier (moy 30j).png
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2030j).png
 " width="100%">
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite moyenne des Biens par Quartier (moy 60j).png
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2060j).png
 " width="100%">
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite moyenne des Biens par Quartier (moy 90j).png
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png
 " width="100%">
 
 
