@@ -271,10 +271,9 @@ Je prends la référence suivante: un logement possède une surface de 65 m2, po
 **Méthode de calcul du taux d'occupation
 
 Il est très complexe d'obtenir une information exacte sur l'occupation des biens d'Airbnb. 
-Les plateformes tel que Airdna et d'autres indiquent des taux très élevés (jusqu'à 80%). Ils se basent sur le calcul moyen des jours "occupés" (non disponibles) qu'ils considèrent par défault 
-"loués". Pour ce calcul, j'utilise une méthode différente et plus prudente :
+Les plateformes tel que Airdna et d'autres indiquent des taux très élevés (jusqu'à 80%). Ils se basent sur le calcul moyen des jours "occupés" (non disponibles) qu'ils considèrent par défault en tant que 'loué', de plus, uniquement sur les 30 prochains jours. Pour ce calcul, j'utilise une méthode différente et plus prudente :
 
-- Exemple : 75% des biens sont disponibles (au maximum) 7 jours sur 30. La plupart des biens sont disponibles moins de 8 jours. Ainsi, si l'on soupçonne qu'ils sont loués au minimum 22 jours, le taux d'occupation optimiste est de 73.00 %. 
+- Exemple : 75% des biens sont disponibles (au maximum) 8 jours sur les 30 prochains. La plupart des biens sont donc disponibles moins de 8 jours. Ainsi, si l'on soupçonne qu'ils sont loués sur les autres 22 jours, ce taux d'occupation 'optimiste'  s'élève à 73.33 %. 
 
 J'effectue le calcul sur 30, 60, 90, 365 jours et je prends la moyenne: 
 
@@ -282,7 +281,7 @@ J'effectue le calcul sur 30, 60, 90, 365 jours et je prends la moyenne:
 # listings = pd.read_csv(r"/Users/jeyrm/Documents/Bordeaux/listings_detail.csv", low_memory = False)
 
 araw.availability_30.mean()
-Out[]: 9.298785776235906                   # En moyenne, la location est réalisée 21 jours sur les 30 prochains.
+Out[]: 9.298785776235906                   # En moyenne, le bien est loué au maximum 21 jours sur les 30 prochains.
 
 araw.availability_30.describe() # Disponibilité dans les 30 jours 
 Out[]: 
@@ -292,8 +291,7 @@ std        10.910107
 min         0.000000
 25%         0.000000
 50%         3.000000
-75%        18.000000                        # 75% des biens sont loués au minimum 12 jours dans les 30 prochains >>> 40 % d'occupation
-max        30.000000
+75%        18.000000                        # 75% des biens sont loués au maximum 12 jours (30-18) dans les 30 prochains jours >>> 40 % max        30.000000                         d'occupation
 Name: availability_30, dtype: float64
 
 
@@ -314,17 +312,16 @@ araw.availability_365.describe()
 max       365.000000
 ```
 
-Plus la date est proche, plus le taux augmente, ce qui est caractéristique du comportement des consommateurs : la location a tendence à être prévue à des dates proches de la date choisie.   
-Par mesure de prudence, on prends la moyenne des 4 : 29,67% en tant que taux d'occupation de référence.
+Par mesure de prudence, on prends la moyenne des 4 : 29,70 % en tant que taux d'occupation de référence.
 
 
-## <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte le plus plesbicité au quotidien
+## <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte la plus appréciée
 
-La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle, voyons..
+La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle :
 
 
 
-["l'annonce de la Patronne"](https://www.airbnb.com/rooms/32541282?source_impression_id=p3_1563223901_s1cD%2BxPIaIiI2HbY&check_in=2019-07-18&guests=1&adults=1&sl_alternate_dates_exclusion=true&check_out=2019-07-19)
+["Annonce exceptionelle"](https://www.airbnb.com/rooms/32541282?source_impression_id=p3_1563223901_s1cD%2BxPIaIiI2HbY&check_in=2019-07-18&guests=1&adults=1&sl_alternate_dates_exclusion=true&check_out=2019-07-19)
 ```
 listings.reviews_per_month.describe()
 Out[78]: 
@@ -342,33 +339,32 @@ rev_excell.shape
 (1, 106)
 ```
 - L'appartement est localisé dans la périphérie de Bordeaux (Mérignac), bien que la surface soit réduite (20m2), la décoration et l'agencement en font une place de premier choix: - le taux de reviews s'élève à 15 par mois, ce qui signifie au minimum 15 hôtes différents, pour une durée minimale de 15 nuits.  
-- 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Egalement, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi probablement supérieur à la moyenne.
+- 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Egalement, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi supérieur à la moyenne.
 
 
 **Quel est le taux de rentabilité de ce logement ?**
 
 On prends en compte le prix au  m² de l'apartement à Mérignac (2.531 €) et la configuration de ce studio de luxe et on tente maintenant
-de connaître 
+de connaître le retour sur investissement à l'année de ce type de bien.
 
-    - **200 nuitées**, ou le taux d'occupation de **55%** appliqué sur 1 an.
-        - Pour une location à l'allègement de **69 € la nuitée**, sans en faire part à quelque autorité qui soit permet:
-      - **15%** de rentabilité locative pour ce très beau studio.
-     
-     
-```
-amerig = listings_raw[listings_raw.neighbourhood_group_cleansed=='Merignac']
-
-```
+On prends les données suivantes en considération : 
+- **200 nuitées**, ou le taux d'occupation de **55%** appliqué sur 1 an (10 mois).
+- Pour une location au coût de **69 € la nuitée**
+        
+Ce qui permet une rentabilité locative de **16%** pour ce studio.
+    
 
 
-## <a name="PM" ></a> Conseils décoration aux futurs hôtes
+## <a name="PM" ></a> Des données supplémentaires à capter 
 
-L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens concernés. Cependant, une information pertinente est donnée sur la visibilité du logement: le nombre total de fois ou le bien a été visualisé.
-Ces données sont récupérables dans le but de prédire le poids des variables liées aux scoring des annonces. L'exposition de ces biens peut également inspirer les futurs hôtes lorsqu'ils mettront leur bien sur la plateforme, ces logements sont notés très régulièrement. A moins que les voyageurs soient quotidien sous la menace d'un révolver de l'hôte, le taux constant de commentaires positifs reste un bon indicateur de la qualité de ces biens. 
+L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens sont concernés.
 
-- [Pour aller plus loin](#PAL)
+Cependant, une information pertinente est donnée sur la visibilité du logement: le nombre total de fois ou le bien a été visualisé.
+Ces données sont récupérables dans le but de prédire le poids des variables liées aux scoring des annonces.
 
-Les biens suivants ont été notés plus de 13 fois par mois
+
+Les biens suivants ont été notés plus de 13 fois par mois :
+
 [n 1](https://www.airbnb.com/rooms/29958146?source_impression_id=p3_1563230927_euTvpaIQmeQo5abG)
 
 "This place is getting a lot of attention.
@@ -387,9 +383,10 @@ rev_ehigh = listings_raw[listings_raw.reviews_per_month>13]
 
 ## <a name="NL" ></a> Nombre de licences par quartier
 
+
 **Enregistrement obligatoire en mairie**
 
-Depuis le 1er mars 2019, les Bordelais qui souhaitent louer une pièce ou toute leur résidence principale via Airbnb ont pour obligation d enregistrer leur bien auprès de la mairie qui souhaite éviter que les immeubles de ses quartiers historiques du centre ne soient intégralement consacrés à ce type d’activités.
+Depuis le 1er mars 2019, les Bordelais qui souhaitent louer une pièce ou toute leur résidence principale via Airbnb ont pour obligation d'enregistrer leur bien auprès de la mairie qui souhaite éviter que les immeubles de ses quartiers historiques du centre ne soient intégralement consacrés à ce type d’activités.
 
 On remarque que les hôtes qui louent des biens au centre sont les plus respectueux des règles. De ce fait, le prix moyen plus élevé peuvent s'expliquer du fait de cette déclaration qui implique le paiement des impôts (de 0% à 45% en fonction de la tranche de revenus en comptant un abattement de 50%). Au contraire, une quantité très faible de biens sont enregistrés en périphérie.
 
@@ -422,7 +419,7 @@ count                     7318  605  98  46  24  11   7 ...   2   1   1   1   1 
 
 On remarque que l'ensemble de ces hôtes possédant +20 biens sont classés 'Superhost' et possèdent le 'Government ID': ils déclarent l'activité professionnelle. 
 
-Voici maintenant les descriptions des plus "grands hôtes" en termes de quantité de biens en gestion; qui ne manquent parfois pas de féerie :
+Voici maintenant les descriptions des plus "grands hôtes" en termes de quantité de biens gérés; qui ne manquent parfois pas de féerie :
 
 ```
 freq = listings.groupby(['host_id', 'host_name', 'host_about']).size().reset_index(name='num_host_listings')
@@ -451,7 +448,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import StandardScaler
 ```
 
-Pour rappel, il y avait au total 9 699 inscriptions à Airbnb à Bordeaux le 16 juin 2019. Nous allons mainteant nous 'attaquer au gâteau' tout en étant prudent car la qualité des futurs prédictions dépendent de la qualité des données brutes puis de la manière dont elles seront traitées actuellement.
+Pour rappel, il y avait au total 9 699 inscriptions à Airbnb à Bordeaux le 16 juin 2019. Nous allons maintenant nous 'attaquer au gâteau' tout en étant prudent car la qualité des futures prédictions dépendent de la qualité des données brutes puis de la manière dont elles seront traitées actuellement.
 
 
 ```
