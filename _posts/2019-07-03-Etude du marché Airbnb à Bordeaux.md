@@ -563,8 +563,7 @@ Cette heatmap calcule la relation de nullité entre les différentes variables g
 - Si la corrélation de nullité est très proche de zéro (-0,05 <R <0,05), aucune valeur n'est affichée. 
 
 
-<img src="https://JeremieDec.github.io/pics/missingnoNullmatrix.png" width="80%">  
-
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/missingnoNullmatrix.png" width="100%">
 
 
 ## <a name="VM" ></a> Variables maintenues
@@ -856,9 +855,10 @@ fig = plt.figure()
 res = stats.probplot(listin['price'], plot=plt)
 plt.show()
 ```
-<img src="https://JeremieDec.github.io/pics/Pricedistribution.png" width="80%">
 
-<img src="https://JeremieDec.github.io/pics/QQplotprice.png" width="80%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Pricedistribution.png" width="80%">
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/QQplotprice.png" width="80%">
 
 Les valeurs sont anormalement élevées en fin de distribution pour parler parfaitement de distribution normale. On remarque une dissymétrie dans la partie droite (prix de location élevés). En gardant ces valeurs, le risque est de déstabiliser le modèle linéaire futur.
 
@@ -1039,7 +1039,7 @@ On remarque que les résidus sont à peu près normalement distribués (sans pre
 Plots(Lin_Reg_Model)
 ```
 
-<img src="s://JeremieDec.github.io/pics/plot_Linreg.png" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/plot_Linreg.png" width="100%">
 
 
 
@@ -1097,12 +1097,12 @@ std des perfs training 0.14406245166564824
 ```
 Plots(xgb_Linreg)
 ```
-<img src="https://JeremieDec.github.io/pics/plot_xgb_linreg.png" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/plot_xgb_linreg.png" width="100%">
 
 ```
 Plots(Lin_Reg_Model)
 ```
-<img src="https://JeremieDec.github.io/pics/plot_Linreg.png" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/plot_Linreg.png" width="100%">
 
 On remarque que la  prédiction avec  les arbres de régressions Xgb boost crée une fonction beaucoup plus précise (moins de biais) et moins variables que la régression linéaire de base.
 
@@ -1280,18 +1280,12 @@ Xgb_imput = model_iterations(10, listings_imp, Y_imp, mod, log_bool=False)
 
 
 
-
-
-
-
-
-
 ## <a name="CC" ></a> Conclusion et ouverture 
 
 On dans le cas d’informations incomplètes et il y a une marge d'amélioration du score probablement en dixièmes.
 Plusieurs pistes sont à exploiter afin de gagner en informations  : 
 
-- La prédiction peut certainement être précisée en utilisant d'autres modèles, voir ensemble. Les biens au dessus de 200 € sont sous-représentés, il peuvent être sur-samplés dans l'objectif de prédire l'ensemble des données. Je suis également limité par la puissance de calcul de ma machine (i7 7700HQ, 4 logiques, 8 threads), un modèle prends à peu près 45 secondes pour être calculé. D'après l'étude effectuée des performances sur la comparaison GPUphys/CPU, l'entraînement sur gtx1080 est 8x plus rapide par rapport au i7 7700HQ, j'envisage d'y passer très prochainement [xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b). 
+- La prédiction peut certainement être précisée en utilisant d'autres modèles, voir ensemble. Les biens au dessus de 200 € sont sous-représentés, il peuvent être sur-samplés dans l'objectif de prédire l'ensemble des données. Je suis également limité par la puissance de calcul de ma machine (i7 7700HQ, 4 logiques, 8 threads), un modèle prends à peu près 45 secondes pour être calculé. D'après l'étude effectuée des performances sur la comparaison GPUphys/CPU, l'entraînement sur gtx1080 est 8x plus rapide par rapport au i7 7700HQ, j'envisage d'y passer prochainement [xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b). 
 
 
 - La variables "surface en m2" des biens est manquante à plus de 95%. Il y a possibilité de la retrouver en partie grâce aux descriptions et titres. 
