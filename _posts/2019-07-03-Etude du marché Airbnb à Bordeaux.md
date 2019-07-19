@@ -21,14 +21,13 @@ D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires lou
 La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. L'hexagone compte plus de 300 000 logements et Paris se situe au rang de **numéro 1** des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
 
-Pour cette étude, on s’intéressera aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019, nous verrons : 
+Pour cette étude, on s’intéresse aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019, nous verrons : 
 - La répartition des biens et leurs caractéristiques (types, tailles, prix, disponibilité)
-- Combien de biens sont sous licences et comment ils sont répartis géographiquement.
-A partir de la popularité (nombre de reviews), nous verrons les hôtes qui possèdent les biens les plus demandés sur la plateforme. Ensuite, on étudiera le retour sur investisseement du bien le plus populaire d'Airbnb à Bordeaux. Dans l'objectif de connaître d'avantage sur les raisons de l'attractivité de ceux-ci, on détermine ensuite les principales variables qui influent sur la demande.
+- Les proportions de biens sous licences par quartier.
+A partir de la popularité (nombre de reviews), nous verrons les hôtes qui possèdent les biens les plus demandés sur la plateforme. Ensuite, on étudiera le retour sur investissement du bien le plus populaire d'Airbnb à Bordeaux. Dans l'objectif de connaître d'avantage sur les raisons de l'attractivité de ceux-ci, on détermine ensuite les principales variables qui influent sur la demande.
 
-
-
-Ensuite, en deuxième partie, je nettoyerai les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithmes afin de prédire cette variable et nous verrons quelles variables sont les plus importantes pour cet objectif.
+Le prix est 
+En troisème partie, j'ai nettoyé les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithmes afin de prédire cette variable et nous verrons quelles variables sont les plus importantes pour cet objectif.
 
 
 **Contenus**
