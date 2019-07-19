@@ -164,25 +164,27 @@ On souhaite savoir s’il est possible de payer le loyer + charges d’un logeme
 
 Je prends la référence suivante: un logement possède une surface de 65 m2, pour un loyer de 14e/m2 (moyenne à Bordeaux) hors-charges [Source](https://blog.locservice.fr/bordeaux-les-chiffres-cles-du-marche-locatif-prive-en-2013-1469.html).
 
+## Calcul:
 - 910 € de loyer + charges (220€) = 1130 € /mois 
+  - **1130 €**, c'est le coût moyen de rente mensuelle pour un logement de 2 chambres toutes charges comprises à Bordeaux
+  
+- **29.7 %** : taux d'occupation moyen de ce type de logement à Bordeaux (méthode ci-dessous)
 
-- **1130 €**, c'est le coût moyen de rente mensuelle pour un logement de 2 chambres toutes charges comprises à Bordeaux
-
-**Enseignements clés de cette étude**:
+**Enseignements clés **:
 
  - **4068 €**, c'est le montant annuel des frais couverts grâce à la rente sur Airbnb,
 
- - **29.7 %** est le taux d'occupation moyen de ce type de logement à Bordeaux,
+ - **36 %** : pourcentage des frais mensuels financés
 
- - **36 %**, c'est le pourcentage des frais mensuels financés
- 
+---
+
 **Méthode de calcul du taux d'occupation
 
 Il est très complexe d'obtenir une information exacte sur l'occupation des biens d'Airbnb. 
 Les plateformes tel que Airdna et d'autres indiquent des taux très élevés (jusqu'à 80%). Ils se basent sur le calcul moyen des jours "occupés" (non disponibles) qu'ils considèrent par défault 
 "loués". Pour ce calcul, j'utilise une méthode différente et plus prudente :
 
-- Exemple : 75% des biens sont disponibles au maximum 18 jours sur les 30, ce qui signifie, qu'ils sont soupçonnés loués au minimum 12 jours (des biens sont loués 30 jours, d'autres 15...). 
+- Exemple : 75% des biens sont disponibles 18 jours sur 30, ce qui signifie qu'ils sont soupçonnés loués au minimum 12 jours (des biens sont loués 30 jours, d'autres 15...). 
 Ce qui comptabilise un taux d'occupation plancher de 40.00 % (12/30). 
 
 J'effectue le calcul sur 30, 60, 90, 365 jours: 
