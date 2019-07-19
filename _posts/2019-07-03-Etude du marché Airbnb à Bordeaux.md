@@ -97,32 +97,6 @@ VI-[Références](#REF)
 L'ensemble de données que j'ai obtenu contient 7 fichiers au total.  [InsideAirbnb](http://insideairbnb.com/) indique  "listings_details" (détails des biens) comme étant « bon pour les visualisations », je vais donc utiliser celui-ci. 
 Au total, il y avait 9 699 biens inscris à Airbnb à Bordeaux le 16 juin 2019.
 
-## <a name="NE" ></a> Répartition des biens par quartier
-
-Hôtel de Ville arrive en tête avec plus de 1396 biens en location. Les 7 quartiers les moins répertoriés représentent à eux seul le même nombre de biens que le deuxièmes et troisème quartiers majeur réunis (Chartron et Capucins-Victoire).
-
-```
-cols = pd.DataFrame(listings.columns)
-```
-```
-a = listings['neighbourhood'].value_counts().sort_values(ascending=True)
-
-a.shape
-
-(13,)
-
-a = pd.DataFrame(a)
-
-a = a[a["neighbourhood"] > 50]
-
-a.plot.barh(figsize=(10, 8), color='b', width=2, title = 'Répartition des biens par quartier par quartiers')
-
-alternative pour calculer n éléments distincts d’une variable: 
-
-(Counter(listings5.neighbourhood)
-```
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/hmapListesparquartier.png" width="100%">
 
 ## <a name="TP" ></a> Type de logements
 
@@ -157,6 +131,33 @@ plt.legend(loc = 4,prop = {"size" : 13})
 plt.rc('ytick', labelsize=13)
 plt.show()
 ```
+## <a name="NE" ></a> Répartition des biens par quartier
+
+Hôtel de Ville arrive en tête avec plus de 1396 biens en location. Les 7 quartiers les moins répertoriés représentent à eux seul le même nombre de biens que le deuxièmes et troisème quartiers majeur réunis (Chartron et Capucins-Victoire).
+
+```
+cols = pd.DataFrame(listings.columns)
+```
+```
+a = listings['neighbourhood'].value_counts().sort_values(ascending=True)
+
+a.shape
+
+(13,)
+
+a = pd.DataFrame(a)
+
+a = a[a["neighbourhood"] > 50]
+
+a.plot.barh(figsize=(10, 8), color='b', width=2, title = 'Répartition des biens par quartier par quartiers')
+
+alternative pour calculer n éléments distincts d’une variable: 
+
+(Counter(listings5.neighbourhood)
+```
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/hmapListesparquartier.png" width="100%">
+
 
 ## <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
 
