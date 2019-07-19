@@ -24,9 +24,9 @@ En **France**, le service est devenue le **premier marché d'Airbnb après les E
 
 Seul point de discorde : le bras de fer engagé contre plusieurs villes dans le monde, qui tentent toutes initiatives (jusqu'à interdire la plateforme) afin d'enrayer le mécontentement des acteurs de l'hôtellerie ainsi que la hausse des prix de l'immobilier. A New York, par exemple, la législation locale interdit le séjours de courte-durée (inférieurs à 30 jours) sauf si le propriétaire habite en même temps que les voyageurs. En France, la limite est établie à [120 nuits] (https://www.airbnb.fr/help/article/2108/limitation-du-nombre-de-nuit%C3%A9es-en-france%C2%A0-foire-aux-questions) par année dans les plus grandes villes
 
-Pour cette étude, on s’intéressera aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019. Nous verrons : 
-- la répartition des biens et leurs charactéristiques (types, tailles, prix, disponibilité)
-- les annonces des hôtes qui réussissent le mieux sur la plateforme, 
+Pour cette étude, on s’intéressera aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019, nous verrons : 
+- La répartition des biens et leurs charactéristiques (types, tailles, prix, disponibilité)
+- Les annonces des hôtes qui réussissent le mieux sur la plateforme, 
 - En quelles mesures il est possible de rentabiliser un investissement locatif dans la ville, en prévoyant le taux d’occupation
 - Combien de biens sont sous licences et comment sont-ils répartis géographiquement
 
