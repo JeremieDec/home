@@ -464,7 +464,871 @@ Index(['id', 'listing_url', 'scrape_id', 'last_scraped', 'name', 'summary',
        'calculated_host_listings_count_private_rooms',
        'calculated_host_listings_count_shared_rooms', 'reviews_per_month'],
       dtype='object', length=106)
-
+      
 print(listings.shape)
 
-(9
+(9699, 106)
+
+
+listings.price.head()
+0     $24.00
+1     $71.00
+2     $75.00
+3    $100.00
+4    $155.00
+Name: price, dtype: object
+```
+
+
+Je définis dans un premier temps une fonction qui permet de vérifier les valeurs non attribuées pour l’ensemble des variables (en pourcentages).
+
+
+```
+def isnull(X):
+    listings_na = pd.isnull(X)
+    listings_na = listings_na*1
+    listings_na = (listings_na==1).sum()/listings_na.shape[0]*100
+    listings_na = pd.DataFrame(listings_na.T.sort_index(ascending=True))
+    listings_na = listings_na[listings_na>0.0001] # je garde uniquement les colonnes dont le % de NaNs (non-attribuées) est défini 
+    listings_na = listings_na.dropna()
+    return listings_na
+
+isnull(listings)
+
+Out[183]: 
+
+access                        50.994948
+bathrooms                      0.051552
+bedrooms                       0.051552
+beds                           0.134034
+cleaning_fee                  35.807815
+description                    1.505310
+first_review                  20.744407
+host_about                    60.542324
+host_acceptance_rate         100.000000
+host_location                  0.690793
+host_neighbourhood            46.561501
+host_response_rate            38.117332
+host_response_time            38.117332
+house_rules                   53.407568
+interaction                   50.438190
+jurisdiction_names             0.969172
+last_review                   20.744407
+license                       84.843798
+market                         0.226828
+medium_url                   100.000000
+monthly_price                 93.896278
+name                           0.010310
+neighborhood_overview         39.344262
+neighbourhood                 22.589958
+notes                         65.212909
+review_scores_accuracy        22.548716
+review_scores_checkin         22.579647
+review_scores_cleanliness     22.507475
+review_scores_communication   22.538406
+review_scores_location        22.559027
+review_scores_rating          22.445613
+review_scores_value           22.559027
+reviews_per_month             20.744407
+security_deposit              35.849057
+space                         36.519229
+square_feet                   99.133931
+state                          2.278585
+summary                        2.876585
+thumbnail_url                100.000000
+transit                       36.014022
+weekly_price                  89.194762
+xl_picture_url               100.000000
+zipcode                        1.237241
+```
+
+## <a name="NULL" ></a> Matrice des nullités 
+
+```
+import missingno as msno
+
+cols = isnull(listings).reset_index()
+cols = cole['index']
+msno.heatmap(listings[cols], figsize=(20,20), cmap= colormap)
+```
+
+La matrice de nullité donne une idée rapide de la répartition des données manquantes dans le dataset. 
+
+Cette heatmap calcule la relation de nullité entre les différentes variables grâce à un coefficient de correlation R (-1 ≤ R ≤ 1). 
+
+- Lorsque la première variable et la deuxième variable ont les **valeurs manquantes correspondantes**, la corrélation de nullité est positive parfaite **(R = 1)**.  
+
+- Une corrélation de nullité négative parfaite (**R = -1**) signifie qu’**une des variables est manquante et que la seconde est présente**.
+
+- Si la corrélation de nullité est très proche de zéro (-0,05 <R <0,05), aucune valeur n'est affichée. 
+
+
+<img src="https://JeremieDec.github.io/pics/missingnoNullmatrix.png" width="80%">  
+
+
+
+## <a name="VM" ></a> Variables maintenues
+
+On garde l'ensemble des données numériques (47 colonnes) ainsi que les variables catégoriques 'room_type', 'host_since', 'property_type' et 'cancellation_policy'. 
+
+## <a name="VS" ></a> Variables supprimées 
+
+Je supprime toutes lignes avec 'bathrooms', 'bedrooms', 'beds' non attribuées (environ 0,5 a 1% des données. 
+
+```
+listings = listings.dropna(axis=0, subset = ['bathrooms'])
+listings = listings.dropna(axis=0, subset = ['bedrooms'])
+listings = listings.dropna(axis=0, subset = ['beds'])
+```
+
+On supprime également toute entrée "étranges" comme les listings avec valeur = 0 pour ‘bedrooms’, ‘beds’ ou ‘price’. 
+
+```
+
+listings = listings[listings['beds'] != 0] 
+listings = listings[listings['bedrooms'] != 0]
+
+
+listings = listings[listings['price'] != 0] #Pas de bien gratuits à Bordeaux; même le logeur du 13 Novembre n'aurait pas trouvé cela louche
+listings = listings.dropna(axis=0, subset = ['bathrooms'])
+listings = listings.dropna(axis=0, subset = ['bedrooms'])
+listings = listings.dropna(axis=0, subset = ['beds'])
+```
+
+On se sépare temporairement des différentes notes non attribuées (environ 22% des données). C'est une partie importante de données manquantes dont je me sépare, leur traitement sera réservé au moment de la prédiction pour tester différentes techniques d'imputation:
+
+```
+listings = listings.dropna(axis=0, subset = ['review_scores_location'])
+listings = listings.dropna(axis=0, subset = ['review_scores_accuracy'])
+listings = listings.dropna(axis=0, subset = ['review_scores_checkin'])
+listings = listings.dropna(axis=0, subset = ['review_scores_communication'])
+listings = listings.dropna(axis=0, subset = ['review_scores_value'])
+listings = listings.dropna(axis=0, subset = ['review_scores_cleanliness'])
+listings = listings.dropna(axis=0, subset = ['review_scores_rating'])
+listings = listings.reset_index()
+del listings['index', 'thumbnail_url', 'xl_picture_url', 'host_acceptance_rate', 'medium_url', 'scrape_id', 'square_feet']
+# Plus de 95% des surfaces en m2 sont manquantes. Après vérification, certains hôtes mentionnent la surface du bien dans les descriptions (variables str) : celles-ci peuvent en partie être déterminées.  
+
+```
+
+## <a name="VT" ></a> Variables transformées
+
+```
+listings.price.head()
+0     $24.00
+1     $71.00
+2     $75.00
+3    $100.00
+4    $155.00
+Name: price, dtype: object
+```
+
+Le type de variable prix est ‘str’, de la forme ‘$50,00’, afin de les convertir en float, on supprime le  ‘$’ et remplace la ‘,’ par ‘.’  puis on convertit la variable en euros (*0.88). On effectue la même transformation pour le prix par semaine, par mois, les frais de ménage, le prix d'une personne supplémentaire, du déposit de sécurité.
+
+```
+
+a = []
+for i in listings.price:
+    if pd.isnull(i):
+        a.append(i)
+    else:
+        b = str(i)[1:]
+        b = b.replace(',','')
+        b = float(b)
+        c = b*0.88 
+        a.append(c)
+listings.price = 0,88*a
+
+a = []
+for i in listings.weekly_price:
+    if pd.isnull(i):
+        a.append(i)
+    else:
+        b = str(i)[1:] #removes the first character '$'
+        b = b.replace(',','') # replaces ',' value as 135,00 to 'empty' in order to be able to convert it then 
+        b = float(b)
+        c = b*0.88
+        a.append(b)
+listings.weekly_price = a
+
+a = []
+
+for i in listings.monthly_price:
+    if pd.isnull(i):
+        a.append(i)
+    else:
+        b = str(i)[1:]
+        b = b.replace(',','')
+        b = float(b)
+        a.append(b)
+        c = b*0.88
+listings.monthly_price = a
+
+a = []
+for i in listings.cleaning_fee:
+    if pd.isnull(i):
+        a.append(i)
+    else:
+        b = str(i)[1:]
+        b = b.replace(',','')
+        b = float(b)
+        c = b*0.88
+        a.append(b)
+        
+listings.cleaning_fee = a
+
+a = []
+for i in listings.extra_people:
+    if pd.isnull(i):
+        a.append(i)
+    else:
+        b = str(i)[1:]
+        b = b.replace(',','')
+        b = float(b)
+        c = b*0.88
+        a.append(b)
+
+listings.extra_people = a
+
+a = []
+for i in listings.security_deposit:
+    if pd.isnull(i):
+        a.append(i)
+    else:
+        b = str(i)[1:]
+        b = b.replace(',','')
+        b = float(b)
+        c = b*0.88
+        a.append(b)
+listings.security_deposit = a
+
+```
+
+## <a name="VI" ></a> Variables imputées
+
+J’entre temporairement les données de cleaning_fee et security_deposit par leur moyenne respectives. Dans le cas ou ces variables sont importantes pour la prédiction, il peut est nécessaire d’entrer des valeurs plus proches de la réalité. Pour aller plus loin, on pourra inférer ces valeurs grâce à un algorithme des plus proches voisins (nearest neighbors)). 
+
+```
+listings = listings.fillna(listings.mean())
+
+```
+
+Pour la variable 'reviews_per_month’ : une large partie de valeurs sont NaNs, on peut les supprimer. Cependant, après un rapide coup d'œil, on remarque que 'reviews_per_month’ est non défini dès l’instant ou ‘first_review’ est non défini également.
+
+Apres une revue rapide des biens concernées sur Airbnb, on s’aperçoit que les biens ne sont en fait pas notés (Airbnb indique « No reviews (yet) »). 
+
+On entre ‘0’ pour l’ensemble des valeurs concernées.
+
+```
+review_per_m = listings.reviews_per_month.fillna(0)
+listings.reviews_per_month = review_per_m
+```
+
+## <a name="VE" ></a> Variables encodées 
+
+Le regresseur de scikit-learn accepte uniquement les variables numériques.
+On va maintenant encoder des variables catégoriques ‘intéressantes’ en valeurs numériques le type de chambre, de propriétes, de quartier… en utilisant le LabelEncoder(). J'utilise celui-ci afin de gagner en temps de converge pour la partie prédiction, OneHotEncoder est naturellement la meilleure méthode puisqu'elle ne prends pas en compte l'ordre des variables. 
+
+```
+categorical_cols = ['room_type', 'host_since', 'property_type','cancellation_policy'] 
+
+le = LabelEncoder()
+
+listings_encoded = listings[categorical_cols].apply(lambda col: le.fit_transform(col))
+neigh_encoded = le.fit_transform(listings['neighbourhood'].astype(str))
+neigh_encoded  = pd.DataFrame(neigh_encoded)
+neigh_encoded.columns = ['neighbourhood']
+
+listings_num = listings.select_dtypes(include = ['float64', 'int64']) 
+
+listings = pd.merge(listings_encoded, listings_num, left_index=True, right_index=True) 
+listings = pd.merge(listings, neigh_encoded, left_index=True, right_index=True)
+
+del(listings['weekly_price'])
+
+```
+
+
+## <a name="PR" ></a> Objectif de la prédiction
+
+Une fois que les hôtes publient leurs annonces, le prix reste fixe tout au long du temps. Cependant, la demande varie de manière saisonnière. L’estimation du prix des biens peut être une nouvelle fonctionnalité à caractère informatif destinée aux hôtes d'Airbnb. Elle peut permettre de mieux gérer le taux d’occupation, de rentabilité et d’offrir des offres intéressantes pour les clients à certaines périodes.
+
+L'objectif final est de prédire le prix de location des biens inférieurs à 200 € la nuit avec une erreur médiane de 10.50 €. Ce qui signifie : 50% des biens devront être prédits avec une erreur inférieure à 10.50 € sur les données de test.   
+ 
+
+## <a name="IM" ></a> Import des bibliothèques utiles 
+
+```
+
+%matplotlib inline
+import os
+import numpy as np
+import pandas as pd
+from scipy import stats
+import matplotlib.pyplot as plt
+from scipy.stats import norm, skew
+from sklearn.feature_selection import f_regression
+from sklearn import preprocessing
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GridSearchCV
+from sklearn.linear_model import LinearRegression as Lin_Reg
+from sklearn import metrics
+
+import warnings
+def ignore_warn(*args, **kwargs):
+    pass
+```
+
+Dans un premier temps on supprime les valeurs extrêmes qui pourront déstabiliser le modèle (prix de location supérieur à 800 €). Également on supprime les variables inutiles (id, host_id...). Les variables super colinéaires ont été supprimées précedemment : 'monthly price' et 'weekly-price'. 
+
+
+```
+listings  = listings.drop(columns = ['longitude', 'latitude','id', 'host_id', 'monthly_price'])
+listings.index[listings.price>800].tolist()
+listings = listings.drop(index = [64, 743, 5842])
+listings = listings.reset_index(drop=True)
+Y = listings.price
+del(listings["price"])
+```
+
+## <a name="PV" ></a> Visualisation des p-values
+
+La p-value est la probabilité que deux variables soient dépendantes si le coefficient de corrélation entre ces deux variables est égal à zéro (hypothèse nulle confirmée). Si la p-value est plus petite que 0.05 (5%) alors on peut affirmer que la variable est statistiquement significative. 
+
+Grace à la function f_regression, on obtient les F-scores (index [0]) converties en p_values (index [1]) comprises entre 0 et 1.
+
+Les variables beds et cleaning_fee ont le plus de capacité pour prédire le prix. 
+
+```
+columns = listings.columns.tolist()
+
+p_values = f_regression(listings, Y)[1]
+p_valuesdf = pd.DataFrame(p_values, index = listings.columns)
+
+p_valuesdf.sort_values(by = 0, ascending=True)
+
+Out[272]: 
+                                                          
+beds                                            0.000000e+00
+cleaning_fee                                0.
+security_deposit                           0.
+price                                              0.
+bedrooms                                      0.
+bathrooms                                     0
+accommodates                              0.
+room_type                                     1.897830e-196
+guests_included                               4.133347e-136
+cancellation_policy                           6.704422e-114
+property_type                                  7.284759e-81
+calculated_host_listings_count_private_rooms   2.289285e-71
+calculated_host_listings_count_entire_homes    3.214125e-43
+calculated_host_listings_count                 2.328240e-34
+reviews_per_month                              3.494274e-34
+host_listings_count                            2.474280e-30
+host_total_listings_count                      2.474280e-30
+availability_365                               3.235064e-22
+number_of_reviews_ltm                          5.117113e-18
+extra_people                                   7.345291e-15
+                                                   ...
+availability_90                                6.698582e-02
+availability_60                                1.178657e-01
+review_scores_location                         1.259715e-01
+review_scores_communication                    5.022401e-01
+review_scores_accuracy                         5.126517e-01
+review_scores_checkin                          5.418442e-01
+```
+
+## <a name="QQplot" ></a> Graphique Quartile-Quartile de la distribution de la variable Prix
+
+Le graphique Quartile-Quartile est une comparaison entre une distribution (ensemble de valeurs) et une autre distribution (une variable, une loi de probabilité). 
+
+Ici, on s'intéresse à savoir si les données sont distribuées de manière normale (de paramètres mu (moyenne) et sigma (écart-type)).
+
+Si les données suivent la distribution normale, les points seront situés sur la droite diagonale. 
+On remarque que les quantiles de la distribution (valeurs qui divisent les données en intervalles contenant le même nombre de données). du prix sont à peu près égaux aux quartiles de la distribution normale. Pour bien saisir le QQ-plot, voir cette [vidéo](https://www.youtube.com/watch?v=okjYjClSjOg).
+
+
+```
+sns.kdeplot(listings['price'] , clip= (0.0, 800))
+
+fig = plt.figure()
+res = stats.probplot(listin['price'], plot=plt)
+plt.show()
+```
+<img src="https://JeremieDec.github.io/pics/Pricedistribution.png" width="80%">
+
+<img src="https://JeremieDec.github.io/pics/QQplotprice.png" width="80%">
+
+Les valeurs sont anormalement élevées en fin de distribution pour parler parfaitement de distribution normale. On remarque une dissymétrie dans la partie droite (prix de location élevés). En gardant ces valeurs, le risque est de déstabiliser le modèle linéaire futur.
+
+## <a name="PVA" ></a> Class pipeline pour les modèles
+
+J'utilise une classe avec les fonctions principales d’évaluation des modèles. Pour évaluer la performance de l'algorithme, on calcule sur n  itérations  le score moyen à chaque convergence afin de pouvoir effectuer des comparaisons. On prends 70 % des biens en entraînement, le reste pour la validation.  
+
+Pour évaluer le modèle, j'utilise le score R2 qui sert à mesurer la précision donnée par le modèle de régression linéaire et l'erreur absolue moyenne (sur train et test set). 
+
+
+```
+class model:
+
+    def __init__(self, model):
+        self.model = model
+        self.x_train = None
+        self.y_train = None
+        self.x_test = None
+        self.y_test = None
+        self.y_pred_train = None
+        self.y_pred_test = None
+        self.train_score = None
+        self.test_score = None
+        self.train_score_log = None
+        self.test_score_log = None
+        self.train_score_mae = None
+        self.test_score_mae = None
+        self.train_score_mae1 = None
+        self.test_score_mae1 = None
+        self.train_score_m_ae_unlog = None 
+        self.test_score_m_ae_unlog = None
+        self.train_score_mae_unlog = None
+        self.test_score_mae_unlog = None
+
+    def data_split(self, x, y, test_size):
+        self.x_train, self.x_test, self.y_train, self.y_test = train_test_split(x, y, test_size=test_size)
+
+    def score_reg(self):
+        return self.train_score, self.test_score
+        
+    def score_mean_abs_err(self):
+        self.train_score_mae = metrics.mean_absolute_error(self.y_pred_train, self.y_train)
+        self.test_score_mae = metrics.mean_absolute_error(self.y_test, self.y_pred_test)
+        return self.train_score_mae, self.test_score_mae
+
+    def score_median_abs_err(self):
+      self.train_score_mae1 = metrics.median_absolute_error(self.y_pred_train, self.y_train)  
+      self.test_score_mae1 = metrics.median_absolute_error(self.y_test, self.y_pred_test)
+      return self.train_score_mae1, self.test_score_mae1
+
+    def score_log(self):
+        self.train_score_log = metrics.r2_score(np.exp(self.y_train), np.exp(self.y_pred_train))
+        self.test_score_log = metrics.r2_score(np.exp(self.y_test), np.exp(self.y_pred_test))
+        return self.train_score_log, self.test_score_log
+
+    def score_mean_log(self):
+       self.train_score_m_ae_unlog = metrics.mean_absolute_error(np.exp(self.y_pred_train), np.exp(self.y_train))
+       self.test_score_m_ae_unlog = metrics.mean_absolute_error(np.exp(self.y_test), np.exp(self.y_pred_test))
+       return self.train_score_m_ae_unlog, self.test_score_m_ae_unlog
+
+    def score_median_log(self):
+        self.train_score_mae_unlog = metrics.median_absolute_error(np.exp(self.y_pred_train), np.exp(self.y_train))
+        self.test_score_mae_unlog = metrics.median_absolute_error(np.exp(self.y_test), np.exp(self.y_pred_test))
+        return self.train_score_mae_unlog, self.test_score_mae_unlog
+
+    def data_frame_convert(self):
+        df_train = pd.DataFrame({'y_pred': self.y_pred_train, 'y_real': self.y_train})
+        df_test = pd.DataFrame({'y_pred_test': self.y_pred_test, 'y_real_test': self.y_test})
+        return self.train_score, self.test_score, df_train, df_test
+
+    def data_frame_convert_log(self):
+        df_train = pd.DataFrame({'y_pred': np.exp(self.y_pred_train), 'y_real': np.exp(self.y_train)})
+        df_test = pd.DataFrame({'y_pred_test': np.exp(self.y_pred_test), 'y_real_test': np.exp(self.y_test)})
+        return self.train_score_log, self.test_score_log, df_train, df_test
+
+    def fit_model(self, x, y, test_size):
+        self.data_split(x, y, test_size)
+        self.model = self.model.fit(self.x_train, self.y_train)
+        self.train_score = self.model.score(self.x_train, self.y_train)
+        self.test_score = self.model.score(self.x_test, self.y_test)
+        self.y_pred_train = self.model.predict(self.x_train)
+        self.y_pred_test = self.model.predict(self.x_test)
+
+def model_iterations(n, x, y, model_arg, log_bool=False):
+    training_scores = [None]*n
+    testing_scores = [None]*n
+    training_scores_mean_ae = [None]*n
+    testing_scores_mean_ae = [None]*n
+    training_scores_mae = [None]*n
+    testing_scores_mae = [None]*n
+
+
+    for i in range(n):
+        new_model = model(model_arg)
+        new_model.fit_model(x, y, 0.5)
+        training_scores[i], testing_scores[i] = new_model.score_reg() if not log_bool else new_model.score_log()
+        training_scores_mean_ae[i], testing_scores_mean_ae[i]  = new_model.score_mean_abs_err() if not log_bool else new_model.score_mean_log()
+        training_scores_mae[i], testing_scores_mae[i] = new_model.score_median_abs_err() if not log_bool else new_model.score_median_log()
+
+    print('-Best R2 training', np.max(training_scores))
+    print('-Best R2 testing', np.max(testing_scores))
+    print('-Avg R2 training', np.mean(training_scores))
+    print ('-Avg R2 testing',np.mean(testing_scores))
+    print ('Training mean score (_mean absolute error)', np.mean(training_scores_mean_ae))
+    print ('Testing mean score (_mean absolute error)', np.mean(testing_scores_mean_ae))
+
+    print ('Training best score (_mean absolute error)', np.min(training_scores_mean_ae))
+    print ('Training best score (median absolute error)', np.min(training_scores_mae))
+
+    print ('Testing best score (_mean absolute error)', np.min(testing_scores_mean_ae))
+    print ('Testing best score (median absolute error)', np.min(testing_scores_mae))
+    print ('std -ecarts moyens des perfs testing', np.std(testing_scores_mae))
+    print ('std des perfs training', np.std(training_scores_mae))
+
+    return new_model
+ ```
+
+
+## <a name="PRES" ></a> Fonction graphique de distribution des residuals, Ypred vs. Y et leur distribution
+
+Je définis une fonction pour afficher valeurs prédites vs valeurs réels, les résidus (écarts prédit - réel) ainsi que leur distributions à partir de la classe définie précédemment.
+
+```
+def plot_residuals(ax1, ax2, ax3, y_pred, y_real, line_label, title):
+    ax1.scatter(y_pred,
+                y_real,
+                color='blue',
+                alpha=0.6,
+                label=line_label)
+    ax1.set_xlabel('Predicted Y')
+    ax1.set_ylabel('Real Y')
+    ax1.legend(loc='best')
+    ax1.set_title(title)
+
+    ax2.scatter(y_pred,
+                y_real - y_pred,
+                color='green',
+                marker='x',
+                alpha=0.6,
+                label='Residual')
+    ax2.set_xlabel('Y Prédit')
+    ax2.set_ylabel('Residual')
+
+    ax2.axhline(y=0, color='black', linewidth=2.0, alpha=0.7, label='y=0')
+
+    ax2.legend(loc='best')
+    ax2.set_title('Residual Graph')
+
+    ax3.hist(y_real - y_pred, bins=30, color='green', alpha=0.7)
+    ax3.set_title('Histogram of residual values')
+
+    return ax1, ax2, ax3
+
+def plots(model):
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
+    data_vals = model.data_frame_convert()
+    plot_residual(axes[0][0], axes[0][1], axes[0][2], data_vals[2]['y_pred'], data_vals[2]['y_real'], 'model: {}'.format(data_vals[0]), 'Scatter Plot: Y_Predit vs. Y')
+    plot_residual(axes[1][0], axes[1][1], axes[1][2], data_vals[3]['y_pred_test'], data_vals[3]['y_real_test'], 'model: {}'.format(data_vals[1]), 'Residual Plot for Test Data')
+plt.show()
+```
+
+
+## <a name="REGL" ></a> Régression linéaire
+
+```
+Lin_Reg_Model = model_iterations(1000, X_train, y_train, Lin_Reg(fit_intercept=True), log_bool=False)
+# R2 = 0.675 sur le test set
+
+ypredtest = Lin_Reg_Model.y_pred_test
+ytest = Lin_Reg_Model.y_test
+metrics.mean_absolute_error(ypredtest, ytest)
+```
+# On observe une erreur médiane de 23.00 euros sur le test set. 
+
+On remarque que les résidus sont à peu près normalement distribués (sans prendre en compte les valeurs résiduels élevées), ce qui indique que la fonction linéaire est appropriée.
+
+```
+Plots(Lin_Reg_Model)
+```
+
+<img src="s://JeremieDec.github.io/pics/plot_Linreg.png" width="100%">
+
+
+
+## <a name="XGB" ></a> Xgboost- Régression linéaire
+
+On tente maintenant un modèle d'arbres de décision boostés sur l'ensemble des données.
+
+```
+import xgboost as xgb
+```
+J'ai effectué une grid search auparavant avec les 4  paramètres (4^4: 256) qui a duré plus de 2h30 (à ce moment là, mon prochain objectif sera de passer à un système de ML sur GPU (il y a RapidsAI qui a lancé ces librairies récemment), ce qui sera plus écologique et moins long). J'utilise ainsi les meilleurs paramètres obtenus:
+
+```
+mod = xgb.XGBRegressor(
+    gamma=1,                 
+    learning_rate=0.01,
+    max_depth=3,
+    n_estimators=10000,                                                                    
+    random_state=34
+)
+
+Out []: 
+train score 0.8906280063056778   #R2
+test score 0.6984784216019209    #R2
+train score (mean absolute error) 9.018808187769666
+test score (mean absolute error) 14.690016550400438
+train score (median absolute error) 6.665931701660156
+test score (median absolute error) 10.828716278076172
+```
+## <a name="XGB1" ></a> Xgboost- Régression linéaire - Prix € [0,200]
+
+Le but de l'exercice est de prédire le prix des locations des biens de moins de 200 €. 
+
+
+```
+xgb_Linreg = model_iterations(100, listings, Y, mod)
+
+-Best R2 training 0.9230592356400042
+-Best R2 testing 0.7082738465464786
+-Avg R2 training 0.9161908380970193
+-Avg R2 testing 0.6831100307904913
+Training mean score (_mean absolute error) 7.908379433267141
+Testing mean score (_mean absolute error) 15.052304869742533
+
+Training best score (_mean absolute error) 7.509695185767145
+Training best score (median absolute error) 5.50396728515625
+
+Testing best score (_mean absolute error) 14.55569930134527
+Testing best score (median absolute error) 10.3055419921875
+
+std -ecarts moyens des perfs testing 0.21937221812857302
+std des perfs training 0.14406245166564824
+
+```
+```
+Plots(xgb_Linreg)
+```
+<img src="https://JeremieDec.github.io/pics/plot_xgb_linreg.png" width="100%">
+
+```
+Plots(Lin_Reg_Model)
+```
+<img src="https://JeremieDec.github.io/pics/plot_Linreg.png" width="100%">
+
+On remarque que la  prédiction avec  les arbres de régressions Xgb boost crée une fonction beaucoup plus précise (moins de biais) et moins variables que la régression linéaire de base.
+
+On remarque également que la généralisation est meilleure avec 20.49 € contre 23 € d'erreur moyenne absolue pour la régression multi classique. 
+
+## <a name="XGB2" ></a> Xgboost- Régression linéaire - log(Prix) € [0,200]
+
+xgb_result_log = model_iterations(20, listings, Y_log, mod, log_bool=True)
+
+```
+-Best R2 training 0.7277868062756596
+-Best R2 testing 0.6769044040026038
+-Avg R2 training 0.6995340595468243
+-Avg R2 testing 0.6564364110363676
+Training mean score (_mean absolute error) 14.226231455246326
+Testing mean score (_mean absolute error) 15.166779256598721
+Training best score (_mean absolute error) 13.872281664051414
+Training best score (median absolute error) 9.368274688720703
+Testing best score (_mean absolute error) 14.768355142125083
+Testing best score (median absolute error) 9.890993118286115
+std moyens des perfs testing 0.22604745566400672
+std des perfs training 0.17883106317140526
+```
+
+## <a name="OPT" ></a> Imputation de 23% de données manquantes -> Effets sur le modèle
+
+On garde toujours ces deux variables imputées par la moyenne pour observer seuls les effets sur l'imputation des reviews:
+
+```
+listings['cleaning_fee'] = listings.fillna(listings.mean())
+listings['security_deposit'] = listings.fillna(listings.mean())
+```
+Les variables qui sont à inférer le plus précisemment (en %):
+
+```
+isnull(listings)
+Out[233]: 
+                                     0
+review_scores_accuracy       22.685078
+review_scores_checkin        22.708285
+review_scores_cleanliness    22.638663
+review_scores_communication  22.673474
+review_scores_location       22.685078
+review_scores_rating         22.569042
+review_scores_value          22.685078
+```
+On commence par la technique de la moyenne des valeurs non manquantes dans une colonne, puis en remplaçant les valeurs manquantes dans chaque colonne séparément et indépendamment des autres. La méthode est facile et rapide. Cependant, elle ne prends pas en compte les corrélations entre les variables.
+
+--- Imputation 'moyenne', log(Prix), Full data
+
+Je garde les mêmes paramètres de Xgboost. Je prédits le log du prix cible sur l'ensemble des données. 
+
+
+```
+model_iterations(100, listings_imputmean, Y_log, mod, log_bool=True)
+
+Training mean score (_mean absolute error) 24.14273094512183
+Testing mean score (_mean absolute error) 26.12519652301791
+Training best score (_mean absolute error) 21.179671511565964
+Training best score (median absolute error) 11.186231613159201
+Testing best score (_mean absolute error) 23.337639623851338
+Testing best score (median absolute error) 12.05378723144532
+std -ecarts moyens des perfs testing 0.2100861726799187
+std des perfs training 0.21093080646688295
+```
+Aïe Aïe Aïe, l'erreur médiane est plus élevée que lors de la même prédiction sans les données manquantes : 12.05 (baseline) contre 10.82. 
+Gagner des données est synonyme de gain en biais ? 
+
+La méthode de la moyenne est un échec, cependant laissons une chance sur l'objectif des prix de location inférieurs à 200 € : 
+
+
+--- Imputation 'moyenne' sur 23% des Reviews, log(Prix € [0,200])  
+
+```
+-Best R2 training 0.7274884933366395
+-Best R2 testing 0.68643360881938
+-Avg R2 training 0.7055151176660036
+-Avg R2 testing 0.6594467249865594
+Training mean score (_mean absolute error) 13.997939824560863
+Testing mean score (_mean absolute error) 15.106062169818927
+Training best score (_mean absolute error) 13.536121259835111
+Training best score (median absolute error) 9.161304473876936
+Testing best score (_mean absolute error) 14.484055507518447
+Testing best score (median absolute error) 9.539064407348647
+
+```
+
+Voilà 3.5% d'amélioration par rapport à la baseline : 9.53 d'erreur médiane absolue contre 9.89 ! L'imputation par la moyenne a tendance à donner des estimations erronnées pour les prix élevés... 
+
+Ceci s'explique par le choix d'imputer cleaning_fee et security_deposit par la moyenne également : cleaning_fee : 29.98 €, security_deposit : 500 €). Les variables des biens dont les frais de ménages et le déposit de sécurité se trouvent à bas coût (relatif) sont ainsi mieux imputés. 
+
+
+--- Imputation '1-kNN' sur 23% des Reviews, log(Prix € [0,200])  -----------------------------
+
+Qu'en est-il de l'imputation par les plus proches voisins ? 
+
+L'algorithme permet de trouver par la mesure de la distance euclidienne, les trois bien en location les plus proches de celui d'intérêt (qui possède des valeurs manquantes). Ainsi, on s'inspire de biens très proches pour récupérer les valeurs des variables équivalentes.
+
+
+On va maintenant utiliser le kNN (k nearest neighbors) sur respectivement **k = 1 3 et 5 voisins**.  Pour les valeurs 3 et 5, l'algorithme  effectue la moyenne des variables recherchées. Le risque de s'inspirer du plus proche voisin (k=1) est que celui-ci possède une variable extrême qui serait éloigné de la réalité, le calcul sur 3 puis 5 voisins permet alors de mitiger ce risque. 
+
+[k-Nearest Neighbors (kNN) Imputation](https://pypi.org/project/missingpy/)
+
+```
+pip install missingpy
+```
+
+```
+from missingpy import KNNImputer
+
+imputer = KNNImputer(n_neighbors=1, weights="uniform")
+
+listings_rev_knn1_thresh = imputer.fit_transform(listings[listings.price<200])
+
+listings_rev_knn1_thresh = pd.DataFrame(listings_rev_knn1_thresh, columns = listings.columns)
+
+Y_imp = listings_imp.price
+del(listings_imp['price'])
+Y_knn1_thresh_log = np.log(Y_imp)
+
+xgb_result_revknn3 = model_iterations(100, listings_rev_knn1_thresh, Y_knn1_thresh_log, mod, log_bool=True)
+
+-Best R2 training 0.7251967986869021
+-Best R2 testing 0.6857986463037695
+-Avg R2 training 0.7067672282455653
+-Avg R2 testing 0.6573788407962098
+Training mean score (_mean absolute error) 14.024657182092668
+Testing mean score (_mean absolute error) 15.103161246398525
+Training best score (_mean absolute error) 13.551736232073193
+Training best score (median absolute error) 9.098037719726562
+Testing best score (_mean absolute error) 14.505256760760647
+Testing best score (median absolute error) 9.860536575317395
+```
+Et voila, ce qui devait arriver est probablement arrivé alias "Les petits cailloux dans la chaussure": Des variables imputées extremistes (k=1 plus proche voisin) se sont infiltrées à l'entraînement. On remarque cependant le prix médian de 9.86 comparable à la baseline (9.89).
+
+--- Imputation '3-kNN' sur 23% des Reviews, log(Prix € [0,200])  -----------------------------
+
+```
+-Best R2 training 0.777614798001613
+-Best R2 testing 0.7177540879026125
+-Avg R2 training 0.44401981747064057
+-Avg R2 testing 0.4672465667234366
+Training mean score (_mean absolute error) 19.470312127565386
+Testing mean score (_mean absolute error) 21.076772482791466
+Training best score (_mean absolute error) 17.60448572246527
+Training best score (median absolute error) 9.698270797729492
+Testing best score (_mean absolute error) 19.179957136149014
+Testing best score (median absolute error) 10.379804611206058
+```
+
+--- Imputation '5-kNN' sur 23% des Reviews, log(Prix € [0,200])  -----------------------------
+
+```
+-Best R2 training 0.7274868546422395
+-Best R2 testing 0.6777300641759778
+-Avg R2 training 0.706506253465841
+-Avg R2 testing 0.6546066103841278
+Training mean score (_mean absolute error) 14.000391540338258
+Testing mean score (_mean absolute error) 15.181730796577375
+Training best score (_mean absolute error) 13.660578161373206
+Training best score (median absolute error) 9.086807250976534
+Testing best score (_mean absolute error) 14.44077185657628
+Testing best score (median absolute error) 9.898965835571271
+```
+
+## <a name="XGB1" ></a> Xgboost- Régression linéaire - Prix € [Dataset] + 20% of Reviews imputed from 'mean'
+## <a name="XGB2" ></a> Xgboost- Régression linéaire - Prix € [0,200] +  20% of Reviews imputed from 'mean'
+## <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] + 20% of Reviews imputed from 'k-Nearest Neighbors (kNN)'
+
+
+
+Xgb_imput = model_iterations(10, listings_imp, Y_imp, mod, log_bool=False)
+## <a name="XGB4" ></a> Xgboost- Régression linéaire - Prix € [0,200] + 20% of Reviews imputed from 'k-Nearest Neighbors (kNN)' 
+## <a name="XGB5" ></a> Xgboost- Régression linéaire - Prix € [0,200] + log(Price)
+
+
+
+
+
+
+
+
+
+## <a name="CC" ></a> Conclusion et ouverture 
+
+On dans le cas d’informations incomplètes et il y a une marge d'amélioration du score probablement en dixièmes.
+Plusieurs pistes sont à exploiter afin de gagner en informations  : 
+
+- La prédiction peut certainement être précisée en utilisant d'autres modèles, voir ensemble. Les biens au dessus de 200 € sont sous-représentés, il peuvent être sur-samplés dans l'objectif de prédire l'ensemble des données. Je suis également limité par la puissance de calcul de ma machine (i7 7700HQ, 4 logiques, 8 threads), un modèle prends à peu près 45 secondes pour être calculé. D'après l'étude effectuée des performances sur la comparaison GPUphys/CPU, l'entraînement sur gtx1080 est 8x plus rapide par rapport au i7 7700HQ, j'envisage d'y passer très prochainement [xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b). 
+
+
+- La variables "surface en m2" des biens est manquante à plus de 95%. Il y a possibilité de la retrouver en partie grâce aux descriptions et titres. 
+
+- Le “feature engineering” qui signifie  ‘la combinaison de variables ‘  nous permet de créer de nouvelles variables.  Chaque domaine d’expertise possède des variables propres et leur combinaison peut s’avérer déterminante dans la prédiction. Egalement, on peut tenter l'utilisation de la bibliothèque [Featuretools](https://towardsdatascience.com/why-automated-feature-engineering-will-change-the-way-you-do-machine-learning-5c15bf188b96) qui permet d'automatiser la création de nouvelles variables à partir de l'instant ou deux variables dépendantes sont renseignées. 
+
+- L'encodage des variables catégoriques se fera avec OneHotEncoder plutôt que LabelEncoder. En effet, LabelEncoder institue une échelle 'Bleu' 'Rouge' et 'Vert' encodées [0, 1, 2], ce qui détermine qu'il y a 2 unités qui séparent le 'Bleu' du 'Vert'. OneHotEncoder permet de prendre chacune de ses variables dans une colonne différente et d'attribuer un boolean '0' ou '1' (Bleu : 'oui' ou 'non') pour chaque variable (n) et chaque bien (m). LabelEncoder a été utilisé ici pour optimiser la vitesse d'entraînement. 
+
+- J'ai supprimé presque 25 %  des données au nettoyage, provenant de l'ensemble des reviews NaNs (non attribuées). L'idée étant de les ré-intégrer plus tard lors de l'analyse pour observer comment elles pourraient affecter la performance. Il se trouve, après des essais, que l'imputation par la moyenne fait diminuer le score. La moyenne étant un indice qui apporte peu d'information, c'est le Knn (K-nearest neighbrors) qui semble intéressante : effectuer la moyenne de chaque variable manquantes des biens les plus proches (respectivement 3 et 6 plus proches). 
+
+- Pour aller plus loin, peut obtenir des informations supplémentaires en exploitant les photos des biens (utilisation du deep learning). Par exemple, un ensemble de caractéristiques peuvent influencer le prix : la hauteur de plafond, le niveau de luminosité, le taux d’espace vide’ (Taux de remplissage du bien). 
+
+- Les descriptions des biens, les commentaires sont également d'autres sources d'informations possibles.
+
+- Autre solution, on peut ‘binner’ la variable Prix ( Le prix de 20 à 40 euros, prix de 40 à 60…)  afin De résoudre un problème de classification: Ce qui permet de rendre le modèle  plus robuste et d'éviter l’overfitting (Fonction de prédiction très proche des données d’entraînement:  entraîne une mauvaise généralisation) mais cela a un coût pour la performance. Dès l'instant où on stocke de l'information, on en perds et on régularise davantage.
+
+## <a name="PAL" ></a> Pour aller plus loin
+
+- **Aider les hôtes à maximiser leur réussite sur la plateforme** : Dans une prochaine étude, Il serait intéressant de récupérer l'ensemble de ces commentaires pré-conversion ainsi que le classement (ranking) des biens sur Bordeaux (effectué par Airbnb). Ces deux variables additionnées à celles déjà acquises, ouvrent la possibilité de connaître d'avantage le poids de chaque variables dans l'optimisation de la visibilité de ses annonces.
+
+## <a name="REF" ></a> Sources
+
+Sources : 
+
+[EFI](https://www.efl.fr/actualites/immobilier/details.html?ref=r-be87d41a-753e-4bec-802a-abbf7927231c) - [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+
+[Airdna](https://www.airdna.co/vacation-rental-data/app/fr/new-aquitaine/bordeaux/overview), Taux d'occupation [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+
+[Blog locservice](https://blog.locservice.fr/bordeaux-les-chiffres-cles-du-marche-locatif-prive-en-2013-1469.html) - [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+[Taille d'un logement T3](https://www.fonction-publique.gouv.fr/archives/home20020121/bases/logement_index.htm) - [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
+
+[Automated feature engineering ](https://towardsdatascience.com/why-automated-feature-engineering-will-change-the-way-you-do-machine-learning-5c15bf188b96)
+
+[xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b).
+
+[Comparaison de la distribution, Quartile-Quartile graph](https://www.youtube.com/watch?v=okjYjClSjOg)
+[État des techniques d'imputations](https://medium.com/ibm-data-science-experience/missing-data-conundrum-exploration-and-imputation-techniques-9f40abe0fd87)
+
+
+
