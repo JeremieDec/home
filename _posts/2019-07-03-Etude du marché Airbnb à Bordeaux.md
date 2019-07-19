@@ -51,7 +51,7 @@ I- [Exploration des données](#DE)
   10. [Combien les hôtes possèdent-ils de biens ?](#HL)  
   11. [Quelles variables sont les plus corrélées ?](#HM)
  
-  
+  Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
 II- [Nettoyage des données](#ND) 
   1. [Chargement des bibliothèques et données](#CHA)
   2. [Variables maintenues](#VM)
