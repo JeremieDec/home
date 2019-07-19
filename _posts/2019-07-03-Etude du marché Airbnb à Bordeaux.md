@@ -414,7 +414,7 @@ freq
 ## <a name="HM" ></a> Matrice heatmap des corrélations
 
 
-Tracer une matrice de corrélations ici avec 47 variables reviendrait à (47*47 - 47)/2 = 1081 comparaisons.  
+Tracer une matrice de corrélations ici avec 47 variables reviendrait à 2 (k) parmis 47 (n)= 1081 combinaisons/comparaisons possibles.  
 
 Pour cet exemple, je prends un extrait des variables avec les corrélations significatives définies au seuil de >0.35 (valeurs absolues).
 
