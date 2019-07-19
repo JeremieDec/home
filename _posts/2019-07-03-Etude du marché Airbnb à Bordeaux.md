@@ -35,7 +35,7 @@ Ensuite, en deuxième partie, je nettoyerai les données afin de les préparer p
 
 **Contenus**
 
-I - [Enseignements clés de l'enquête](#INS)
+1 - [Enseignements clés de l'enquête](#INS)
 
 I- [Exploration des données](#DE)
   1. [Types de logements](#TP)
@@ -44,22 +44,17 @@ I- [Exploration des données](#DE)
   4. [Prix moyen d'une location par quartier](#PM)
   5. [Capacité totale des biens par nombre d'accommodés](#CP)
   6. [Disponibilité des biens par quartiers - évolution moyenne sur 90, 60, 30 jours](#DI)
+  7. [Quelles variables sont les plus corrélées ?](#HM)
   
 II- [Questionnements]
-  6. [Combien les hôtes possèdent-ils de biens ?](#HL) 
-  7. [Les hôtes déclarent-ils leurs activités ?](#NL) 
-  8. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
+  1. [Combien les hôtes possèdent-ils de biens ?](#HL) 
+  2. [Les hôtes déclarent-ils leurs activités ?](#NL) 
+  3. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
+  4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
+  5. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
   
-  10. [La meilleur expérience client, qui est l'Hôte le-la plus plesbicité au quotidien ?](#REVIEWS)
-  11. [Les hôtes peuvent payer 81%  de leur rente en listant un logement 2 pièces](#FIN)
   
-  
-
-   
-  12. [Quelles variables sont les plus corrélées ?](#HM)
- 
-  Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
-II- [Nettoyage des données](#ND) 
+III- [Nettoyage des données](#ND) 
   1. [Chargement des bibliothèques et données](#CHA)
   2. [Variables maintenues](#VM)
   2. [Variables supprimées](#VS)
@@ -67,7 +62,7 @@ II- [Nettoyage des données](#ND)
   4. [Variables imputées](#VI)
   5. [Variables encodées](#VE)
   
-III- [Prédiction](#PR) 
+IV- [Prédiction](#PR) 
   1. [Import des bibliothèques utiles](#IM)
   2. [The nullity matrix](#NULL)
   2. [Quelles variables sont meilleures pour prédire linéairement le prix de location ?](#PV)
@@ -78,10 +73,10 @@ III- [Prédiction](#PR)
   7. [Xgboost- Régression linéaire](#XGB)
   8. [Imputation de 25% des données manquantes, effets sur le modèle] (#OPT)
   9. [Variables les plus importantes à la prédiction du prix](#VARS)
-IV - [Conclusions et ouverture](#CC)
+V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
     
-V-[Références](#REF) 
+VI-[Références](#REF) 
  
  
  
