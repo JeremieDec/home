@@ -71,7 +71,7 @@ III- [Prédiction](#PR)
   7. [Xgboost- Régression linéaire](#XGB)
   8. [Imputation de 25% des données manquantes, effets sur le modèle] (#OPT)
 IV - [Conclusions et ouverture](#CC)
-    1. [Pour aller plus loin](#PAL)  
+  1. [Pour aller plus loin](#PAL)  
     
 V-[Références](#REF) 
  
