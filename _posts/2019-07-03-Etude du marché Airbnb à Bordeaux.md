@@ -158,6 +158,31 @@ alternative pour calculer n éléments distincts d’une variable:
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/hmapListesparquartier.png" width="100%">
 
+## <a name="PM" ></a> Prix moyen d'une location par quartier pour deux personnes
+
+Hotel de Ville est en moyenne 57 % plus cher que l'ensemble des quartiers alentours ! La ville s'étend pourtant sur 1.5 km de rayon (en prenant le centre du quartier Hotel de Ville). Nous verons un peu plus tard dans cette analyse une piste pour expliquer une partie de cette différence ([Les hôtes déclarent-ils leurs activités ?](#NL)).
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Prix moyen d'une location par Quartier pour 2 personnes.png" width="100%">
+
+```
+grp = listings[listings['accommodates']==2]
+grp = grp.groupby('neighbourhood')['price'].mean().sort_values(ascending=True)
+grp.plot.barh(figsize=(10, 15), color='b', width=1)
+plt.title("Prix moyen pour une accomodation pour 2 personnes", fontsize=20)
+plt.xlabel('Prix moyen (Euro)', fontsize=12)
+plt.ylabel("")
+plt.show()
+listings.reviews_per_month.describe()
+Out[78]: 
+count    8603.000000
+mean        0.903068
+std         1.377258
+min         0.000000
+25%         0.050000
+50%         0.360000
+75%         1.120000
+max        15.000000
+```
 
 ## <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
 
@@ -255,31 +280,6 @@ plt.show()
 
 ```
 
-## <a name="PM" ></a> Prix moyen d'une location par quartier pour deux personnes
-
-Hotel de Ville est en moyenne 57 % plus cher que l'ensemble des quartiers alentours ! La ville s'étend pourtant sur 1.5 km de rayon (en prenant le centre du quartier Hotel de Ville). Nous verons un peu plus tard dans cette analyse une piste pour expliquer une partie de cette différence ([Les hôtes déclarent-ils leurs activités ?](#NL)).
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Prix moyen d'une location par Quartier pour 2 personnes.png" width="100%">
-
-```
-grp = listings[listings['accommodates']==2]
-grp = grp.groupby('neighbourhood')['price'].mean().sort_values(ascending=True)
-grp.plot.barh(figsize=(10, 15), color='b', width=1)
-plt.title("Prix moyen pour une accomodation pour 2 personnes", fontsize=20)
-plt.xlabel('Prix moyen (Euro)', fontsize=12)
-plt.ylabel("")
-plt.show()
-listings.reviews_per_month.describe()
-Out[78]: 
-count    8603.000000
-mean        0.903068
-std         1.377258
-min         0.000000
-25%         0.050000
-50%         0.360000
-75%         1.120000
-max        15.000000
-```
 ## <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte le plus plesbicité au quotidien
 
 La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle, voyons..
