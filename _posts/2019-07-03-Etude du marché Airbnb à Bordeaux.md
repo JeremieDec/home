@@ -17,7 +17,7 @@ D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires lou
                     - **65 000** villes à travers plus de 190 pays, pour un total de 
                     - **150 millions d'utilisateurs**. 
 
-Il n'est pas facile de mettre en location son logement, en témoignent la différence d’utilisateurs e de logements habitables. Néanmoins, le nombre de biens actifs est en croissance continue depuis 11 ans.
+Il n'est pas facile de mettre en location son logement, en prouve la différence d’utilisateurs et de logements référencés. Néanmoins, le nombre de biens actifs est en croissance continue depuis 11 ans.
 
 La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. Dans l'hexagone, la plateforme compte plus de 300 000 logements et Paris se situe au rang de numéro 1 des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
