@@ -224,6 +224,26 @@ Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png" width="100%">
 
 
+## <a name="HM" ></a> Matrice heatmap des corrélations
+
+
+Tracer une matrice de corrélations ici avec 47 variables reviendrait à 2 (k) parmis 47 (n)= 1081 combinaisons/comparaisons possibles.  
+
+Pour cet exemple, je prends un extrait des variables avec les corrélations significatives définies au seuil de >0.35 (valeurs absolues).
+
+```
+corr_cols = ['accommodates', 'bedrooms', 'bathrooms', 'price', 'property_type', 'cancellation_policy', 'neighbourhood']
+
+listings_tocorr = listings.loc[:, corr_cols] .corr()
+
+list_corr_filter = listings_tocorr[(listings_tocorr>0.35) | (listings_tocorr< -0.35)]
+
+sns.heatmap(list_corr_filter, linewidths=0.1, vmax = 1.0, square = True, cmap = colormap, linecolor = 'white')
+```
+On remarque que le prix est fortement corrélé avec le nombre de chambres (0.46). Ce qui montre que le prix suit linéairement la taille du bien 'au sens utile'. Par contraste, on pourrait observer, pour une plateforme positionnée sur les biens de luxe, un prix moins corrélé à l'équipement de la maison mais variant sur d’autres critères plus subjectifs tel que la surface totale en m2, l’agencement des pièces ou la décoration.
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="75%">
+
 
 ## <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
 
@@ -414,26 +434,6 @@ freq
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/FreqHostabout.PNG" width="100%">
 
-
-## <a name="HM" ></a> Matrice heatmap des corrélations
-
-
-Tracer une matrice de corrélations ici avec 47 variables reviendrait à 2 (k) parmis 47 (n)= 1081 combinaisons/comparaisons possibles.  
-
-Pour cet exemple, je prends un extrait des variables avec les corrélations significatives définies au seuil de >0.35 (valeurs absolues).
-
-```
-corr_cols = ['accommodates', 'bedrooms', 'bathrooms', 'price', 'property_type', 'cancellation_policy', 'neighbourhood']
-
-listings_tocorr = listings.loc[:, corr_cols] .corr()
-
-list_corr_filter = listings_tocorr[(listings_tocorr>0.35) | (listings_tocorr< -0.35)]
-
-sns.heatmap(list_corr_filter, linewidths=0.1, vmax = 1.0, square = True, cmap = colormap, linecolor = 'white')
-```
-On remarque que le prix est fortement corrélé avec le nombre de chambres (0.46). Ce qui montre que le prix suit linéairement la taille du bien 'au sens utile'. Par contraste, on pourrait observer, pour une plateforme positionnée sur les biens de luxe, un prix moins corrélé à l'équipement de la maison mais variant sur d’autres critères plus subjectifs tel que la surface totale en m2, l’agencement des pièces ou la décoration.
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="75%">
 
 ## <a name="ND" ></a> Nettoyage des données 
 
