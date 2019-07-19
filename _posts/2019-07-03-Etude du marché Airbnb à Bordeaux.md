@@ -11,7 +11,7 @@ comments: true
 
 **Préface**
 
-D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian lui vint l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb vu en grand ... Regardons de plus près:
+D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian lui eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb vu en grand ... Regardons de plus près:
 
  Airbnb recence - **3** millions de logements habitables répartis dans
                 - **65 000** villes à travers plus de 190 pays, pour un total de
