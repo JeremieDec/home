@@ -43,6 +43,7 @@ I- [Exploration des données](#DE)
   6. [Disponibilité des biens par quartiers - évolution moyenne sur 90, 60, 30 jours](#DI)
   7. [Quelles variables sont les plus corrélées ?](#HM)
   8. [Des données supplémentaires à capturer](#PM)
+  9. [Determinants de la Demande](#DEMAND)
   
 II- [Questionnements]
   1. [Combien les hôtes possèdent-ils de biens ?](#HL) 
@@ -75,9 +76,42 @@ V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
     
 VI-[Références](#REF) 
- 
- 
- 
+
+```
+feature_importance_dispo30
+neighbourhood                                 0.037372
+price                                         0.037857
+minimum_minimum_nights                        0.038779
+host_listings_count                           0.045887
+number_of_reviews_ltm                         0.049543
+room_type                                     0.115095
+```
+On obtient ici les variables les plus importantes qui permettent de déterminer la demande des biens.
+
+Le type de logement arrive en premier avec une importance de 11,5% (0.115), le nombre de notes vient ensuite avec 5% d'importance puis le nombre de biens gérés par hôte (4.5%). Ce qui nous amène aux questionnements suivants : Quels types de logements (room_type) sont les mieux loués ? Quel est le prix moyen des logements les plus demandés ? 
+
+ ## Disponibilité par type de logement
+ ```
+dispo30jours_moy_byroomtype = = listings5.groupby('room_type').availability_30.describe()
+
+                  count      mean        std  min  25%  50%   75%   max
+room_type                                                              
+Entire home/apt  7326.0  4.738466   7.731085  0.0  0.0  0.0   7.0  30.0
+Private room     2306.0  9.298786  10.910107  0.0  0.0  3.0  18.0  30.0
+Shared room        67.0  9.791045  12.506407  0.0  0.0  0.0  24.5  30.0
+```
+
+On remarque que les logements entiers sont les plus occupés en moyenne sur la plateforme.
+A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privées chez l'habitant.
+
+## Disponibilité par nombre de reviews 
+
+ ```
+dispo_parnbreviews = listings5.groupby("number_of_reviews").availability_30.describe()
+ ```
+
+## Expérience
+Expérience : On prends les biens répondants à l'ensemble des critères correspondants à une Demande élevé. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
 
 ## <a name="INS" ></a> Enseignements clés de l'enquête
 
