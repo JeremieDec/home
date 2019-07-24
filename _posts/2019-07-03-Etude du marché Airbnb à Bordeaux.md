@@ -49,7 +49,7 @@ I- [Exploration des données](#DE)
   
 II- [Questionnements](#SK)
   1. [Combien les hôtes possèdent-ils de biens en location ?](#HL) 
-  2. [Les hôtes déclarent-ils leurs activités ?](#NL) 
+  2. [Les hôtes déclarent-ils leurs activités ? ](#NL) 
   3. [Cas d'Etude : Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
   4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
     1.[Retour sur investissement de ce logement](#ROI)
@@ -85,9 +85,9 @@ VI-[Références](#REF)
 
 **73 €** correspond au prix moyen d'une location pour deux personnes, située au coeur du centre-ville de Bordeaux (exemple de l'appartement en deuxième photo de couverture)
 
-- Dans l'ordre: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens. 
+**Dans l'ordre**: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens. 
 
-- La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à 14 %. Le nombre de licences est décroissant à partir de l'instant ou l'on s'éloigne du centre-ville. 
+La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à 14 %. On remarque que le nombre de licences est décroissant à partir de l'instant ou l'on s'éloigne du centre-ville. 
 
 **16%** est le taux de rentabilité locatif du bien le plus populaire (compté en termes de reviews)
 
