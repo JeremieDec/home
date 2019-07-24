@@ -359,7 +359,7 @@ Je prends la référence suivante: un logement possède une surface de 65 m2, po
   
 - **29.7 %** : taux d'occupation moyen de ce type de logement à Bordeaux (méthode ci-dessous)
 
-**Enseignements clés **:
+**Résultats**:
 
  - **4068 €**, c'est le montant annuel des frais couverts grâce à la rente sur Airbnb,
 
