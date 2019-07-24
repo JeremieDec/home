@@ -21,13 +21,17 @@ D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires lou
 La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. L'hexagone compte plus de 300 000 logements et Paris se situe au rang de **numéro 1** des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
 
-Pour cette étude, on s’intéresse aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019, nous verrons : 
-- La répartition des biens et leurs caractéristiques (types, tailles, prix, disponibilité)
+Pour cette étude, on s’intéresse aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019 et explore : 
+- La répartition des biens et leurs caractéristiques (*types, tailles, prix, disponibilité)
 - Les proportions de biens sous licences par quartier.
-A partir de la popularité (nombre de reviews), nous verrons les hôtes qui possèdent les biens les plus demandés sur la plateforme. Ensuite, on étudiera le retour sur investissement du bien le plus populaire d'Airbnb à Bordeaux. Dans l'objectif de connaître d'avantage sur les raisons de l'attractivité de ceux-ci, on détermine ensuite les principales variables qui influent sur la demande.
 
-Le prix est 
-En troisème partie, j'ai nettoyé les données afin de les préparer pour prédire le prix journalier des biens. En troisième partie, je testerai et configurerai deux algorithmes afin de prédire cette variable et nous verrons quelles variables sont les plus importantes pour cet objectif.
+A partir de cette exploration, il y a plusieurs questionnements auxquels je souhaite répondre : 
+- Quelles variables clés déterminent la Demande des biens ?
+- Quels sont les biens les plus populaires à Bordeaux ?
+  - Le *bien exceptionnel* : Quel est le montant du Retour sur Investissement de ce studio ? 
+- En quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
+
+En troisème partie, j'ai nettoyé les données afin de les préparer pour prédire le prix journalier des biens. J'explique l'intérêt de la connaissance de cette variable pour les utilisateurs et hôtes. Ensuite, j'utilise deux algorithmes afin de prédire celle-ci et compare l'effet de deux méthodes d'imputation des données sur la prédiction (moyenne vs. Plus proches voisins). 
 
 
 **Contenus**
@@ -48,7 +52,7 @@ I- [Exploration des données](#DE)
 II- [Questionnements](#SK)
   1. [Combien les hôtes possèdent-ils de biens en location ?](#HL) 
   2. [Les hôtes déclarent-ils leurs activités ?](#NL) 
-  3. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
+  3. [Cas d'Etude : Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
   4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
     1.[Retour sur investissement de ce logement](#ROI)
   
