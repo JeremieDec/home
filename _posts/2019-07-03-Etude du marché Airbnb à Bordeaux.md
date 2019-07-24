@@ -46,7 +46,7 @@ I- [Exploration des données](#DE)
   9. [Determinants de la Demande](#DEMAND)
   
 II- [Questionnements]
-  1. [Combien les hôtes possèdent-ils de biens ?](#HL) 
+  1. [Combien les hôtes possèdent-ils de biens en location ?](#HL) 
   2. [Les hôtes déclarent-ils leurs activités ?](#NL) 
   3. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
   4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
