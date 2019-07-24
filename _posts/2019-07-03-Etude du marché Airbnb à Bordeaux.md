@@ -25,13 +25,13 @@ Pour cette étude, on s’intéresse aux données recueuillis d'Airbnb Bordeaux 
 - La répartition des biens et leurs caractéristiques (*types, tailles, prix, disponibilité)
 - Les proportions de biens sous licences par quartier.
 
-A partir de cette exploration, il y a plusieurs questionnements auxquels je souhaite répondre : 
+A partir de cette exploration, je réponds à plusieurs questionnements : 
 - Quelles variables clés déterminent la Demande des biens ?
 - Quels sont les biens les plus populaires à Bordeaux ?
   - Le *bien exceptionnel* : Quel est le montant du Retour sur Investissement de ce studio ? 
 - En quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
 
-En troisème partie, j'ai nettoyé les données afin de les préparer pour prédire le prix journalier des biens. J'explique l'intérêt de la connaissance de cette variable pour les utilisateurs et hôtes. Ensuite, j'utilise deux algorithmes afin de prédire celle-ci et compare l'effet de deux méthodes d'imputation des données sur la prédiction (moyenne vs. Plus proches voisins). 
+En troisème partie, j'ai nettoyé les données afin de les préparer à prédire le prix journalier des biens. J'explique l'intérêt de la connaissance de cette variable aux bénéfices des utilisateurs et hôtes. Ensuite, j'utilise deux algorithmes afin de prédire celle-ci et compare l'effet de deux méthodes d'imputation des données sur la prédiction (moyenne vs. Plus proches voisins). 
 
 
 **Contenus**
