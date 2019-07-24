@@ -10,7 +10,7 @@ comments: true
 
 **Préface**
 
-D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian lui eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb vu en grand ...
+D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb a vu en grand ...
 
  Airbnb recense aujourd'hui - **3** millions de logements habitables répartis dans
                             - **65 000** villes à travers plus de 190 pays, pour un total de
@@ -20,17 +20,16 @@ D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires lou
 La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. L'hexagone compte plus de 300 000 logements et Paris se situe au rang de **numéro 1** des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
 
-Pour cette étude, on s’intéresse aux données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019 et explore : 
+Pour cette étude, on s’intéresse et on explore les données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019  : 
 - La répartition des biens et leurs caractéristiques (*types, tailles, prix, disponibilité)
 - Les proportions de biens sous licences par quartier.
 
 A partir de cette exploration, je réponds à plusieurs questionnements : 
 - Quelles variables clés déterminent la Demande des biens ?
-- Quels sont les biens les plus populaires à Bordeaux ?
-  - Le *bien exceptionnel* : Quel est le montant du Retour sur Investissement de ce studio ? 
-- En quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
+- Quels sont les biens les plus populaires à Bordeaux ? On s'intéresse en particulier à un bien qui remporte un grand succès  et pour lequel je calcule le montant du Retour sur Investissement. 
+- Dans quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
 
-En troisème partie, j'ai nettoyé les données afin de les préparer à prédire le prix journalier des biens. J'explique l'intérêt de la connaissance de cette variable aux bénéfices des utilisateurs et hôtes. Ensuite, j'utilise deux algorithmes afin de prédire celle-ci et compare l'effet de deux méthodes d'imputation des données sur la prédiction (moyenne vs. Plus proches voisins). 
+Enfin, j'ai nettoyé les données dans le but de les préparer à la prédiction du prix journalier des biens. J'explique l'intérêt de la connaissance de cette variable aux bénéfices des utilisateurs et hôtes. J'utilise dès lors deux algorithmes afin de prédire le prix de location et compare l'effet de deux méthodes d'imputation sur la prédiction ("moyenne vs. plus proches voisins"). 
 
 
 **Contenus**
