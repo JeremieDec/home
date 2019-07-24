@@ -29,7 +29,7 @@ A partir de cette exploration, je réponds à plusieurs questionnements :
 - Quels sont les biens les plus populaires à Bordeaux ? On s'intéresse en particulier à un bien qui remporte un grand succès  et pour lequel je calcule le montant du Retour sur Investissement. 
 - Dans quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
 
-Enfin, j'ai nettoyé les données dans le but de les préparer à la prédiction du prix journalier des biens. J'explique l'intérêt de la connaissance de cette variable aux bénéfices des utilisateurs et hôtes. J'utilise dès lors deux algorithmes afin de prédire le prix de location et compare l'effet de deux méthodes d'imputation sur la prédiction ("moyenne vs. plus proches voisins"). 
+Enfin, j'ai nettoyé les données dans le but de les préparer pour prédire du prix journalier des biens. J'explique l'intérêt de cet indicateur pour les utilisateurs et hôtes. J'utilise enfin deux algorithmes afin de prédire le prix de location et compare l'effet de deux méthodes d'imputation sur la prédiction ("moyenne vs. plus proches voisins"). 
 
 
 **Contenus**
@@ -87,15 +87,19 @@ VI-[Références](#REF)
 
 **Dans l'ordre**: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens. 
 
-La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à 14 %. On remarque que le nombre de licences est décroissant à partir de l'instant ou l'on s'éloigne du centre-ville. 
+La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à **14 %**. On remarque que le nombre de licences est décroissant à mesure que l'on s'éloigne du centre-ville. 
 
 **16%** est le taux de rentabilité locatif du bien le plus populaire (compté en termes de reviews)
 
 **36 %**, c'est le pourcentage réaliste moyen des frais financés (loyer+charges) grâce à la [location d'une chambre à Bordeaux sur  Airbnb](#PAY).
 
-**104 %** est la rentabilité en proportion de l'investissement total en louant un appartement entier sur Bordeaux, selon cette [configuration](#PAY).
+**104 %** est la rentabilité locative en proportion de l'investissement total, pour un appartement entier sur Bordeaux ( selon cette [configuration](#PAY)).
 
+50% des biens sont correctement prédits avec une erreur inférieure à 9.53 euros grâce à l'utilisation d'Xgboost (algorithme basé sur des arbres de prédictions), pour une moyenne de 14.55 euros d'erreur.
 
+L'algorithme est le plus performant pour prédire les biens qui ont ces caractéristiques particulières: ...
+
+On prédit correctement les prix des locations de moins de 200 euros avec une erreur médiane de 9.53 euros.
 
 ## <a name="DE" ></a> Exploration des données 
 
