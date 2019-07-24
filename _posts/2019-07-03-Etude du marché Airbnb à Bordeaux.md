@@ -45,7 +45,7 @@ I- [Exploration des données](#DE)
   6. [Evolution de la demande des biens par quartiers - à 90, 60, 30 jours](#DI)
   7. [Quelles variables sont les plus corrélées ?](#HM)
   8. [Des données supplémentaires à capturer](#GAPM)
-  9. [Determinants de la Demande](#DEMAND)
+  9. [Déterminants de la Demande](#DEMAND)
   
 II- [Questionnements](#SK)
   1. [Combien les hôtes possèdent-ils de biens en location ?](#HL) 
@@ -82,15 +82,20 @@ VI-[Références](#REF)
 
 ## <a name="INS" ></a> Enseignements clés de l'enquête
 
+
+**73 €** correspond au prix moyen d'une location pour deux personnes, située au coeur du centre-ville de Bordeaux (exemple de l'appartement en deuxième photo de couverture)
+
+- Dans l'ordre: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens. 
+
+- La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à 14 %. Le nombre de licences est décroissant à partir de l'instant ou l'on s'éloigne du centre-ville. 
+
+**16%** est le taux de rentabilité locatif du bien le plus populaire (compté en termes de reviews)
+
 **36 %**, c'est le pourcentage réaliste moyen des frais financés (loyer+charges) grâce à la [location d'une chambre à Bordeaux sur  Airbnb](#PAY).
 
 **104 %** est la rentabilité en proportion de l'investissement total en louant un appartement entier sur Bordeaux, selon cette [configuration](#PAY).
 
-**73 €** correspond le prix moyen d'une location pour deux personnes, située au coeur du Centre-Ville de Bordeaux (exemple d'un appartement en deuxième photo de couverture)
 
-** Le quartier, la quantité de reviews, le type de logement, la quantité de biens en locations par hôte  sont les variables critiques qui déterminent la demande d'un bien. 
-
-**
 
 ## <a name="DE" ></a> Exploration des données 
 
@@ -274,6 +279,7 @@ rev_ehigh = listings_raw[listings_raw.reviews_per_month>13]
 
 ```
 feature_importance_dispo30
+
 neighbourhood                                 0.037372
 price                                         0.037857
 minimum_minimum_nights                        0.038779
