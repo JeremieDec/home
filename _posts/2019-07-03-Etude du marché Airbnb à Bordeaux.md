@@ -42,7 +42,7 @@ I- [Exploration des données](#DE)
   5. [Capacité totale des biens par nombre d'accommodés](#CP)
   6. [Disponibilité des biens par quartiers - évolution moyenne sur 90, 60, 30 jours](#DI)
   7. [Quelles variables sont les plus corrélées ?](#HM)
-  8. [Des données supplémentaires à capturer](#PM)
+  8. [Des données supplémentaires à capturer](#GAPM)
   9. [Determinants de la Demande](#DEMAND)
   
 II- [Questionnements]
@@ -243,7 +243,7 @@ On remarque que le prix est fortement corrélé avec le nombre de chambres (0.46
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="75%">
 
 
-## <a name="PM" ></a> Des données supplémentaires à capturer 
+## <a name="GAPM" ></a> Des données supplémentaires à capturer 
 
 L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens sont concernés.
 
