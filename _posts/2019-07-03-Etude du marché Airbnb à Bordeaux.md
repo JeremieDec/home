@@ -121,6 +121,7 @@ Expérience : On prends les biens répondants à l'ensemble des critères corres
 
 **73 €** correspond le prix moyen d'une location pour deux personnes, située au coeur du Centre-Ville de Bordeaux (exemple d'un appartement en deuxième photo de couverture)
 
+** Le quartier, la quantité de reviews, le type de logement, la quantité de biens en locations listés personellement par un hôtes sont les variables critiques qui déterminent la demande d'un bien. 
 
 **
 
