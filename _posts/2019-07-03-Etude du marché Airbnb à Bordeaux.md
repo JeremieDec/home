@@ -45,7 +45,7 @@ I- [Exploration des données](#DE)
   8. [Des données supplémentaires à capturer](#GAPM)
   9. [Determinants de la Demande](#DEMAND)
   
-II- [Questionnements]
+II- [Questionnements](#SK)
   1. [Combien les hôtes possèdent-ils de biens en location ?](#HL) 
   2. [Les hôtes déclarent-ils leurs activités ?](#NL) 
   3. [Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
@@ -285,7 +285,7 @@ Le type de logement arrive en premier avec une importance de 11,5% (0.115), le n
 
 
 
-## <a name="MD" ></a> Questionnements 
+## <a name="SK" ></a> Questionnements 
 
 
 ## <a name="HL" ></a> Combien les hôtes possèdent-ils de biens en location ? 
