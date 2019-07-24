@@ -75,43 +75,8 @@ IV- [Prédiction](#PR)
 V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
     
-VI-[Références](#REF) 
+VI-[Références](#REF)
 
-```
-feature_importance_dispo30
-neighbourhood                                 0.037372
-price                                         0.037857
-minimum_minimum_nights                        0.038779
-host_listings_count                           0.045887
-number_of_reviews_ltm                         0.049543
-room_type                                     0.115095
-```
-On obtient ici les variables les plus importantes qui permettent de déterminer la demande des biens.
-
-Le type de logement arrive en premier avec une importance de 11,5% (0.115), le nombre de notes vient ensuite avec 5% d'importance puis le nombre de biens gérés par hôte (4.5%). Ce qui nous amène aux questionnements suivants : Quels types de logements (room_type) sont les mieux loués ? Quel est le prix moyen des logements les plus demandés ? 
-
- ## Disponibilité par type de logement
- ```
-dispo30jours_moy_byroomtype = = listings5.groupby('room_type').availability_30.describe()
-
-                  count      mean        std  min  25%  50%   75%   max
-room_type                                                              
-Entire home/apt  7326.0  4.738466   7.731085  0.0  0.0  0.0   7.0  30.0
-Private room     2306.0  9.298786  10.910107  0.0  0.0  3.0  18.0  30.0
-Shared room        67.0  9.791045  12.506407  0.0  0.0  0.0  24.5  30.0
-```
-
-On remarque que les logements entiers sont les plus occupés en moyenne sur la plateforme.
-A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privées chez l'habitant.
-
-## Disponibilité par nombre de reviews 
-
- ```
-dispo_parnbreviews = listings5.groupby("number_of_reviews").availability_30.describe()
- ```
-
-## Expérience
-Expérience : On prends les biens répondants à l'ensemble des critères correspondants à une Demande élevé. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
 
 ## <a name="INS" ></a> Enseignements clés de l'enquête
 
@@ -278,6 +243,103 @@ On remarque que le prix est fortement corrélé avec le nombre de chambres (0.46
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="75%">
 
 
+## <a name="PM" ></a> Des données supplémentaires à capturer 
+
+L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens sont concernés.
+
+Cependant, une information pertinente est donnée sur la visibilité du logement: le nombre total de fois ou le bien a été visualisé.
+Ces données sont récupérables dans le but de prédire le poids des variables liées aux scoring des annonces.
+
+
+Les biens suivants ont été notés plus de 13 fois par mois :
+
+[n 1](https://www.airbnb.com/rooms/29958146?source_impression_id=p3_1563230927_euTvpaIQmeQo5abG)
+
+"This place is getting a lot of attention.
+It’s been viewed 111 times in the past week."
+
+[n 2](https://www.airbnb.com/rooms/29958146?source_impression_id=p3_1563230927_euTvpaIQmeQo5abG)
+
+"This is a rare find.
+Alexandre's place is usually booked."
+
+
+```
+rev_ehigh = listings_raw[listings_raw.reviews_per_month>13]
+```
+
+## <a name="DE" ></a> Déterminants de la Demande 
+
+```
+feature_importance_dispo30
+neighbourhood                                 0.037372
+price                                         0.037857
+minimum_minimum_nights                        0.038779
+host_listings_count                           0.045887
+number_of_reviews_ltm                         0.049543
+room_type                                     0.115095
+```
+On obtient ici les variables les plus importantes qui permettent de déterminer la demande des biens.
+
+Le type de logement arrive en premier avec une importance de 11,5% (0.115), le nombre de notes vient ensuite avec 5% d'importance puis le nombre de biens gérés par hôte (4.5%). Ce qui nous amène aux questionnements suivants : Quels types de logements (room_type) sont les mieux loués ? Quel est le prix moyen des logements les plus demandés ? 
+
+
+
+## <a name="MD" ></a> Questionnements 
+
+
+## <a name="HL" ></a> Combien les hôtes possèdent-ils de biens en location ? 
+
+75 % des hôtes proposent un bien unique en location.
+
+```
+freq = listings.groupby(['host_id']).size().reset_index(name='num_host_listings')
+host_prop = freq.groupby(['num_host_listings']).size().reset_index(name='count').transpose()
+host_prop.columns = host_prop.iloc[0]
+host_prop = host_prop.drop(host_prop.index[0])
+host_prop
+
+Out[]: 
+Quantité de biens loués     1    2   3   4   5   6   7  ...  17  21  25  34  61  72  75
+count                     7318  605  98  46  24  11   7 ...   2   1   1   1   1   1   1
+
+[1 rows x 19 columns]
+
+```
+**Graphique** : 
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Nombre d'ID uniques possédant n listes .png" width="100%">
+
+
+On remarque que l'ensemble de ces hôtes possédant +20 biens sont classés 'Superhost' et possèdent le 'Government ID': ils déclarent l'activité professionnelle. 
+
+Voici maintenant les descriptions des plus "grands hôtes" en termes de quantité de biens gérés; qui ne manquent parfois pas de féerie :
+
+```
+freq = listings.groupby(['host_id', 'host_name', 'host_about']).size().reset_index(name='num_host_listings')
+
+freq = freq.sort_values(by=['num_host_listings'], ascending=False)
+freq = freq[freq['num_host_listings'] >= 20]
+freq
+```
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/FreqHostabout.PNG" width="100%">
+
+
+## <a name="NL" ></a> Les hôtes déclarent-ils leurs activités ? - Nombre de licences par quartier
+
+
+**Enregistrement obligatoire en mairie**
+
+Depuis le 1er mars 2019, les Bordelais qui souhaitent louer une pièce ou toute leur résidence principale via Airbnb ont pour obligation d'enregistrer leur bien auprès de la mairie qui souhaite éviter que les immeubles de ses quartiers historiques du centre ne soient intégralement consacrés à ce type d’activités.
+
+On remarque que les hôtes qui louent des biens au centre sont les plus respectueux des règles. De ce fait, le prix moyen plus élevé peuvent s'expliquer du fait de cette déclaration qui implique le paiement des impôts (de 0% à 45% en fonction de la tranche de revenus en comptant un abattement de 50%). Au contraire, une quantité très faible de biens sont enregistrés en périphérie.
+
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Licences par Quartier.png" width="100%">
+
+
+
 ## <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
 
 
@@ -348,6 +410,32 @@ max       365.000000
 Par mesure de prudence, on prends la moyenne des 4 : 29,70 % en tant que taux d'occupation de référence.
 
 
+
+ ## Disponibilité par type de logement
+ ```
+dispo30jours_moy_byroomtype = = listings5.groupby('room_type').availability_30.describe()
+
+                  count      mean        std  min  25%  50%   75%   max
+room_type                                                              
+Entire home/apt  7326.0  4.738466   7.731085  0.0  0.0  0.0   7.0  30.0
+Private room     2306.0  9.298786  10.910107  0.0  0.0  3.0  18.0  30.0
+Shared room        67.0  9.791045  12.506407  0.0  0.0  0.0  24.5  30.0
+```
+
+On remarque que les logements entiers sont les plus occupés en moyenne sur la plateforme.
+A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privées chez l'habitant.
+
+## Disponibilité par nombre de reviews 
+
+ ```
+dispo_parnbreviews = listings5.groupby("number_of_reviews").availability_30.describe()
+ ```
+
+## Expérience
+Expérience : On prends les biens répondants à l'ensemble des critères correspondants à une Demande élevé. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
+
+
+
 ## <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte la plus appréciée
 
 La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle :
@@ -374,7 +462,7 @@ rev_excell.shape
 - L'appartement est localisé dans la périphérie de Bordeaux (Mérignac), bien que la surface soit réduite (20m2), la décoration et l'agencement en font une place de premier choix: - le taux de reviews s'élève à 15 par mois, ce qui signifie au minimum 15 hôtes différents, pour une durée minimale de 15 nuits.  
 - 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Egalement, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi supérieur à la moyenne.
 
-## <a name="ROI" ></a>  Quel est le taux de rentabilité de ce logement ?
+## <a name="ROI" ></a>  Retour sur investissement de ce logement 
 
 On prends en compte le prix au  m² de l'apartement à Mérignac (2.531 €) et la configuration de ce studio de luxe et on tente maintenant
 de connaître le retour sur investissement à l'année de ce type de bien.
@@ -385,83 +473,6 @@ On prends les données suivantes en considération :
         
 Ce qui permet une rentabilité locative de **16%** pour ce studio.
     
-
-
-## <a name="PM" ></a> Des données supplémentaires à capturer 
-
-L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens sont concernés.
-
-Cependant, une information pertinente est donnée sur la visibilité du logement: le nombre total de fois ou le bien a été visualisé.
-Ces données sont récupérables dans le but de prédire le poids des variables liées aux scoring des annonces.
-
-
-Les biens suivants ont été notés plus de 13 fois par mois :
-
-[n 1](https://www.airbnb.com/rooms/29958146?source_impression_id=p3_1563230927_euTvpaIQmeQo5abG)
-
-"This place is getting a lot of attention.
-It’s been viewed 111 times in the past week."
-
-[n 2](https://www.airbnb.com/rooms/29958146?source_impression_id=p3_1563230927_euTvpaIQmeQo5abG)
-
-"This is a rare find.
-Alexandre's place is usually booked."
-
-
-```
-rev_ehigh = listings_raw[listings_raw.reviews_per_month>13]
-```
-
-
-## <a name="NL" ></a> Nombre de licences par quartier
-
-
-**Enregistrement obligatoire en mairie**
-
-Depuis le 1er mars 2019, les Bordelais qui souhaitent louer une pièce ou toute leur résidence principale via Airbnb ont pour obligation d'enregistrer leur bien auprès de la mairie qui souhaite éviter que les immeubles de ses quartiers historiques du centre ne soient intégralement consacrés à ce type d’activités.
-
-On remarque que les hôtes qui louent des biens au centre sont les plus respectueux des règles. De ce fait, le prix moyen plus élevé peuvent s'expliquer du fait de cette déclaration qui implique le paiement des impôts (de 0% à 45% en fonction de la tranche de revenus en comptant un abattement de 50%). Au contraire, une quantité très faible de biens sont enregistrés en périphérie.
-
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Licences par Quartier.png" width="100%">
-
-
-## <a name="HL" ></a> Combien les hôtes possèdent-ils de biens en location ? 
-
-75 % des hôtes proposent un bien unique en location.
-
-```
-freq = listings.groupby(['host_id']).size().reset_index(name='num_host_listings')
-host_prop = freq.groupby(['num_host_listings']).size().reset_index(name='count').transpose()
-host_prop.columns = host_prop.iloc[0]
-host_prop = host_prop.drop(host_prop.index[0])
-host_prop
-
-Out[]: 
-Quantité de biens loués     1    2   3   4   5   6   7  ...  17  21  25  34  61  72  75
-count                     7318  605  98  46  24  11   7 ...   2   1   1   1   1   1   1
-
-[1 rows x 19 columns]
-
-```
-**Graphique** : 
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Nombre d'ID uniques possédant n listes .png" width="100%">
-
-
-On remarque que l'ensemble de ces hôtes possédant +20 biens sont classés 'Superhost' et possèdent le 'Government ID': ils déclarent l'activité professionnelle. 
-
-Voici maintenant les descriptions des plus "grands hôtes" en termes de quantité de biens gérés; qui ne manquent parfois pas de féerie :
-
-```
-freq = listings.groupby(['host_id', 'host_name', 'host_about']).size().reset_index(name='num_host_listings')
-
-freq = freq.sort_values(by=['num_host_listings'], ascending=False)
-freq = freq[freq['num_host_listings'] >= 20]
-freq
-```
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/FreqHostabout.PNG" width="100%">
 
 
 ## <a name="ND" ></a> Nettoyage des données 
