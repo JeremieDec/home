@@ -8,10 +8,6 @@ comments: true
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Place_de_la_Bourse_Bordeaux2comp.png" width="100%">
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Selection_006.png" width="100%">
-
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/ubuntuShutter.png" width="100%">
-
 **Préface**
 
 D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian lui eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb vu en grand ...
@@ -447,6 +443,12 @@ Expérience : On prends les biens répondants à l'ensemble des critères corres
 
 La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle :
 
+
+Annonce exceptionelle :
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Selection_006.png" width="100%">
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/ubuntuShutter.png" width="100%">
 
 
 ["Annonce exceptionelle"](https://www.airbnb.com/rooms/32541282?source_impression_id=p3_1563223901_s1cD%2BxPIaIiI2HbY&check_in=2019-07-18&guests=1&adults=1&sl_alternate_dates_exclusion=true&check_out=2019-07-19)
