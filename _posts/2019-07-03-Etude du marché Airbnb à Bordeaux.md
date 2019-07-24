@@ -71,7 +71,7 @@ IV- [Prédiction](#PR)
   6. [Régression linéaire](#REL)
   7. [Xgboost- Régression linéaire](#XGB)
   8. [Imputation de 25% des données manquantes, effets sur le modèle] (#OPT)
-  9. [Variables les plus importantes à la prédiction du prix](#VARS)
+
 V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
     
@@ -86,7 +86,7 @@ VI-[Références](#REF)
 
 **73 €** correspond le prix moyen d'une location pour deux personnes, située au coeur du Centre-Ville de Bordeaux (exemple d'un appartement en deuxième photo de couverture)
 
-** Le quartier, la quantité de reviews, le type de logement, la quantité de biens en locations listés personellement par un hôtes sont les variables critiques qui déterminent la demande d'un bien. 
+** Le quartier, la quantité de reviews, le type de logement, la quantité de biens en locations par hôte  sont les variables critiques qui déterminent la demande d'un bien. 
 
 **
 
