@@ -650,6 +650,7 @@ Cette heatmap calcule la relation de nullité entre les différentes variables g
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/missingnoNullmatrix.png" width="100%">
 
+On remarque que 'reviews per month' n'est pas défini dès l'instant ou 'first_review' n'est pas défini. Il n'y a pas de 'first review' donc obligatoirement, il n'y aura pas de calcul de 'reviews per month'. L'ensemble de ces valeurs non-définies sont donc égales à 0.
 
 ### <a name="VM" ></a> Variables maintenues
 
@@ -797,7 +798,7 @@ listings = listings.fillna(listings.mean())
 
 ```
 
-Pour la variable 'reviews_per_month’ : une large partie de valeurs sont NaNs, on peut les supprimer. Cependant, après un rapide coup d'œil, on remarque que 'reviews_per_month’ est non défini dès l’instant ou ‘first_review’ est non défini également.
+Pour la variable 'reviews_per_month’ : une large partie de valeurs sont NaNs, on peut les supprimer. Cependant, après un rapide coup d'œil (matrice des Nullités précédente), on remarque que 'reviews_per_month’ est non défini dès l’instant ou ‘first_review’ est non défini également. L'ensemble de ces valeurs non-définies sont donc égales à 0.
 
 Apres une revue rapide des biens concernées sur Airbnb, on s’aperçoit que les biens ne sont en fait pas notés (Airbnb indique « No reviews (yet) »). 
 
