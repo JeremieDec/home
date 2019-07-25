@@ -53,7 +53,7 @@ II- [Questionnements](#SK)
   2. [Les hôtes déclarent-ils leurs activités ? ](#NL) 
   3. [Cas d'Etude : Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
   4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
-    a.[Retour sur investissement de ce logement](#ROI)
+  * a.[Retour sur investissement de ce logement](#ROI)
   
   
 III- [Nettoyage des données](#ND) 
