@@ -79,9 +79,9 @@ IV- [Prédiction](#PR)
         * d. [Xgboost- Prix € (Dataset) + 23% of Reviews imputed from 'mean'](#XGB3)
         * e. [Xgboost- log(Prix € 0,200) +  23% of Reviews imputed from 'mean'](#XGB4)
       * [Imputation de 23% de données manquantes par Knn -> Effets sur le modèle](#OPT2)
-  * f. [Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)](#XGB5)
-  * g. [Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 3)](#XGB6)
-  * h. [Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' ](#XGB7)
+        * f. [Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)](#XGB5)
+        * g. [Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 3)](#XGB6)
+        * h. [Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' ](#XGB7)
    
   8. [Résultats - comparaison des méthodes] (#OPT)
 
