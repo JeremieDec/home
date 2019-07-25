@@ -71,8 +71,19 @@ IV- [Prédiction](#PR)
   4. [Définition d'une Class pipeline pour les modèles et mesures de performances](#PVA)
   5. [Fonction Plot de distribution des residuals, Ypred vs Y](#PRES)
   6. [Régression linéaire](#REL)
-  7. [Xgboost- Régression linéaire](#XGB)
-  8. [Imputation de 25% des données manquantes, effets sur le modèle] (#OPT)
+  7. [Xgboost- Régression linéaire](#XGB0)
+    a.[Prix € (Dataset)](#XGB0
+    b.[Prix € [0,200]](#XGB1)
+    b.[log(Prix € [0,200]](#XGB2)
+      -[Imputation de 23% de données manquantes par la moyenne -> Effets sur le modèle](#OPT)
+    e.[Xgboost- Prix € (Dataset) + 23% of Reviews imputed from 'mean'](#XGB3)
+    f.[Xgboost- log(Prix € 0,200) +  23% of Reviews imputed from 'mean'](#XGB4)
+      -[Imputation de 23% de données manquantes par Knn -> Effets sur le modèle](#OPT2)
+    g.[Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)](#XGB5)
+    h.[Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 3)](#XGB6)
+    i.[Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' ](#XGB7)
+   
+  8. [Résultat, comparaison des méthodes] (#OPT)
 
 V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
@@ -1260,6 +1271,7 @@ Voilà 3.5% d'amélioration par rapport à la baseline : 9.53 d'erreur médiane 
 
 Ceci s'explique par le choix d'imputer cleaning_fee et security_deposit par la moyenne également : cleaning_fee : 29.98 €, security_deposit : 500 €). Les variables des biens dont les frais de ménages et le déposit de sécurité se trouvent à bas coût (relatif) sont ainsi mieux imputés. 
 
+## <a name="OPT2" ></a> Imputation de 23% de données manquantes par Knn -> Effets sur le modèle
 
 ## <a name="XGB5" ></a> Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)'
 
