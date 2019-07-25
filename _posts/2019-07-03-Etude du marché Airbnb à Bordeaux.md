@@ -1363,10 +1363,9 @@ Le log(Prix) en imputant les données par la moyenne donne le meilleur score en 
 
 ### <a name="CC" ></a> Conclusion et ouverture 
 
-On dans le cas d’informations incomplètes et il y a une marge d'amélioration du score probablement en dixièmes.
 Plusieurs pistes sont à exploiter afin de gagner en informations  : 
 
-- La prédiction peut certainement être précisée en utilisant d'autres modèles, voir ensemble. Les biens au dessus de 200 € sont sous-représentés, il peuvent être sur-samplés dans l'objectif de prédire l'ensemble des données. Je suis également limité par la puissance de calcul de ma machine (i7 7700HQ, 4 logiques, 8 threads), un modèle prends à peu près 45 secondes pour être calculé. D'après l'étude effectuée des performances sur la comparaison GPUphys/CPU, l'entraînement sur gtx1080 est 8x plus rapide par rapport au i7 7700HQ, j'envisage d'y passer prochainement [xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b). 
+- La prédiction peut certainement être précisée en utilisant d'autres modèles, voir ensemble. Les biens au dessus de 200 € sont sous-représentés, il peuvent être sur-samplés dans l'objectif de prédire l'ensemble des données. Je suis limité par la puissance de calcul de ma machine (i7 7700HQ, 4 logiques, 8 threads). Un modèle prends à peu près 45 secondes pour être calculé. D'après l'étude effectuée des performances sur la comparaison GPUphys/CPU, l'entraînement sur gtx1080 est 8x plus rapide par rapport au i7 7700HQ, j'envisage d'y passer prochainement afin d'effectuer plus d'hypothèses [xgboost GPU performance on low-end GPU vs high-end CPU](https://medium.com/data-design/xgboost-gpu-performance-on-low-end-gpu-vs-high-end-cpu-a7bc5fcd425b). 
 
 - La stratégie de validation que j'utiliserai dorénavant sera une validation-croisée et non un split seed fixe car celle-ci permet de comparer plus raisonnablement les différences de performances des modèles en assurant que le modèle est bien régularisé (c'est la méthode utilisée en compétition sur Kaggle par l'ensemble des meilleurs prédictions). Cela permet de créer des modèles plus robustes et comparables. 
 
@@ -1374,11 +1373,9 @@ Plusieurs pistes sont à exploiter afin de gagner en informations  :
 
 - Le “feature engineering” qui signifie  ‘la combinaison de variables ‘  nous permet de créer de nouvelles variables.  Chaque domaine d’expertise possède des variables propres et leur combinaison peut s’avérer déterminante dans la prédiction. Egalement, on peut tenter l'utilisation de la bibliothèque [Featuretools](https://towardsdatascience.com/why-automated-feature-engineering-will-change-the-way-you-do-machine-learning-5c15bf188b96) qui permet d'automatiser la création de nouvelles variables à partir de l'instant ou deux variables dépendantes sont renseignées. 
 
-- L'encodage des variables catégoriques se fera avec OneHotEncoder plutôt que LabelEncoder. En effet, LabelEncoder institue une échelle 'Bleu' 'Rouge' et 'Vert' encodées [0, 1, 2], ce qui détermine qu'il y a 2 unités qui séparent le 'Bleu' du 'Vert'. OneHotEncoder permet de prendre chacune de ses variables dans une colonne différente et d'attribuer un boolean '0' ou '1' (Bleu : 'oui' ou 'non') pour chaque variable (n) et chaque bien (m). LabelEncoder a été utilisé ici pour optimiser la vitesse d'entraînement. 
+-  LabelEncoder a été utilisé ici pour optimiser la vitesse d'entraînement; il se trouve qu'il est également adapté à l'utilisation d'Xgboost du fait de la structure en arbre de décision. D'autres méthodes d'imputation seront testées, en particulier dans cet article qui résume des [méthodes courantes](https://towardsdatascience.com/6-different-ways-to-compensate-for-missing-values-data-imputation-with-examples-6022d9ca0779?gi=b922bafa325b)
 
-- J'ai supprimé presque 25 %  des données au nettoyage, provenant de l'ensemble des reviews NaNs (non attribuées). L'idée étant de les ré-intégrer plus tard lors de l'analyse pour observer comment elles pourraient affecter la performance. Il se trouve, après des essais, que l'imputation par la moyenne fait diminuer le score. La moyenne étant un indice qui apporte peu d'information, c'est le Knn (K-nearest neighbrors) qui semble intéressante : effectuer la moyenne de chaque variable manquantes des biens les plus proches (respectivement 3 et 6 plus proches). 
-
-- Pour aller plus loin, peut obtenir des informations supplémentaires en exploitant les photos des biens (utilisation du deep learning). Par exemple, un ensemble de caractéristiques peuvent influencer le prix : la hauteur de plafond, le niveau de luminosité, le taux d’espace vide’ (Taux de remplissage du bien). 
+- Pour aller plus loin, peut obtenir des informations supplémentaires en exploitant les photos des biens (utilisation du deep learning). Par exemple, un ensemble de caractéristiques peuvent influencer le prix : la hauteur de plafond, le niveau de luminosité, le type de décoration tel que dans ce papier qui cite un modèle de classification du 'niveau de luxe' afin d'améliorer l'estimation des biens -Décembre 2019 : [Inside 50,000 living rooms: an assessment of global residential ornamentation using transfer learning]  (https://link.springer.com/article/10.1140/epjds/s13688-019-0182-z). Il cite aussi (hors-sujet) une étude similaire qui a utilisé un modèle apprenant sur une collection de photos d'intérieurs de restaurant (uploadé par Yelp) afin de prédire le succès de celui-ci.
 
 - Les descriptions des biens, les commentaires sont également d'autres sources d'informations possibles.
 
@@ -1386,7 +1383,7 @@ Plusieurs pistes sont à exploiter afin de gagner en informations  :
 
 ## <a name="PAL" ></a> Pour aller plus loin
 
-- **Aider les hôtes à maximiser leur réussite sur la plateforme** : Dans une prochaine étude, Il serait intéressant de récupérer l'ensemble de ces commentaires pré-conversion ainsi que le classement (ranking) des biens sur Bordeaux (effectué par Airbnb). Ces deux variables additionnées à celles déjà acquises, ouvrent la possibilité de connaître d'avantage le poids de chaque variables dans l'optimisation de la visibilité de ses annonces.
+- Dans le but d'**Aider les hôtes à maximiser leur réussite sur la plateforme** : Dans une prochaine étude, Il serait intéressant de récupérer l'ensemble de ces commentaires pré-conversion ainsi que le classement (ranking) des biens sur Bordeaux (effectué par Airbnb). Ces deux variables additionnées à celles déjà acquises, ouvrent la possibilité de connaître d'avantage le poids de chaque variables dans l'optimisation de la visibilité des annonces.
 
 ## <a name="REF" ></a> Sources
 
