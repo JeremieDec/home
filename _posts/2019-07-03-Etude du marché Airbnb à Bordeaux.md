@@ -83,7 +83,7 @@ IV- [Prédiction](#PR)
         * g. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés depuis 'k-Nearest Neighbors (kNN- 3)'](#XGB6)
         * h. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés depuis 'k-Nearest Neighbors (kNN- 5)'](#XGB7)
    
-  8. [Résultats - comparaison des méthodes] (#OPT)
+  8. [Résultats - comparaison des méthodes] (#RES)
 
 V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
