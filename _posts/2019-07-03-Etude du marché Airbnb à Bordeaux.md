@@ -1107,7 +1107,7 @@ Plots(Lin_Reg_Model)
 
 
 
-## <a name="XGB" ></a> Xgboost- Régression linéaire
+## <a name="XGB0" ></a> Xgboost- Régression linéaire
 
 On tente maintenant un modèle d'arbres de décision boostés sur l'ensemble des données.
 
@@ -1215,6 +1215,8 @@ review_scores_value          22.685078
 ```
 On commence par la technique de la moyenne des valeurs non manquantes dans une colonne, puis en remplaçant les valeurs manquantes dans chaque colonne séparément et indépendamment des autres. La méthode est facile et rapide. Cependant, elle ne prends pas en compte les corrélations entre les variables.
 
+## <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] +  23% of Reviews imputed from 'mean'
+
 --- Imputation 'moyenne', log(Prix), Full data
 
 Je garde les mêmes paramètres de Xgboost. Je prédits le log du prix cible sur l'ensemble des données. 
@@ -1237,8 +1239,8 @@ Gagner des données est synonyme de gain en biais ?
 
 La méthode de la moyenne est un échec, cependant laissons une chance sur l'objectif des prix de location inférieurs à 200 € : 
 
+## <a name="XGB4" ></a> Xgboost- Régression linéaire - log(Prix € [0,200]) +  23% of Reviews imputed from 'mean'
 
---- Imputation 'moyenne' sur 23% des Reviews, log(Prix € [0,200])  
 
 ```
 -Best R2 training 0.7274884933366395
@@ -1259,7 +1261,7 @@ Voilà 3.5% d'amélioration par rapport à la baseline : 9.53 d'erreur médiane 
 Ceci s'explique par le choix d'imputer cleaning_fee et security_deposit par la moyenne également : cleaning_fee : 29.98 €, security_deposit : 500 €). Les variables des biens dont les frais de ménages et le déposit de sécurité se trouvent à bas coût (relatif) sont ainsi mieux imputés. 
 
 
---- Imputation '1-kNN' sur 23% des Reviews, log(Prix € [0,200])  -----------------------------
+## <a name="XGB5" ></a> Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)'
 
 Qu'en est-il de l'imputation par les plus proches voisins ? 
 
@@ -1302,7 +1304,7 @@ Testing best score (median absolute error) 9.860536575317395
 ```
 Et voila, ce qui devait arriver est probablement arrivé alias "Les petits cailloux dans la chaussure": Des variables imputées extremistes (k=1 plus proche voisin) se sont infiltrées à l'entraînement. On remarque cependant le prix médian de 9.86 comparable à la baseline (9.89).
 
---- Imputation '3-kNN' sur 23% des Reviews, log(Prix € [0,200])  -----------------------------
+## <a name="XGB6" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-3)' 
 
 ```
 -Best R2 training 0.777614798001613
@@ -1317,7 +1319,7 @@ Testing best score (_mean absolute error) 19.179957136149014
 Testing best score (median absolute error) 10.379804611206058
 ```
 
---- Imputation '5-kNN' sur 23% des Reviews, log(Prix € [0,200])  -----------------------------
+## <a name="XGB7" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' 
 
 ```
 -Best R2 training 0.7274868546422395
@@ -1332,15 +1334,8 @@ Testing best score (_mean absolute error) 14.44077185657628
 Testing best score (median absolute error) 9.898965835571271
 ```
 
-## <a name="XGB1" ></a> Xgboost- Régression linéaire - Prix € [Dataset] + 20% of Reviews imputed from 'mean'
-## <a name="XGB2" ></a> Xgboost- Régression linéaire - Prix € [0,200] +  20% of Reviews imputed from 'mean'
-## <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] + 20% of Reviews imputed from 'k-Nearest Neighbors (kNN)'
-
-
-
 Xgb_imput = model_iterations(10, listings_imp, Y_imp, mod, log_bool=False)
-## <a name="XGB4" ></a> Xgboost- Régression linéaire - Prix € [0,200] + 20% of Reviews imputed from 'k-Nearest Neighbors (kNN)' 
-## <a name="XGB5" ></a> Xgboost- Régression linéaire - Prix € [0,200] + log(Price)
+
 
 
 
