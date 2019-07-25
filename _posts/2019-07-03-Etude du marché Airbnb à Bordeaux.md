@@ -105,7 +105,7 @@ VI-[Références](#REF)
 
 La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à **14 %**. On remarque que le nombre de licences est décroissant à mesure que l'on s'éloigne du centre-ville. 
 
-**16%** est le taux de rentabilité locatif du bien le plus populaire (compté en termes de reviews)
+**16%** est le taux de rentabilité locative du bien le plus populaire (compté en termes de reviews)
 
 **36 %**, c'est le pourcentage réaliste moyen des frais financés (loyer+charges) grâce à la [location d'une chambre à Bordeaux sur  Airbnb](#PAY).
 
