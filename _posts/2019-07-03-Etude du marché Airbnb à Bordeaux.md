@@ -72,7 +72,7 @@ IV- [Prédiction](#PR)
   6. [Fonction Plot de distribution des residuals, Ypred vs Y](#PRES)
   7. [Régression linéaire](#REL)
   8. [Xgboost- Régression linéaire](#XGB0)
-    a.[Prix € (Dataset)](#XGB0)
+    1.[Prix € (Dataset)](#XGB0)
     
     
     
