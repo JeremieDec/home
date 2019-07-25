@@ -70,9 +70,11 @@ IV- [Prédiction](#PR)
   4. [Quartile-Quartile plot de la variable cible](#QQplot)
   5. [Définition d'une Class pipeline pour les modèles et mesures de performances](#PVA)
   6. [Fonction Plot de distribution des residuals, Ypred vs Y](#PRES)
+   * test
   7. [Régression linéaire](#REL)
+  * test
   8. [Xgboost- Régression linéaire](#XGB0)
- - [Prix € (Dataset)](#XGB0)
+ * [Prix € (Dataset)](#XGB0)
    
    
 
