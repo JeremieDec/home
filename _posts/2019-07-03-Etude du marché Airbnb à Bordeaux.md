@@ -133,7 +133,7 @@ freq.plot.barh(figsize=(15, 3), width=1, color = ["g","b","r"])
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Typesdelogement.png" width="35%">
 
 
-## <a name="TPP" ></a> Type de propriétés
+### <a name="TPP" ></a> Type de propriétés
 
 Les appartements arrivent en tête, également avec une proportion de logement entier à plus de 85%
 
@@ -156,7 +156,7 @@ plt.legend(loc = 4,prop = {"size" : 13})
 plt.rc('ytick', labelsize=13)
 plt.show()
 ```
-## <a name="NE" ></a> Répartition des biens par quartier
+### <a name="NE" ></a> Répartition des biens par quartier
 
 Hôtel de Ville arrive en tête avec plus de 1396 biens en location. Les 7 quartiers les moins répertoriés représentent à eux seul le même nombre de biens que le deuxièmes et troisème quartiers majeur réunis (Chartron et Capucins-Victoire).
 
@@ -183,7 +183,7 @@ alternative pour calculer n éléments distincts d’une variable:
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/hmapListesparquartier.png" width="100%">
 
-## <a name="PM" ></a> Prix moyen d'une location par quartier pour deux personnes
+### <a name="PM" ></a> Prix moyen d'une location par quartier pour deux personnes
 
 Hotel de Ville est en moyenne 57 % plus cher que l'ensemble des quartiers alentours ! La ville s'étend pourtant sur 1.5 km de rayon (en prenant le centre du quartier Hotel de Ville). Nous verons un peu plus tard dans cette analyse une piste pour expliquer une partie de cette différence ([Les hôtes déclarent-ils leurs activités ?](#NL)).
 
@@ -209,7 +209,7 @@ min         0.000000
 max        15.000000
 ```
 
-## <a name="CP" ></a> Capacité totale des biens par nombre d'accommodés	
+### <a name="CP" ></a> Capacité totale des biens par nombre d'accommodés	
 
 
 **4112 biens pour 2 personnes** sont disponibles, ce qui fait une disponibilité totale de ces biens pour 8224 personnes.
@@ -233,7 +233,7 @@ plt.show()
 
 ```
 
-## <a name="DI" ></a> Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
+### <a name="DI" ></a> Disponibilité moyenne des biens par quartier - évolution sur 90, 60, 30 jours
 
 On remarque que la disponibilité moyenne la plus faible se trouve au quartier Capucins-Victoire… Ainsi, le taux d'occupation le plus élevé se trouve Capucins-Victoire suivie par Hôtel de Ville. 
 
@@ -249,7 +249,7 @@ Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Disponibilite%20moyenne%20des%20Biens%20par%20Quartier%20(moy%2090j).png" width="100%">
 
 
-## <a name="HM" ></a> Matrice heatmap des corrélations
+### <a name="HM" ></a> Matrice heatmap des corrélations
 
 
 Tracer une matrice de corrélations ici avec 47 variables reviendrait à 2 (k) parmis 47 (n)= 1081 combinaisons/comparaisons possibles.  
@@ -270,7 +270,7 @@ On remarque que le prix est fortement corrélé avec le nombre de chambres (0.46
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/corrheatmap.png" width="75%">
 
 
-## <a name="GAPM" ></a> Des données supplémentaires à capturer 
+### <a name="GAPM" ></a> Des données supplémentaires à capturer 
 
 L'algorithme de scoring d'Airbnb, à la manière de Google effectue le référencement des biens en fonction d'une multitude de variables, dont le taux de note attribuées. Airbnb affiche des messages d'information destinés à faciliter la conversion lorsque l'on choisit une date. Ici, on s'intéresse aux biens dont le nombre d'appréciations est supérieur à 13 commentaires par mois: 3 biens sont concernés.
 
@@ -295,7 +295,7 @@ Alexandre's place is usually booked."
 rev_ehigh = listings_raw[listings_raw.reviews_per_month>13]
 ```
 
-## <a name="DE" ></a> Déterminants de la Demande 
+### <a name="DE" ></a> Déterminants de la Demande 
 
 ```
 feature_importance_dispo30
@@ -311,12 +311,37 @@ On obtient ici les variables les plus importantes qui permettent de déterminer 
 
 Le type de logement arrive en premier avec une importance de 11,5% (0.115), le nombre de notes vient ensuite avec 5% d'importance puis le nombre de biens gérés par hôte (4.5%). Ce qui nous amène aux questionnements suivants : Quels types de logements (room_type) sont les mieux loués ? Quel est le prix moyen des logements les plus demandés ? 
 
+### Disponibilité par type de logement
+
+ ```
+dispo30jours_moy_byroomtype = = listings5.groupby('room_type').availability_30.describe()
+
+                  count      mean        std  min  25%  50%   75%   max
+room_type                                                              
+Entire home/apt  7326.0  4.738466   7.731085  0.0  0.0  0.0   7.0  30.0
+Private room     2306.0  9.298786  10.910107  0.0  0.0  3.0  18.0  30.0
+Shared room        67.0  9.791045  12.506407  0.0  0.0  0.0  24.5  30.0
+```
+
+On remarque que les logements entiers sont les plus occupés en moyenne sur la plateforme.
+A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privées chez l'habitant.
+
+
+### Disponibilité par nombre de reviews 
+
+ ```
+dispo_parnbreviews = listings5.groupby("number_of_reviews").availability_30.describe()
+ ```
+ 
+### Expérience
+
+Expérience : On prends les biens répondants à l'ensemble des critères correspondants à une Demande élevé. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
 
 
 ## <a name="SK" ></a> Questionnements 
 
 
-## <a name="HL" ></a> Combien les hôtes possèdent-ils de biens en location ? 
+### <a name="HL" ></a> Combien les hôtes possèdent-ils de biens en location ? 
 
 75 % des hôtes proposent un bien unique en location.
 
@@ -354,7 +379,7 @@ freq
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/FreqHostabout.PNG" width="100%">
 
 
-## <a name="NL" ></a> Les hôtes déclarent-ils leurs activités ? - Nombre de licences par quartier
+### <a name="NL" ></a> Les hôtes déclarent-ils leurs activités ? - Nombre de licences par quartier
 
 
 **Enregistrement obligatoire en mairie**
@@ -368,7 +393,7 @@ On remarque que les hôtes qui louent des biens au centre sont les plus respectu
 
 
 
-## <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
+### <a name="PAY" ></a> Payer ses charges grâce à Airbnb, en quelle proportion ?
 
 
 On souhaite savoir s’il est possible de payer le loyer + charges d’un logement de deux chambres en répertoriant l’une des chambres sur Airbnb. L'objectif est de calculer les bénéfices nets attendus (après le loyer moyen, les services publics (eau , gaz, électricité) et Internet).
@@ -439,32 +464,7 @@ Par mesure de prudence, on prends la moyenne des 4 : 29,70 % en tant que taux d'
 
 
 
- ## Disponibilité par type de logement
- ```
-dispo30jours_moy_byroomtype = = listings5.groupby('room_type').availability_30.describe()
-
-                  count      mean        std  min  25%  50%   75%   max
-room_type                                                              
-Entire home/apt  7326.0  4.738466   7.731085  0.0  0.0  0.0   7.0  30.0
-Private room     2306.0  9.298786  10.910107  0.0  0.0  3.0  18.0  30.0
-Shared room        67.0  9.791045  12.506407  0.0  0.0  0.0  24.5  30.0
-```
-
-On remarque que les logements entiers sont les plus occupés en moyenne sur la plateforme.
-A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privées chez l'habitant.
-
-## Disponibilité par nombre de reviews 
-
- ```
-dispo_parnbreviews = listings5.groupby("number_of_reviews").availability_30.describe()
- ```
-
-## Expérience
-Expérience : On prends les biens répondants à l'ensemble des critères correspondants à une Demande élevé. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
-
-
-
-## <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte la plus appréciée
+### <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte la plus appréciée
 
 La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle :
 
@@ -476,7 +476,8 @@ Annonce exceptionelle :
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/ubuntuShutter.png" width="100%">
 
 
-["Annonce exceptionelle"](https://www.airbnb.com/rooms/32541282?source_impression_id=p3_1563223901_s1cD%2BxPIaIiI2HbY&check_in=2019-07-18&guests=1&adults=1&sl_alternate_dates_exclusion=true&check_out=2019-07-19)
+[*lien*](https://www.airbnb.com/rooms/32541282?source_impression_id=p3_1563223901_s1cD%2BxPIaIiI2HbY&check_in=2019-07-18&guests=1&adults=1&sl_alternate_dates_exclusion=true&check_out=2019-07-19)
+
 ```
 listings.reviews_per_month.describe()
 Out[78]: 
@@ -496,7 +497,10 @@ rev_excell.shape
 - L'appartement est localisé dans la périphérie de Bordeaux (Mérignac), bien que la surface soit réduite (20m2), la décoration et l'agencement en font une place de premier choix: - le taux de reviews s'élève à 15 par mois, ce qui signifie au minimum 15 hôtes différents, pour une durée minimale de 15 nuits.  
 - 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Egalement, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi supérieur à la moyenne.
 
-## <a name="ROI" ></a>  Retour sur investissement de ce logement 
+
+
+
+### <a name="ROI" ></a>  Retour sur investissement de ce logement 
 
 On prends en compte le prix au  m² de l'apartement à Mérignac (2.531 €) et la configuration de ce studio de luxe et on tente maintenant
 de connaître le retour sur investissement à l'année de ce type de bien.
@@ -512,7 +516,7 @@ Ce qui permet une rentabilité locative de **16%** pour ce studio.
 ## <a name="ND" ></a> Nettoyage des données 
 
 
-## <a name="CHA" ></a> Chargement des bibliothèques et données
+### <a name="CHA" ></a> Chargement des bibliothèques et données
 
 ```
 %matplotlib inline
@@ -622,7 +626,7 @@ xl_picture_url               100.000000
 zipcode                        1.237241
 ```
 
-## <a name="NULL" ></a> Matrice des nullités 
+### <a name="NULL" ></a> Matrice des nullités 
 
 ```
 import missingno as msno
@@ -646,11 +650,11 @@ Cette heatmap calcule la relation de nullité entre les différentes variables g
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/missingnoNullmatrix.png" width="100%">
 
 
-## <a name="VM" ></a> Variables maintenues
+### <a name="VM" ></a> Variables maintenues
 
 On garde l'ensemble des données numériques (47 colonnes) ainsi que les variables catégoriques 'room_type', 'host_since', 'property_type' et 'cancellation_policy'. 
 
-## <a name="VS" ></a> Variables supprimées 
+### <a name="VS" ></a> Variables supprimées 
 
 Je supprime toutes lignes avec 'bathrooms', 'bedrooms', 'beds' non attribuées (environ 0,5 a 1% des données. 
 
@@ -690,7 +694,7 @@ del listings['index', 'thumbnail_url', 'xl_picture_url', 'host_acceptance_rate',
 
 ```
 
-## <a name="VT" ></a> Variables transformées
+### <a name="VT" ></a> Variables transformées
 
 ```
 listings.price.head()
@@ -783,7 +787,7 @@ listings.security_deposit = a
 
 ```
 
-## <a name="VI" ></a> Variables imputées
+### <a name="VI" ></a> Variables imputées
 
 J’entre temporairement les données de cleaning_fee et security_deposit par leur moyenne respectives. Dans le cas ou ces variables sont importantes pour la prédiction, il peut est nécessaire d’entrer des valeurs plus proches de la réalité. Pour aller plus loin, on pourra inférer ces valeurs grâce à un algorithme des plus proches voisins (nearest neighbors)). 
 
@@ -803,7 +807,7 @@ review_per_m = listings.reviews_per_month.fillna(0)
 listings.reviews_per_month = review_per_m
 ```
 
-## <a name="VE" ></a> Variables encodées 
+### <a name="VE" ></a> Variables encodées 
 
 Le regresseur de scikit-learn accepte uniquement les variables numériques.
 On va maintenant encoder des variables catégoriques ‘intéressantes’ en valeurs numériques le type de chambre, de propriétes, de quartier… en utilisant le LabelEncoder(). J'utilise celui-ci afin de gagner en temps de converge pour la partie prédiction, OneHotEncoder est naturellement la meilleure méthode puisqu'elle ne prends pas en compte l'ordre des variables. 
@@ -835,7 +839,7 @@ Une fois que les hôtes publient leurs annonces, le prix reste fixe tout au long
 L'objectif final est de prédire le prix de location des biens inférieurs à 200 € la nuit avec une erreur médiane de 10.50 €. Ce qui signifie : 50% des biens devront être prédits avec une erreur inférieure à 10.50 € sur les données de test.   
  
 
-## <a name="IM" ></a> Import des bibliothèques utiles 
+### <a name="IM" ></a> Import des bibliothèques utiles 
 
 ```
 
@@ -871,7 +875,7 @@ Y = listings.price
 del(listings["price"])
 ```
 
-## <a name="PV" ></a> Visualisation des p-values
+### <a name="PV" ></a> Visualisation des p-values
 
 La p-value est la probabilité que deux variables soient dépendantes si le coefficient de corrélation entre ces deux variables est égal à zéro (hypothèse nulle confirmée). Si la p-value est plus petite que 0.05 (5%) alors on peut affirmer que la variable est statistiquement significative. 
 
@@ -918,7 +922,7 @@ review_scores_accuracy                         5.126517e-01
 review_scores_checkin                          5.418442e-01
 ```
 
-## <a name="QQplot" ></a> Graphique Quartile-Quartile de la distribution de la variable Prix
+### <a name="QQplot" ></a> Graphique Quartile-Quartile de la distribution de la variable Prix
 
 Le graphique Quartile-Quartile est une comparaison entre une distribution (ensemble de valeurs) et une autre distribution (une variable, une loi de probabilité). 
 
@@ -942,7 +946,7 @@ plt.show()
 
 Les valeurs sont anormalement élevées en fin de distribution pour parler parfaitement de distribution normale. On remarque une dissymétrie dans la partie droite (prix de location élevés). En gardant ces valeurs, le risque est de déstabiliser le modèle linéaire futur.
 
-## <a name="PVA" ></a> Class pipeline pour les modèles
+### <a name="PVA" ></a> Class pipeline pour les modèles
 
 J'utilise une classe avec les fonctions principales d’évaluation des modèles. Pour évaluer la performance de l'algorithme, on calcule sur n  itérations  le score moyen à chaque convergence afin de pouvoir effectuer des comparaisons. On prends 70 % des biens en entraînement, le reste pour la validation.  
 
@@ -1057,7 +1061,7 @@ def model_iterations(n, x, y, model_arg, log_bool=False):
  ```
 
 
-## <a name="PRES" ></a> Fonction graphique de distribution des residuals, Ypred vs. Y et leur distribution
+### <a name="PRES" ></a> Fonction graphique de distribution des residuals, Ypred vs. Y et leur distribution
 
 Je définis une fonction pour afficher valeurs prédites vs valeurs réels, les résidus (écarts prédit - réel) ainsi que leur distributions à partir de la classe définie précédemment.
 
@@ -1101,7 +1105,7 @@ plt.show()
 ```
 
 
-## <a name="REL" ></a> Régression linéaire
+### <a name="REL" ></a> Régression linéaire
 
 ```
 Lin_Reg_Model = model_iterations(1000, X_train, y_train, Lin_Reg(fit_intercept=True), log_bool=False)
@@ -1111,7 +1115,7 @@ ypredtest = Lin_Reg_Model.y_pred_test
 ytest = Lin_Reg_Model.y_test
 metrics.mean_absolute_error(ypredtest, ytest)
 ```
-# On observe une erreur médiane de 23.00 euros sur le test set. 
+> On observe une erreur médiane de 23.00 euros sur le test set. 
 
 On remarque que les résidus sont à peu près normalement distribués (sans prendre en compte les valeurs résiduels élevées), ce qui indique que la fonction linéaire est appropriée.
 
@@ -1123,7 +1127,7 @@ Plots(Lin_Reg_Model)
 
 
 
-## <a name="XGB0" ></a> Xgboost- Régression linéaire
+### <a name="XGB0" ></a> Xgboost- Régression linéaire
 
 On tente maintenant un modèle d'arbres de décision boostés sur l'ensemble des données.
 
@@ -1149,7 +1153,7 @@ test score (mean absolute error) 14.690016550400438
 train score (median absolute error) 6.665931701660156
 test score (median absolute error) 10.828716278076172
 ```
-## <a name="XGB1" ></a> Xgboost- Régression linéaire - Prix € [0,200]
+### <a name="XGB1" ></a> Xgboost- Régression linéaire - Prix € [0,200]
 
 Le but de l'exercice est de prédire le prix des locations des biens de moins de 200 €. 
 
@@ -1188,7 +1192,7 @@ On remarque que la  prédiction avec  les arbres de régressions Xgb boost crée
 
 On remarque également que la généralisation est meilleure avec 20.49 € contre 23 € d'erreur moyenne absolue pour la régression multi classique. 
 
-## <a name="XGB2" ></a> Xgboost- Régression linéaire - log(Prix) € [0,200]
+### <a name="XGB2" ></a> Xgboost- Régression linéaire - log(Prix) € [0,200]
 
 xgb_result_log = model_iterations(20, listings, Y_log, mod, log_bool=True)
 
@@ -1207,7 +1211,7 @@ std moyens des perfs testing 0.22604745566400672
 std des perfs training 0.17883106317140526
 ```
 
-## <a name="OPT" ></a> Imputation de 23% de données manquantes -> Effets sur le modèle
+### <a name="OPT" ></a> Imputation de 23% de données manquantes -> Effets sur le modèle
 
 On garde toujours ces deux variables imputées par la moyenne pour observer seuls les effets sur l'imputation des reviews:
 
@@ -1231,7 +1235,7 @@ review_scores_value          22.685078
 ```
 On commence par la technique de la moyenne des valeurs non manquantes dans une colonne, puis en remplaçant les valeurs manquantes dans chaque colonne séparément et indépendamment des autres. La méthode est facile et rapide. Cependant, elle ne prends pas en compte les corrélations entre les variables.
 
-## <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] +  23% of Reviews imputed from 'mean'
+### <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] +  23% of Reviews imputed from 'mean'
 
 --- Imputation 'moyenne', log(Prix), Full data
 
@@ -1255,7 +1259,7 @@ Gagner des données est synonyme de gain en biais ?
 
 La méthode de la moyenne est un échec, cependant laissons une chance sur l'objectif des prix de location inférieurs à 200 € : 
 
-## <a name="XGB4" ></a> Xgboost- Régression linéaire - log(Prix € [0,200]) +  23% of Reviews imputed from 'mean'
+### <a name="XGB4" ></a> Xgboost- Régression linéaire - log(Prix € [0,200]) +  23% of Reviews imputed from 'mean'
 
 
 ```
@@ -1278,7 +1282,7 @@ Ceci s'explique par le choix d'imputer cleaning_fee et security_deposit par la m
 
 ## <a name="OPT2" ></a> Imputation de 23% de données manquantes par Knn -> Effets sur le modèle
 
-## <a name="XGB5" ></a> Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)'
+### <a name="XGB5" ></a> Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)'
 
 Qu'en est-il de l'imputation par les plus proches voisins ? 
 
@@ -1321,7 +1325,7 @@ Testing best score (median absolute error) 9.860536575317395
 ```
 Et voila, ce qui devait arriver est probablement arrivé alias "Les petits cailloux dans la chaussure": Des variables imputées extremistes (k=1 plus proche voisin) se sont infiltrées à l'entraînement. On remarque cependant le prix médian de 9.86 comparable à la baseline (9.89).
 
-## <a name="XGB6" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-3)' 
+### <a name="XGB6" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-3)' 
 
 ```
 -Best R2 training 0.777614798001613
@@ -1336,7 +1340,7 @@ Testing best score (_mean absolute error) 19.179957136149014
 Testing best score (median absolute error) 10.379804611206058
 ```
 
-## <a name="XGB7" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' 
+### <a name="XGB7" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' 
 
 ```
 -Best R2 training 0.7274868546422395
@@ -1356,7 +1360,7 @@ Xgb_imput = model_iterations(10, listings_imp, Y_imp, mod, log_bool=False)
 
 
 
-## <a name="CC" ></a> Conclusion et ouverture 
+### <a name="CC" ></a> Conclusion et ouverture 
 
 On dans le cas d’informations incomplètes et il y a une marge d'amélioration du score probablement en dixièmes.
 Plusieurs pistes sont à exploiter afin de gagner en informations  : 
