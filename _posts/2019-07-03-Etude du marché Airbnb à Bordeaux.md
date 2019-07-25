@@ -71,9 +71,12 @@ IV- [Prédiction](#PR)
   5. [Définition d'une Class pipeline pour les modèles et mesures de performances](#PVA)
   6. [Fonction Plot de distribution des residuals, Ypred vs Y](#PRES)
   7. [Régression linéaire](#REL)
-  7. [Régression linéaire](#REL)
   8. [Xgboost- Régression linéaire](#XGB0)
-  7a.[Prix € (Dataset)](#XGB0)
+    a.[Prix € (Dataset)](#XGB0)
+    
+    
+    
+   
   b.[Prix € [0,200]](#XGB1)
   c.[log(Prix € [0,200]](#XGB2)
       -[Imputation de 23% de données manquantes par la moyenne -> Effets sur le modèle](#OPT)
