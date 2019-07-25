@@ -73,7 +73,23 @@ IV- [Prédiction](#PR)
   7. [Régression linéaire](#REL)
   8. [Xgboost- Régression linéaire](#XGB0)
   * a. [Prix € (Dataset)](#XGB0)
-  * b.[Prix € [0,200]](#XGB1)
+  * b. [Prix € [0,200]](#XGB1)
+  * c.[log(Prix € [0,200]](#XGB2)
+      * [Imputation de 23% de données manquantes par la moyenne -> Effets sur le modèle](#OPT)
+  * d.[Xgboost- Prix € (Dataset) + 23% of Reviews imputed from 'mean'](#XGB3)
+  * e.[Xgboost- log(Prix € 0,200) +  23% of Reviews imputed from 'mean'](#XGB4)
+      * [Imputation de 23% de données manquantes par Knn -> Effets sur le modèle](#OPT2)
+  * f.[Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 1)](#XGB5)
+  * g.[Xgboost- log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN- 3)](#XGB6)
+  * h.[Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-5)' ](#XGB7)
+   
+  8. [Résultats - comparaison des méthodes] (#OPT)
+
+V - [Conclusions et ouverture](#CC)
+  1. [Pour aller plus loin](#PAL)  
+    
+VI-[Références](#REF)
+    
    
    
 
