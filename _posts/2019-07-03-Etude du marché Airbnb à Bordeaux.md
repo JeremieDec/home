@@ -1355,7 +1355,7 @@ Testing best score (_mean absolute error) 14.44077185657628
 Testing best score (median absolute error) 9.898965835571271
 ```
 
-### <a name="CC" ></a> Comparaison des performances des modèles
+### <a name="RES" ></a> Comparaison des performances des modèles
 
 
 ### <a name="CC" ></a> Conclusion et ouverture 
