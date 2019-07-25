@@ -123,7 +123,7 @@ L'ensemble de données que j'ai obtenu contient 7 fichiers au total.  [InsideAir
 Au total, il y avait 9 699 biens inscris à Airbnb à Bordeaux le 16 juin 2019.
 
 
-# <a name="TP" ></a> Type de logements
+### <a name="TP" ></a> Type de logements
 
 ```
 freq = listings['room_type'].value_counts().sort_values(ascending=True)
