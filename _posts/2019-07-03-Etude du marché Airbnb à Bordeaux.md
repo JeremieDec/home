@@ -5,9 +5,6 @@ layout: single
 author_profile: true
 comments: true
 ---
-`decoop`
-
-```decoop```
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Place_de_la_Bourse_Bordeaux2comp.png" width="100%">
 
