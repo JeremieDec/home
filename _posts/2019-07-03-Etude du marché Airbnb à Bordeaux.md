@@ -931,7 +931,7 @@ Le graphique Quartile-Quartile est une comparaison entre une distribution (ensem
 Ici, on s'intéresse à savoir si les données sont distribuées de manière normale (de paramètres mu (moyenne) et sigma (écart-type)).
 
 Si les données suivent la distribution normale, les points seront situés sur la droite diagonale. 
-On remarque que les quantiles de la distribution (valeurs qui divisent les données en intervalles contenant le même nombre de données). du prix sont à peu près égaux aux quartiles de la distribution normale. Pour bien saisir le QQ-plot, voir cette [vidéo](https://www.youtube.com/watch?v=okjYjClSjOg).
+On remarque que les quantiles de la distribution (valeurs qui divisent les données en intervalles contenant le même nombre de données). du prix sont à peu près égaux aux quartiles de la distribution normale. [Pour bien saisir le QQ-plot](https://www.youtube.com/watch?v=okjYjClSjOg).
 
 
 ```
@@ -1136,7 +1136,7 @@ On tente maintenant un modèle d'arbres de décision boostés sur l'ensemble des
 ```
 import xgboost as xgb
 ```
-J'ai effectué une grid search auparavant avec les 4  paramètres (4^4: 256) qui a duré plus de 2h30 (à ce moment là, mon prochain objectif sera de passer à un système de ML sur GPU (il y a RapidsAI qui a lancé ces librairies récemment), ce qui sera plus écologique et moins long). J'utilise ainsi les meilleurs paramètres obtenus:
+J'ai effectué une grid search auparavant avec les 4  paramètres (4^4: 256) qui a duré plus de 2h30 (mon prochain objectif sera de passer à un entraînement sur GPU (il y a RapidsAI qui a lancé ces librairies récemment), ce qui sera plus écologique et moins long). J'utilise ainsi les meilleurs paramètres obtenus:
 
 ```
 mod = xgb.XGBRegressor(
@@ -1157,8 +1157,8 @@ test score (median absolute error) 10.828716278076172
 ```
 ### <a name="XGB1" ></a> Xgboost- Régression linéaire - Prix € [0,200]
 
-Le but de l'exercice est de prédire le prix des locations des biens de moins de 200 €. 
 
+Le but de l'exercice est de prédire le prix des locations des biens de moins de 200 €. 
 
 ```
 xgb_Linreg = model_iterations(100, listings, Y, mod)
@@ -1235,14 +1235,13 @@ review_scores_location       22.685078
 review_scores_rating         22.569042
 review_scores_value          22.685078
 ```
-On commence par la technique de la moyenne des valeurs non manquantes dans une colonne, puis en remplaçant les valeurs manquantes dans chaque colonne séparément et indépendamment des autres. La méthode est facile et rapide. Cependant, elle ne prends pas en compte les corrélations entre les variables.
+On commence par la technique d'imputation par la moyenne. L'inconvénient est qU'elle ne prends pas en compte les corrélations entre les variables. Cependant, la méthode est facile et rapide.
 
 ### <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] +  23% of Reviews imputed from 'mean'
 
 --- Imputation 'moyenne', log(Prix), Full data
 
-Je garde les mêmes paramètres de Xgboost. Je prédits le log du prix cible sur l'ensemble des données. 
-
+Je garde les mêmes paramètres de Xgboost. Je prédits le log en base 3.6 du prix cible sur l'ensemble des données. 
 
 ```
 model_iterations(100, listings_imputmean, Y_log, mod, log_bool=True)
@@ -1256,10 +1255,9 @@ Testing best score (median absolute error) 12.05378723144532
 std -ecarts moyens des perfs testing 0.2100861726799187
 std des perfs training 0.21093080646688295
 ```
-Aïe Aïe Aïe, l'erreur médiane est plus élevée que lors de la même prédiction sans les données manquantes : 12.05 (baseline) contre 10.82. 
-Gagner des données est synonyme de gain en biais ? 
+Aïe Aïe Aïe, l'erreur médiane est plus élevée que lors de la même prédiction sans les données manquantes : 12.05 (baseline) contre 10.82.  
 
-La méthode de la moyenne est un échec, cependant laissons une chance sur l'objectif des prix de location inférieurs à 200 € : 
+La méthode de la moyenne est un échec. Cependant je me recentre sur l'objectif des prix de location inférieurs à 200 € : 
 
 ### <a name="XGB4" ></a> Xgboost- Régression linéaire - log(Prix € [0,200]) +  23% of Reviews imputed from 'mean'
 
@@ -1280,7 +1278,7 @@ Testing best score (median absolute error) 9.539064407348647
 
 Voilà 3.5% d'amélioration par rapport à la baseline : 9.53 d'erreur médiane absolue contre 9.89 ! L'imputation par la moyenne a tendance à donner des estimations erronnées pour les prix élevés... 
 
-Ceci s'explique par le choix d'imputer cleaning_fee et security_deposit par la moyenne également : cleaning_fee : 29.98 €, security_deposit : 500 €). Les variables des biens dont les frais de ménages et le déposit de sécurité se trouvent à bas coût (relatif) sont ainsi mieux imputés. 
+Ceci s'explique par le choix d'imputer cleaning_fee et security_deposit par la moyenne également : cleaning_fee : 29.98 €, security_deposit : 500 €). Les variables des biens dont les frais de ménages et le déposit de sécurité se trouvent à bas coût (relatif) sont ainsi mieux imputés car ils correspondent à la plus grande partie des données. 
 
 ## <a name="OPT2" ></a> Imputation de 23% de données manquantes par Knn -> Effets sur le modèle
 
@@ -1291,7 +1289,7 @@ Qu'en est-il de l'imputation par les plus proches voisins ?
 L'algorithme permet de trouver par la mesure de la distance euclidienne, les trois bien en location les plus proches de celui d'intérêt (qui possède des valeurs manquantes). Ainsi, on s'inspire de biens très proches pour récupérer les valeurs des variables équivalentes.
 
 
-On va maintenant utiliser le kNN (k nearest neighbors) sur respectivement **k = 1 3 et 5 voisins**.  Pour les valeurs 3 et 5, l'algorithme  effectue la moyenne des variables recherchées. Le risque de s'inspirer du plus proche voisin (k=1) est que celui-ci possède une variable extrême qui serait éloigné de la réalité, le calcul sur 3 puis 5 voisins permet alors de mitiger ce risque. 
+On va maintenant utiliser le kNN (k nearest neighbors) sur respectivement **k = 1 3 et 5 voisins**.  Pour les valeurs 3 et 5, l'algorithme  effectue la moyenne des variables recherchées. Le risque de s'inspirer du plus proche voisin (k=1) est que celui-ci possède une variable extrême qui serait éloigné de la réalité et que l'on impute ainsi une valeur extrme. Le calcul sur 3 puis 5 voisins permet alors de mitiger ce risque. 
 
 [k-Nearest Neighbors (kNN) Imputation](https://pypi.org/project/missingpy/)
 
@@ -1325,7 +1323,7 @@ Training best score (median absolute error) 9.098037719726562
 Testing best score (_mean absolute error) 14.505256760760647
 Testing best score (median absolute error) 9.860536575317395
 ```
-Et voila, ce qui devait arriver est probablement arrivé alias "Les petits cailloux dans la chaussure": Des variables imputées extremistes (k=1 plus proche voisin) se sont infiltrées à l'entraînement. On remarque cependant le prix médian de 9.86 comparable à la baseline (9.89).
+Et voila, ce qui devait arriver est probablement : des variables extrêmes (k=1 plus proche voisin) se sont infiltrées à l'entraînement. On remarque cependant le prix médian de 9.86 comparable à la baseline (9.89).
 
 ### <a name="XGB6" ></a> Xgboost - log(Prix € [0,200]) + 23% of Reviews imputed from 'k-Nearest Neighbors (kNN-3)' 
 
@@ -1357,9 +1355,7 @@ Testing best score (_mean absolute error) 14.44077185657628
 Testing best score (median absolute error) 9.898965835571271
 ```
 
-Xgb_imput = model_iterations(10, listings_imp, Y_imp, mod, log_bool=False)
-
-
+### <a name="CC" ></a> Comparaison des performances des modèles
 
 
 ### <a name="CC" ></a> Conclusion et ouverture 
