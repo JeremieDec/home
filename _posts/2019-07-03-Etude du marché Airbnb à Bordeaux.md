@@ -1359,6 +1359,7 @@ Testing best score (median absolute error) 9.898965835571271
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/models.png" width="100%">
 
+Le log(Prix) en imputant les données par la moyenne donne le meilleur score en terme de prix médian sur l'ensemble des données.
 
 ### <a name="CC" ></a> Conclusion et ouverture 
 
