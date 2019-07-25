@@ -25,8 +25,7 @@ Pour cette étude, on s’intéresse et on explore les données recueuillis d'Ai
 - Les proportions de biens sous licences par quartier.
 
 A partir de cette exploration, je réponds à plusieurs questionnements : 
-- Quelles variables clés déterminent la Performance locative des biens ? On dénomme par 'Performance locative', la demande effective des biens.
-
+- Quelles variables clés déterminent la performance locative des biens ? (la 'performance locative' corresponds à la demande effective des biens)
 - Quels sont les biens les plus populaires à Bordeaux ? On s'intéresse en particulier à un bien qui remporte un grand succès  et pour lequel je calcule le montant du Retour sur Investissement. 
 - Dans quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
 
