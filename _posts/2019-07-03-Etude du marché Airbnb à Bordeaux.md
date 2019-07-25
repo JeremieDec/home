@@ -25,7 +25,8 @@ Pour cette étude, on s’intéresse et on explore les données recueuillis d'Ai
 - Les proportions de biens sous licences par quartier.
 
 A partir de cette exploration, je réponds à plusieurs questionnements : 
-- Quelles variables clés déterminent la Demande des biens ?
+- Quelles variables clés déterminent la Performance locative des biens ? On dénomme par 'Performance locative', la demande effective des biens.
+
 - Quels sont les biens les plus populaires à Bordeaux ? On s'intéresse en particulier à un bien qui remporte un grand succès  et pour lequel je calcule le montant du Retour sur Investissement. 
 - Dans quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
 
@@ -101,7 +102,7 @@ VI-[Références](#REF)
 
 **73 €** correspond au prix moyen d'une location pour deux personnes, située au coeur du centre-ville de Bordeaux (exemple de l'appartement en deuxième photo de couverture)
 
-**Par ordre d'importance**: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens. 
+**Par ordre d'importance**: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens, que l'on appelle la "performance locative". 
 
 La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à **14 %**. On remarque que le nombre de licences est décroissant à mesure que l'on s'éloigne du centre-ville. 
 
