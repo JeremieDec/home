@@ -1358,6 +1358,9 @@ Testing best score (median absolute error) 9.898965835571271
 ### <a name="RES" ></a> Résultats - Comparaison des modèles
 
 
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/models.png" width="100%">
+
+
 ### <a name="CC" ></a> Conclusion et ouverture 
 
 On dans le cas d’informations incomplètes et il y a une marge d'amélioration du score probablement en dixièmes.
