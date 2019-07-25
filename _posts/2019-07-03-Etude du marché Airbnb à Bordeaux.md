@@ -102,7 +102,7 @@ VI-[Références](#REF)
 
 **73 €** correspond au prix moyen d'une location pour deux personnes, située au coeur du centre-ville de Bordeaux (exemple de l'appartement en deuxième photo de couverture)
 
-**Par ordre d'importance**: *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* sont les variables critiques qui déterminent la demande des biens, que l'on appelle la "performance locative". 
+*le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* (**Par ordre d'importance**) sont les variables critiques qui déterminent la performance locative des biens (la demande des biens). 
 
 La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à **14 %**. On remarque que le nombre de licences est décroissant à mesure que l'on s'éloigne du centre-ville. 
 
