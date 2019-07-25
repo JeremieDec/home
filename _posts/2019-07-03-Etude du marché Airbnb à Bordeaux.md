@@ -84,7 +84,7 @@ IV- [Prédiction](#PR)
         * g. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 3)'](#XGB6)
         * h. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 5)'](#XGB7)
    
-  8. [Résultats - comparaison des méthodes] (#RES)
+  8. [Résultats - comparaison des modèles](#RES)
 
 V - [Conclusions et ouverture](#CC)
   1. [Pour aller plus loin](#PAL)  
@@ -1355,7 +1355,7 @@ Testing best score (_mean absolute error) 14.44077185657628
 Testing best score (median absolute error) 9.898965835571271
 ```
 
-### <a name="RES" ></a> Comparaison des performances des modèles
+### <a name="RES" ></a> Résultats - Comparaison des modèles
 
 
 ### <a name="CC" ></a> Conclusion et ouverture 
