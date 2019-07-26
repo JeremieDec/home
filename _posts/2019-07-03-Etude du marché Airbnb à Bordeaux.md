@@ -20,7 +20,7 @@ D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires lou
 La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. L'hexagone compte plus de 300 000 logements et Paris se situe au rang de **numéro 1** des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
 
-Pour cette étude, on s’intéresse et on explore les données recueuillis d'Airbnb Bordeaux à la mi-Juin 2019  : 
+Pour cette étude, on s’intéresse et on explore les données recueillis d'Airbnb Bordeaux à la mi-Juin 2019  : 
 - La répartition des biens et leurs caractéristiques (*types, tailles, prix, disponibilité)
 - Les proportions de biens sous licences par quartier.
 
@@ -158,7 +158,7 @@ plt.show()
 ```
 ### <a name="NE" ></a> Répartition des biens par quartier
 
-Hôtel de Ville arrive en tête avec plus de 1396 biens en location. Les 7 quartiers les moins répertoriés représentent à eux seul le même nombre de biens que le deuxièmes et troisème quartiers majeur réunis (Chartron et Capucins-Victoire).
+Hôtel de Ville arrive en tête avec plus de 1396 biens en location. Les 7 quartiers les moins répertoriés représentent à eux seul le même nombre de biens que le deuxième et troisème quartiers majeur réunis (Chartron et Capucins-Victoire).
 
 ```
 cols = pd.DataFrame(listings.columns)
@@ -185,7 +185,7 @@ alternative pour calculer n éléments distincts d’une variable:
 
 ### <a name="PM" ></a> Prix moyen d'une location par quartier pour deux personnes
 
-Hotel de Ville est en moyenne 57 % plus cher que l'ensemble des quartiers alentours ! La ville s'étend pourtant sur 1.5 km de rayon (en prenant le centre du quartier Hotel de Ville). Nous verons un peu plus tard dans cette analyse une piste pour expliquer une partie de cette différence ([Les hôtes déclarent-ils leurs activités ?](#NL)).
+Hotel de Ville est en moyenne 57 % plus cher que l'ensemble des quartiers alentours ! La ville s'étend pourtant sur 1.5 km de rayon (en prenant le centre du quartier Hotel de Ville). Nous verrons un peu plus tard dans cette analyse une piste pour expliquer une partie de cette différence ([Les hôtes déclarent-ils leurs activités ?](#NL)).
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Prix moyen d'une location par Quartier pour 2 personnes.png" width="100%">
 
@@ -218,7 +218,7 @@ max        15.000000
 
 Ce qui signifie, en cas d'overbooking, que les familles seront les plus nombreuses à se promener en Centre-Ville.
 
-Légende : Le nombre de biens en verticale, le nombre total d'accomodés en légende au dessus de la barre et le nombre d'accomodés	en X.
+Légende : Le nombre de biens en verticale, le nombre total d'accomodés en légende au-dessus de la barre et le nombre d'accomodés	en X.
 
 Biens disponibles par nombre d'accomodés.png
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Biens disponibles par nombre d'accomodés.png" width="100%">
@@ -252,7 +252,7 @@ Hôtel de Ville est le quartier au tarif journalier le plus élevé. Les prix de
 ### <a name="HM" ></a> Matrice heatmap des corrélations
 
 
-Tracer une matrice de corrélations ici avec 47 variables reviendrait à 2 (k) parmis 47 (n)= 1081 combinaisons/comparaisons possibles.  
+Tracer une matrice de corrélations ici avec 47 variables reviendrait à 2 (k) parmi 47 (n)= 1081 combinaisons/comparaisons possibles.  
 
 Pour cet exemple, je prends un extrait des variables avec les corrélations significatives définies au seuil de >0.35 (valeurs absolues).
 
@@ -324,7 +324,7 @@ Shared room        67.0  9.791045  12.506407  0.0  0.0  0.0  24.5  30.0
 ```
 
 On remarque que les logements entiers sont les plus occupés en moyenne sur la plateforme.
-A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privées chez l'habitant.
+A Bordeaux, pour 3/4 des données, les logements entiers sont 2 fois et demi plus occupés (en moyenne) que les logements privés chez l'habitant.
 
 
 ### Disponibilité par nombre de reviews 
@@ -335,7 +335,7 @@ dispo_parnbreviews = listings5.groupby("number_of_reviews").availability_30.desc
  
 ### Expérience
 
-Expérience : On prends les biens répondants à l'ensemble des critères correspondants à une Demande élevé. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
+Expérience : On prend les biens répondants à l'ensemble des critères correspondants à une Demande élevée. Comment se situe la Demande de ces biens ? Les critères sont-ils justifiés/suffisants pour déterminer les biens les plus demandés ? Quels biens 'très demandés' ont échappé à ce filtrage ? Autrement dit, peut-on attribuer une relation causale de l'ensemble de ces variables sur la Demande ?
 
 
 ## <a name="SK" ></a> Questionnements 
@@ -398,7 +398,7 @@ On remarque que les hôtes qui louent des biens au centre sont les plus respectu
 
 On souhaite savoir s’il est possible de payer le loyer + charges d’un logement de deux chambres en répertoriant l’une des chambres sur Airbnb. L'objectif est de calculer les bénéfices nets attendus (après le loyer moyen, les services publics (eau , gaz, électricité) et Internet).
 
-- **24,5 %**, c’est la part des dépenses moyenne en proportion du loyer que l'on prends en référence pour couvrir les frais du logement (assurances, gaz, électricité, internet).
+- **24,5 %**, c’est la part des dépenses moyenne en proportion du loyer que l'on prend en référence pour couvrir les frais du logement (assurances, gaz, électricité, internet).
 
 Je prends la référence suivante: un logement possède une surface de 65 m2, pour un loyer de 14e/m2 (moyenne à Bordeaux) hors-charges [Source](https://blog.locservice.fr/bordeaux-les-chiffres-cles-du-marche-locatif-prive-en-2013-1469.html).
 
@@ -419,7 +419,7 @@ Je prends la référence suivante: un logement possède une surface de 65 m2, po
 **Méthode de calcul du taux d'occupation
 
 Il est très complexe d'obtenir une information exacte sur l'occupation des biens d'Airbnb. 
-Les plateformes tel que Airdna et d'autres indiquent des taux très élevés (jusqu'à 80%). Ils se basent sur le calcul moyen des jours "occupés" (non disponibles) qu'ils considèrent par défault en tant que 'loué', de plus, uniquement sur les 30 prochains jours. Pour ce calcul, j'utilise une méthode différente et plus prudente :
+Les plateformes tel que Airdna et d'autres indiquent des taux très élevés (jusqu'à 80%). Ils se basent sur le calcul moyen des jours "occupés" (non disponibles) qu'ils considèrent par défaut en tant que 'loué', de plus, uniquement sur les 30 prochains jours. Pour ce calcul, j'utilise une méthode différente et plus prudente :
 
 - Exemple : 75% des biens sont disponibles (au maximum) 8 jours sur les 30 prochains. La plupart des biens sont donc disponibles moins de 8 jours. Ainsi, si l'on soupçonne qu'ils sont loués sur les autres 22 jours, ce taux d'occupation 'optimiste'  s'élève à 73.33 %. 
 
@@ -466,7 +466,7 @@ Par mesure de prudence, on prends la moyenne des 4 : 29,70 % en tant que taux d'
 
 ### <a name="REVIEWS" ></a> La meilleure expérience client, l'Hôte la plus appréciée
 
-La notation des hôtes s'étends de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionelle :
+La notation des hôtes s'étend de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionnelle :
 
 
 Annonce exceptionelle :
@@ -495,17 +495,17 @@ rev_excell.shape
 (1, 106)
 ```
 - L'appartement est localisé dans la périphérie de Bordeaux (Mérignac), bien que la surface soit réduite (20m2), la décoration et l'agencement en font une place de premier choix: - le taux de reviews s'élève à 15 par mois, ce qui signifie au minimum 15 hôtes différents, pour une durée minimale de 15 nuits.  
-- 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Egalement, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi supérieur à la moyenne.
+- 3 jours prochainement ne sont pas réservés (date de cette étude: mi-Juillet 2019). Également, 6 nuits sont disponibles le mois prochain puis 15 au mois suivant. Le taux d'occupation du bien est ainsi supérieur à la moyenne.
 
 
 
 
 ### <a name="ROI" ></a>  Retour sur investissement de ce logement 
 
-On prends en compte le prix au  m² de l'apartement à Mérignac (2.531 €) et la configuration de ce studio de luxe et on tente maintenant
+On prend en compte le prix au  m² de l'apartement à Mérignac (2.531 €) et la configuration de ce studio de luxe et on tente maintenant
 de connaître le retour sur investissement à l'année de ce type de bien.
 
-On prends les données suivantes en considération : 
+On prend les données suivantes en considération : 
 - **200 nuitées**, ou le taux d'occupation de **55%** appliqué sur 1 an (10 mois).
 - Pour une location au coût de **69 € la nuitée**
         
@@ -790,7 +790,7 @@ listings.security_deposit = a
 
 ### <a name="VI" ></a> Variables imputées
 
-J’entre temporairement les données de cleaning_fee et security_deposit par leur moyenne respectives. Dans le cas ou ces variables sont importantes pour la prédiction, il peut est nécessaire d’entrer des valeurs plus proches de la réalité. Pour aller plus loin, on pourra inférer ces valeurs grâce à un algorithme des plus proches voisins (nearest neighbors)). 
+J’entre temporairement les données de cleaning_fee et security_deposit par leur moyenne respectives. Dans le cas où ces variables sont importantes pour la prédiction, il peut est nécessaire d’entrer des valeurs plus proches de la réalité. Pour aller plus loin, on pourra inférer ces valeurs grâce à un algorithme des plus proches voisins (nearest neighbors)). 
 
 ```
 listings = listings.fillna(listings.mean())
@@ -799,7 +799,7 @@ listings = listings.fillna(listings.mean())
 
 Pour la variable 'reviews_per_month’ : une large partie de valeurs sont NaNs, on peut les supprimer. Cependant, après un rapide coup d'œil (matrice des Nullités précédente), on remarque que 'reviews_per_month’ est non défini dès l’instant ou ‘first_review’ est non défini également. L'ensemble de ces valeurs non-définies sont donc égales à 0.
 
-Apres une revue rapide des biens concernées sur Airbnb, on s’aperçoit que les biens ne sont en fait pas notés (Airbnb indique « No reviews (yet) »). 
+Après une revue rapide des biens concernées sur Airbnb, on s’aperçoit que les biens ne sont en fait pas notés (Airbnb indique « No reviews (yet) »). 
 
 On entre ‘0’ pour l’ensemble des valeurs concernées.
 
@@ -811,7 +811,7 @@ listings.reviews_per_month = review_per_m
 ### <a name="VE" ></a> Variables encodées 
 
 Le regresseur de scikit-learn accepte uniquement les variables numériques.
-On va maintenant encoder des variables catégoriques ‘intéressantes’ en valeurs numériques le type de chambre, de propriétes, de quartier… en utilisant le LabelEncoder(). J'utilise celui-ci afin de gagner en temps de converge pour la partie prédiction, OneHotEncoder est naturellement la meilleure méthode puisqu'elle ne prends pas en compte l'ordre des variables. 
+On va maintenant encoder des variables catégoriques ‘intéressantes’ en valeurs numériques le type de chambre, de propriétes, de quartier… en utilisant le LabelEncoder(). J'utilise cette méthode (plutôt que OneHot) car j'utilise des arbres de régression dans la partie prédiction. En effet, splitter la variable en plusieurs classes binaires risque d'affecter considérablement la performance de ce type d'algorithme.
 
 ```
 categorical_cols = ['room_type', 'host_since', 'property_type','cancellation_policy'] 
@@ -949,7 +949,7 @@ Les valeurs sont anormalement élevées en fin de distribution pour parler parfa
 
 ### <a name="PVA" ></a> Class pipeline pour les modèles
 
-J'utilise une classe avec les fonctions principales d’évaluation des modèles. Pour évaluer la performance de l'algorithme, on calcule sur n  itérations  le score moyen à chaque convergence afin de pouvoir effectuer des comparaisons. On prends 70 % des biens en entraînement, le reste pour la validation.  
+J'utilise une classe avec les fonctions principales d’évaluation des modèles. Pour évaluer la performance de l'algorithme, on calcule sur n  itérations  le score moyen à chaque convergence afin de pouvoir effectuer des comparaisons. On prend 70 % des biens en entraînement, le reste pour la validation.  
 
 Pour évaluer le modèle, j'utilise le score R2 qui sert à mesurer la précision donnée par le modèle de régression linéaire et l'erreur absolue moyenne (sur train et test set). 
 
@@ -1220,7 +1220,7 @@ On garde toujours ces deux variables imputées par la moyenne pour observer seul
 listings['cleaning_fee'] = listings.fillna(listings.mean())
 listings['security_deposit'] = listings.fillna(listings.mean())
 ```
-Les variables qui sont à inférer le plus précisemment (en %):
+Les variables qui sont à inférer le plus précisément (en %):
 
 ```
 isnull(listings)
@@ -1234,13 +1234,13 @@ review_scores_location       22.685078
 review_scores_rating         22.569042
 review_scores_value          22.685078
 ```
-On commence par la technique d'imputation par la moyenne. L'inconvénient est qU'elle ne prends pas en compte les corrélations entre les variables. Cependant, la méthode est facile et rapide.
+On commence par la technique d'imputation par la moyenne. L'inconvénient est qu'elle ne prend pas en compte les corrélations entre les variables. Cependant, la méthode est facile et rapide.
 
 ### <a name="XGB3" ></a> Xgboost- Régression linéaire - Prix € [Dataset] +  23% of Reviews imputed from 'mean'
 
 --- Imputation 'moyenne', log(Prix), Full data
 
-Je garde les mêmes paramètres de Xgboost. Je prédits le log en base 3.6 du prix cible sur l'ensemble des données. 
+Je garde les mêmes paramètres de Xgboost. Je prédis le log en base 3.6 du prix cible sur l'ensemble des données. 
 
 ```
 model_iterations(100, listings_imputmean, Y_log, mod, log_bool=True)
@@ -1359,7 +1359,7 @@ Testing best score (median absolute error) 9.898965835571271
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/models.png" width="100%">
 
-Le log(Prix) en imputant les données par la moyenne donne le meilleur score en terme de prix médian sur l'ensemble des données.
+Le log(Prix) (imputation par la moyenne) donne le meilleur score selon l'évaluation du prix médian, sur l'ensemble des données dont les prix sont inférieurs à 200 €.
 
 ### <a name="CC" ></a> Conclusion et ouverture 
 
