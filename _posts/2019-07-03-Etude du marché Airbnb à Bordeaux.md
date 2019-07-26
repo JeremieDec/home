@@ -72,16 +72,16 @@ IV- [Prédiction](#PR)
   6. [Fonction Plot de distribution des residuals, Ypred vs Y](#PRES)
   7. [Régression linéaire](#REL)
   8. [Xgboost- Régression linéaire](#XGB0)
-  * a. [Prix € (Dataset)](#XGB0)
-  * b. [Prix € [0,200]](#XGB1)
-  * c.[log(Prix € [0,200]](#XGB2)
+  * a. [Prix ∈ (Dataset)](#XGB0)
+  * b. [Prix ∈ [0,200]](#XGB1)
+  * c.[log(Prix ∈ [0,200]](#XGB2)
       * [Imputation de 23% de données manquantes par la moyenne -> Effets sur le modèle](#OPT)
-        * d. [Xgboost- Prix € (Dataset) + 23% des Reviews imputés par la moyenne](#XGB3)
-        * e. [Xgboost- log(Prix € 0,200) + 23% des Reviews imputés pa la moyenne](#XGB4)
+        * d. [Xgboost- Prix ∈ (Dataset) + 23% des Reviews imputés par la moyenne](#XGB3)
+        * e. [Xgboost- log(Prix ∈ 0,200) + 23% des Reviews imputés pa la moyenne](#XGB4)
       * [Imputation de 23% de données manquantes par Knn -> Effets sur le modèle](#OPT2)
-        * f. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 1)'](#XGB5)
-        * g. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 3)'](#XGB6)
-        * h. [Xgboost- log(Prix € [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 5)'](#XGB7)
+        * f. [Xgboost- log(Prix ∈ [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 1)'](#XGB5)
+        * g. [Xgboost- log(Prix ∈ [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 3)'](#XGB6)
+        * h. [Xgboost- log(Prix ∈ [0,200]) + 23% des Reviews imputés par 'k-Nearest Neighbors (kNN- 5)'](#XGB7)
    
   8. [Résultats - comparaison des modèles](#RES)
 
@@ -119,7 +119,7 @@ On prédit correctement les prix des locations de moins de 200 euros avec une er
 
 ## <a name="DE" ></a> Exploration des données 
 
-L'ensemble de données que j'ai obtenu contient 7 fichiers au total.  [InsideAirbnb](http://insideairbnb.com/) indique  "listings_details" (détails des biens) comme étant « bon pour les visualisations », je vais donc utiliser celui-ci. 
+L'ensemble de données obtenus ont été récoltées par un srapper indépendant sur [InsideAirbnb](http://insideairbnb.com/). Celui-ci indique  "listings_details" (détails des biens) comme étant « bon pour les visualisations », je vais donc utiliser ce fichier. 
 Au total, il y avait 9 699 biens inscris à Airbnb à Bordeaux le 16 juin 2019.
 
 
