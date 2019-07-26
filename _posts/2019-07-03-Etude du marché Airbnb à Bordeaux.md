@@ -1385,7 +1385,7 @@ Plusieurs pistes sont à exploiter afin de gagner en informations  :
 
 - Dans le but d'**Aider les hôtes à maximiser leur réussite sur la plateforme** : Dans une prochaine étude, Il serait intéressant de récupérer l'ensemble de ces commentaires pré-conversion ainsi que le classement (ranking) des biens sur Bordeaux (effectué par Airbnb). Ces deux variables additionnées à celles déjà acquises, ouvrent la possibilité de connaître d'avantage le poids de chaque variables dans l'optimisation de la visibilité des annonces.
 
-## <a name="REF" ></a> Sources
+## <a name="REF" ></a> Références
 
 **Sources :** 
 
