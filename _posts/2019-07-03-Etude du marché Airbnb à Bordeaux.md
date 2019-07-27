@@ -469,8 +469,6 @@ Par mesure de prudence, on prends la moyenne des 4 : 29,70 % en tant que taux d'
 La notation des hôtes s'étend de 0 à 15 par mois, avec plus des 3/4 des annonces qui possèdent au minimum une petite attention post-location. On remarque cependant (index 'max') ci-dessous qu'il existe des hôtes qui sont notés jusqu'à 15 fois durant le mois ! Visiblement, il y a une hôte qui remplit cette condition exceptionnelle :
 
 
-Annonce exceptionelle :
-
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Selection_006.png" width="100%">
 
 <img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/ubuntuShutter.png" width="100%">
@@ -658,26 +656,20 @@ On garde l'ensemble des données numériques (47 colonnes) ainsi que les variabl
 ### <a name="VS" ></a> Variables supprimées 
 
 Je supprime toutes lignes avec 'bathrooms', 'bedrooms', 'beds' non attribuées (environ 0,5 a 1% des données. 
+On supprime également toute entrée "étranges" comme les listings avec valeur = 0 pour ‘bedrooms’, ‘beds’ ou ‘price’. 
 
 ```
 listings = listings.dropna(axis=0, subset = ['bathrooms'])
 listings = listings.dropna(axis=0, subset = ['bedrooms'])
 listings = listings.dropna(axis=0, subset = ['beds'])
-```
-
-On supprime également toute entrée "étranges" comme les listings avec valeur = 0 pour ‘bedrooms’, ‘beds’ ou ‘price’. 
-
-```
-
 listings = listings[listings['beds'] != 0] 
 listings = listings[listings['bedrooms'] != 0]
-
-
 listings = listings[listings['price'] != 0] #Pas de bien gratuits à Bordeaux; même le logeur du 13 Novembre n'aurait pas trouvé cela louche
 listings = listings.dropna(axis=0, subset = ['bathrooms'])
 listings = listings.dropna(axis=0, subset = ['bedrooms'])
 listings = listings.dropna(axis=0, subset = ['beds'])
 ```
+
 
 On se sépare temporairement des différentes notes non attribuées (environ 22% des données). C'est une partie importante de données manquantes dont je me sépare, leur traitement sera réservé au moment de la prédiction pour tester différentes techniques d'imputation:
 
