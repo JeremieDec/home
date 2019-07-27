@@ -10,7 +10,7 @@ comments: true
 
 **Préface**
 
-D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fond (Ycombinator), Airbnb a vu en grand ...
+D'où vient le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires louaient un matelas gonflable dans leur salon lorsque Brian a eu l'idée de monter le service. Depuis son lancement en 2008, et malgré la concurrence accrue de quelques projets financés par le même fonds (Ycombinator), Airbnb a vu en grand ...
 
  Airbnb recense aujourd'hui - **3** millions de logements habitables répartis dans
                             - **65 000** villes à travers plus de 190 pays, pour un total de
@@ -20,16 +20,16 @@ D'ou viens le nom 'Airbnb' ? : Le fondateur Brian Chesky et ses colocataires lou
 La **France** est devenue le **premier marché d'Airbnb après les Etats-Unis**. L'hexagone compte plus de 300 000 logements et Paris se situe au rang de **numéro 1** des villes européennes avec 65 852 logements, devant Londres, Rome et Barcelone. 
 
 
-Pour cette étude, on s’intéresse et on explore les données recueillis d'Airbnb Bordeaux à la mi-Juin 2019  : 
+Pour cette étude, je m’intéresse et j'explore les données recueillies d'Airbnb Bordeaux à la mi-Juin 2019  : 
 - La répartition des biens et leurs caractéristiques (*types, tailles, prix, disponibilité)
-- Les proportions de biens sous licences par quartier.
+- Les proportions de biens sous licence par quartier.
 
 A partir de cette exploration, je réponds à plusieurs questionnements : 
-- Quelles variables clés déterminent la performance locative des biens ? (la 'performance locative' corresponds à la demande effective des biens)
-- Quels sont les biens les plus populaires à Bordeaux ? On s'intéresse en particulier à un bien qui remporte un grand succès  et pour lequel je calcule le montant du Retour sur Investissement. 
+- Quelles variables clés déterminent la performance locative des biens ? (la 'performance locative' correspond à la demande effective des biens)
+- Quels sont les biens les plus populaires à Bordeaux ? Je m'intéresse en particulier à un bien qui remporte un grand succès  et pour lequel je calcule le montant du Retour sur Investissement. 
 - Dans quelle proportion peut-on financer les charges de son logement ? (*Cas d'étude)
 
-Enfin, j'ai nettoyé les données dans le but de les préparer pour prédire du prix journalier des biens. J'explique l'intérêt de cet indicateur pour les utilisateurs et hôtes. J'utilise enfin deux algorithmes afin de prédire le prix de location et compare l'effet de deux méthodes d'imputation sur la prédiction ("moyenne vs. plus proches voisins"). 
+Enfin, j'ai nettoyé les données dans le but de les préparer pour prédire le prix journalier des biens. J'explique l'intérêt de cet indicateur pour les utilisateurs et hôtes. J'utilise enfin deux algorithmes afin de prédire le prix de location et compare l'effet de deux méthodes d'imputation sur la prédiction ("moyenne" vs. "plus proches voisins"). 
 
 
 **Contenus**
@@ -51,7 +51,7 @@ II- [Questionnements](#SK)
   1. [Combien les hôtes possèdent-ils de biens en location ?](#HL) 
   2. [Les hôtes déclarent-ils leurs activités ? ](#NL) 
   3. [Cas d'Etude : Payer ses charges grâce à Airbnb, en quelle proportion ?](#PAY)
-  4. [La meilleur expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
+  4. [La meilleure expérience client: qui est l'Hôte le-la plus plesbicité ?](#REVIEWS)
   * a.[Retour sur investissement de ce logement](#ROI)
   
   
@@ -93,9 +93,7 @@ VI-[Références](#REF)
    
    
 
-  
-
-
+ 
 ## <a name="INS" ></a> Enseignements clés de l'enquête
 
 
@@ -103,7 +101,7 @@ VI-[Références](#REF)
 
 *le type de logement, le nombre de reviews, la quantité de biens en locations par hôte, le minimum de nuits nécessaire pour louer, le prix puis le quartier* (**Par ordre d'importance**) sont les variables critiques qui déterminent la performance locative des biens (la demande des biens). 
 
-La *déclaration auprès de l'administration fiscale* s'éleve en moyenne à **14 %**. On remarque que le nombre de licences est décroissant à mesure que l'on s'éloigne du centre-ville. 
+La *déclaration auprès de l'administration fiscale* s'élève en moyenne à **14 %**. On remarque que le nombre de licences est décroissant à mesure que l'on s'éloigne du centre-ville. 
 
 **16%** est le taux de rentabilité locative du bien le plus populaire (compté en termes de reviews)
 
