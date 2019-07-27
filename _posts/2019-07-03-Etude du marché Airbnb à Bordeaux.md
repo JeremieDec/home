@@ -796,14 +796,14 @@ Après une revue rapide des biens concernées sur Airbnb, on s’aperçoit que l
 On entre ‘0’ pour l’ensemble des valeurs concernées.
 
 ```
-review_per_m = listings.reviews_per_month.fillna(0)
-listings.reviews_per_month = review_per_m
+listings.reviews_per_month  = listings.reviews_per_month.fillna(0)
 ```
 
 ### <a name="VE" ></a> Variables encodées 
 
 Le regresseur de scikit-learn accepte uniquement les variables numériques.
-On va maintenant encoder des variables catégoriques ‘intéressantes’ en valeurs numériques le type de chambre, de propriétes, de quartier… en utilisant le LabelEncoder(). J'utilise cette méthode (plutôt que OneHot) car j'utilise des arbres de régression dans la partie prédiction. En effet, splitter la variable en plusieurs classes binaires risque d'affecter considérablement la performance de ce type d'algorithme.
+J'utilise des arbres de régression dans la partie prédiction. Splitter la variable en plusieurs classes binaires (OneHot) risque d'affecter considérablement la performance de ce type d'algorithme.
+On va donc maintenant encoder des variables catégoriques ‘intéressantes’ en valeurs numériques (le type de chambre, de propriétes, de quartier) par LabelEncoder().  
 
 ```
 categorical_cols = ['room_type', 'host_since', 'property_type','cancellation_policy'] 
@@ -820,14 +820,12 @@ listings_num = listings.select_dtypes(include = ['float64', 'int64'])
 listings = pd.merge(listings_encoded, listings_num, left_index=True, right_index=True) 
 listings = pd.merge(listings, neigh_encoded, left_index=True, right_index=True)
 
-del(listings['weekly_price'])
-
 ```
 
 
 ## <a name="PR" ></a> Objectif de la prédiction
 
-Une fois que les hôtes publient leurs annonces, le prix reste fixe tout au long du temps. Cependant, la demande varie de manière saisonnière. L’estimation du prix des biens peut être une nouvelle fonctionnalité à caractère informatif destinée aux hôtes d'Airbnb. Elle peut permettre de mieux gérer le taux d’occupation, de rentabilité et d’offrir des offres intéressantes pour les clients à certaines périodes.
+Une fois que les hôtes publient leurs annonces, le prix reste fixe tout au long du temps. Cependant, la demande varie de manière saisonnière et plus encore à l'échelle d'une semaine (évènements). L’estimation du prix des biens peut être une nouvelle fonctionnalité à caractère informatif destinée aux hôtes d'Airbnb. Elle peut permettre de mieux gérer le taux d’occupation, de rentabilité et d’offrir des offres intéressantes pour les clients à certaines périodes.
 
 L'objectif final est de prédire le prix de location des biens inférieurs à 200 € la nuit avec une erreur médiane de 10.50 €. Ce qui signifie : 50% des biens devront être prédits avec une erreur inférieure à 10.50 € sur les données de test.   
  
@@ -866,6 +864,8 @@ listings = listings.drop(index = [64, 743, 5842])
 listings = listings.reset_index(drop=True)
 Y = listings.price
 del(listings["price"])
+del(listings['weekly_price']) # suppression de la variable fuitée de 'price' : On ne la possèderait normalement pas en situation réelle
+del(listings['monthly_price']) # suppression de la variable fuitée de 'price' : On ne la possèderait normalement pas en situation réelle
 ```
 
 ### <a name="PV" ></a> Visualisation des p-values
