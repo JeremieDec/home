@@ -79,7 +79,7 @@ analytics:
 author:
   name             : "Jeremie Decoop"
   avatar           : "/others/photoprof.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Allumeur de réverbères"
+  bio              : ""
   location         : "France"
   email            : "jeremie.dec@outlook.fr"
   uri              :
