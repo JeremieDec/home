@@ -21,12 +21,12 @@ Finally, I cleaned up the data in order to prepare it to predict the daily renta
 I. [Key facts of the study](#INS)
 
 II.[Exploration and questionnings](#DE)
+  1. [Trends in demand for properties by neighbourhood - at 90, 60, 30 days](#DI)
+  2. [Main motivations underlying demand](#DEMAND)
+  3. [Pay its expenses thanks to Airbnb, in what proportion ?](#PAY)
+  4. [The best customer experience: who's the most solicited host ?](#REVIEWS)
+    1. a. [Return on investment of the property](#ROI
 
-[Trends in demand for properties by neighbourhood - at 90, 60, 30 days](#DI)
-[Main motivations underlying demand](#DEMAND)
-[Pay its expenses thanks to Airbnb, in what proportion ?](#PAY)
-[The best customer experience: who's the most solicited host ?](#REVIEWS)
-a. [Return on investment of the property](#ROI)
 
 III- [Data Cleaning](#ND)
 
@@ -213,4 +213,15 @@ We take into account the price per square meter of the apartment in Mérignac (2
 I take **200 nights** (**55%** *occupancy rate applied over 1 year (10 months)*), *a daily rental cost* of 69 € per day which allows...
 
 A rental return of **16%** for this studio. **Important caution** : I took high expectations property value to match the good. This is a HUGE rate realistically computed. I didn't take into account legal fees because, while in New York people are punished for renting, we apply a fine policy in France; this risk is also to add in this situation. Then it is is one way to make money on Airnb... Small optimized space with classy and sober decoration, wood, cozy, high luminosity and notably talent to conjugate everything.
+
+
+
+## <a name="REVIEWS" ></a> The best customer experience: who's the most solicited host
+III- [Data Cleaning](#ND)
+
+[Loading libraries & data](#CHA)
+[The nullity matrix](#VM)
+[Maintained variables](#VS)
+[Transformed variables](#VT)
+[Detection and removal of weird variables](#VI)
 
