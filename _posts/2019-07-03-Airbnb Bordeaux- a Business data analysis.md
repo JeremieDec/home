@@ -1,4 +1,5 @@
-Preface
+# Preface
+
 Where does the name 'Airbnb' come from? : Founder Brian Chesky and his roommates rented an inflatable mattress in their living room when Brian had the idea to set up the service. Since its launch in 2008, and despite increased competition from a few projects financed by the same fund (Ycombinator), Airbnb has seen in large numbers ...
 
 For this study, we will explore the data collected from Airbnb Bordeaux (France) in mid-June 2019. The country became Airbnb's first market after the United States. The hexagon has more than 300,000 homes to disposal and Paris (ahead of London, Rome and Barcelona) ranks as first European cities with 65,852 homes to rent.
@@ -35,7 +36,7 @@ III- [Data Cleaning](#ND)
 [Transformed variables](#VT)
 [Detection and removal of weird variables](#VI)
 
-IV- [Prediction
+IV- [Prediction](#PR)
 
 [Loading libraries](#IM)
 [Which variables are best suited to linearly predict rental price ?](#NULL)
@@ -79,6 +80,7 @@ listings_raw = pd.read_csv('../input/listings_detail.csv')
 
 '''
 # output of the mean avaibility over 30 days of all the listings by neighourhood. It can be computed for avaibility_60, avaibility_90 in the same fashion.
+
 le = LabelEncoder()
 neigh_encoded = le.fit_transform(listings_raw['neighbourhood'].astype(str))
 neigh_encoded  = pd.DataFrame(neigh_encoded)
@@ -158,16 +160,57 @@ a = listings_raw.availability_30.describe()# 75% of properties are rented for a 
 print(a.index[6],"of properties are  rented for a maximum of", 30-a[6],"days in the next 30. That makes an (optimistic) assumption of", np.round((30-a[6])/0.3, 1
 
 '''
-75% of properties are  rented for a maximum of 21.0 days in the next 30. That makes an (optimistic) assumption of 70.0 % occupancy
+*75% of properties are  rented for a maximum of 21.0 days in the next 30. That makes an (optimistic) assumption of 70.0 % occupancy
 
 75% of properties are  rented for a maximum of 35.0 days in the next 60. That makes an (optimistic) assumption of 58.3 % occupancy
 
 75% of properties are  rented for a maximum of 44.0 days in the next 90. That makes an (optimistic) assumption of 48.9 % occupancy
 
-75% of properties are  rented for a maximum of 186.0 days in the next 365. That makes an (optimistic) assumption of 51.0 %
+75% of properties are  rented for a maximum of 186.0 days in the next 365. That makes an (optimistic) assumption of 51.0 % occupancy*
 
 The closer the date is, the higher the ratio. It makes common sense that the closer the date, the highest is the likelihood that the property is rented. I take an average of the four rates which leads to 57 % in overall renting time for properties on the platform.
 
 However, the data was collected mi-July : which explains a much higher demand at this period. One should take into account that some people will rent only a few months in a year and-or will profit from their property at a specific time once a year. Some hosts (Airbnb forums) also mention that 1-3 days can happen to fall between bookings. To obtain a more accurate rate, it would be needed to scrape constantly (daily) Airbnb and follow the trend of avaibility at overall. Indeed, in order to find a more realistic ratio for the purpose of this study, I apply a average 50% penalty out of 57%, which will be rounded to 30%.
 
-The best customer experience: who's the most solicited host
+## <a name="REVIEWS" ></a> The best customer experience: who's the most solicited host
+
+*The hosts rating ranges from 0 to 15 per month, with more than 3/4 of ads that have at least a little post-lease attention.* However, we notice (index 'max') below that there are hosts rated up to 15 times during the month! There is one host, over +9500 who fulfills this exceptional condition:
+
+
+'''
+listings_raw.reviews_per_month.describe()
+rev_excell = listings_raw[listings_raw.reviews_per_month==15]
+print("There are", rev_excell.shape[0], "host(s) with at least 15 reviews per month")
+'''
+
+There are 1 host(s) with at least 15 reviews per month
+
+'''
+print("The studio is  rented for a maximum of", 30-rev_excell.availability_30.mean(),"days in the next 30. That makes an (optimistic) assumption of", np.round((30-rev_excell.availability_30.mean())/0.3, 1),"% occupancy")
+print("The studio is  rented for a maximum of", 60-rev_excell.availability_60.mean(),"days in the next 60. That makes an (optimistic) assumption of", np.round((60-rev_excell.availability_60.mean())/0.6, 1),"% occupancy")
+print("The studio is  rented for a maximum of", 90-rev_excell.availability_90.mean(),"days in the next 60. That makes an (optimistic) assumption of", np.round((90-rev_excell.availability_90.mean())/0.9, 1),"% occupancy")
+print("The studio is  rented for a maximum of", 365-rev_excell.availability_365.mean(),"days in the next 365. That makes an (optimistic) assumption of", np.round((365-rev_excell.availability_365.mean())/3.65, 1),"% occupancy")
+'''
+
+The studio is  rented for a maximum of 21.0 days in the next 30. That makes an (optimistic) assumption of 70.0 % occupancy
+The studio is  rented for a maximum of 39.0 days in the next 60. That makes an (optimistic) assumption of 65.0 % occupancy
+The studio is  rented for a maximum of 56.0 days in the next 60. That makes an (optimistic) assumption of 62.2 % occupancy
+The studio is  rented for a maximum of 315.0 days in the next 365. That makes an (optimistic) assumption of 86.3 % occupancy
+
+
+As you can see, the rental rate is quite higher than the average property ! *Nevertheless the 86% occupancy is probably overestimated as because the host lists as available the property only up to the end of this year.*
+
+- The apartment is located in the outskirts of Bordeaux (Mérignac), although the surface is reduced (20 m² = 215 sqm.), the decoration and layout makes it a place of first choice. It looks clearly like a high level-profesionnal decoration.
+
+**The numbers** : - the rate of reviews is *15 per month -> 15 different guests -> a minimum of 15 nights.*
+
+The 3 next days soon are not checked (date of this study: mid-July 2019). Also, 6 nights are available next month and 15 next month. Thus, the **occupancy rate** of the property is certainly **above average.**
+
+### <a name="ROI" ></a> a. Return on investment of the property
+
+We take into account the price per square meter of the apartment in Mérignac (2.531 €) and the configuration of this luxury studio, I will now compute the **return on investment (on a yearly basis)** of this property.
+
+I take **200 nights** (**55%** *occupancy rate applied over 1 year (10 months)*), *a daily rental cost* of 69 € per day which allows...
+
+A rental return of **16%** for this studio. **Important caution** : I took high expectations property value to match the good. This is a HUGE rate realistically computed. I didn't take into account legal fees because, while in New York people are punished for renting, we apply a fine policy in France; this risk is also to add in this situation. Then it is is one way to make money on Airnb... Small optimized space with classy and sober decoration, wood, cozy, high luminosity and notably talent to conjugate everything.
+
