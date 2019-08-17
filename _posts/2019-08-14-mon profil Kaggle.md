@@ -12,3 +12,4 @@ Kaggle is a web platform organizing competitions in data science. On this platfo
 We can also publish Kernels, which are analyzes and predictions to make a contribution to the platform either in the form of a tutorial
 (most successful) or ask other users about their work.
 
+[Mon profil](https://www.kaggle.com/jeremiedec)
