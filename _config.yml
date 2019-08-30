@@ -11,7 +11,7 @@ title                    : "Jeremie Decoop"
 title_separator          : "-"
 name                     : "Jeremie Decoop"
 description              : "Powered by Jekyll and minimal-mistakes theme"
-url                      : #"https://zengliX.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : # # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "JeremieDec/JeremieDecoops.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -20,9 +20,9 @@ words_per_minute         : 250
 comments:
   provider               : "facebook" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
-    shortname            : #"zengliX" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : 
   discourse:
-    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+    server               : #  e.g.: meta.discourse.org
   facebook:
     # https://developers.facebook.com/docs/plugins/comments
     appid                :
@@ -81,7 +81,7 @@ author:
   avatar           : "/others/photoprof.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : ""
   location         : "France"
-  email            : "jeremie.dec@outlook.fr"
+  email            : "decoop.jeremie@gmail.com"
   uri              :
   bitbucket        :
   codepen          :
@@ -89,7 +89,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : #"zengliX"
+  github           : "JeremieDec"
   google_plus      :
   keybase          :
   instagram        :
