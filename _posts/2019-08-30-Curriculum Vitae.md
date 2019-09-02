@@ -1,1 +1,2 @@
-<a href="jeremiedec.github.io/home/pics/Curriculum_Jeremie_Decoop.pdf" target="_blank">PDF.</a>
+
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Curriculum_Jeremie_Decoop.pdf" width="100%">
