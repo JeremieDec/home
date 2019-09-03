@@ -6,7 +6,7 @@ author_profile: true
 comments: true
 ---
 
-<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Place_de_la_Bourse_Bordeaux2comp.png" width="100%">
+<img src="https://raw.githubusercontent.com/JeremieDec/home/master/pics/Bordeaux%20Post/Place_de_la_Bourse_Bordeaux_couv_fr.jpg" width="100%">
 
 **Préface**
 
