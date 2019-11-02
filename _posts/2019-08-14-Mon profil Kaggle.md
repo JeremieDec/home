@@ -9,7 +9,7 @@ qui a le plus de succès) ou demander l'avis des autres utilisateurs sur ses tra
 
 ----------------------
 
-Kaggle is a web platform organizing competitions in data science. On this platform, the companies offer problems in data science and offer a price to the datalogists obtaining the best performances.
+Kaggle is a web platform organizing competitions in data science. On this platform, the companies offer problems in data science and offer a price to the datascientists obtaining the best performances.
 We can also publish Kernels, which are analyzes and predictions to make a contribution to the platform either in the form of a tutorial
-(most successful) or ask other users about their work.
+(most successful) or ask other users about its work.
 
