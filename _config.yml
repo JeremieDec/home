@@ -18,7 +18,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 250
 comments:
-  provider               : "facebook" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
+  provider               : "disqus" # false (default), "facebook", "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
     shortname            : 
   discourse:
